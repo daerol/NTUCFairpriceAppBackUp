@@ -153,4 +153,65 @@ class registrationDA: NSObject {
     
     
     
+    
+    func postMultiPart(token: String, url: String, image: UIImage) {
+        
+        var r  = URLRequest(url: URL(string: url)!)
+        r.httpMethod = "POST"
+        let boundary = "Boundary-\(UUID().uuidString)"
+        r.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        
+        
+        let userToken = ["token" : token]
+        
+        //Now use image to create into NSData format
+        let imageData:NSData = UIImagePNGRepresentation(image)! as NSData
+        
+        let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
+        
+        
+        r.httpBody = createBody(parameters: userToken,
+                                boundary: boundary,
+                                data: UIImageJPEGRepresentation(image, 0.7)!,
+                                mimeType: "image/jpg",
+                                filename: "hello.jpg")
+        
+    }
+    
+    
+    func createBody(parameters: [String: String],
+                    boundary: String,
+                    data: Data,
+                    mimeType: String,
+                    filename: String) -> Data {
+        let body = NSMutableData()
+        
+        let boundaryPrefix = "--\(boundary)\r\n"
+        
+        for (key, value) in parameters {
+            body.appendString(boundaryPrefix)
+            body.appendString("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+            body.appendString("\(value)\r\n")
+        }
+        
+        body.appendString(boundaryPrefix)
+        body.appendString("Content-Disposition: form-data; name=\"file\"; filename=\"\(filename)\"\r\n")
+        body.appendString("Content-Type: \(mimeType)\r\n\r\n")
+        body.append(data)
+        body.appendString("\r\n")
+        body.appendString("--".appending(boundary.appending("--")))
+        
+        return body as Data
+    }
+    
+    
+}
+
+
+extension NSMutableData {
+    func appendString(_ string: String) {
+        let data = string.data(using: String.Encoding.utf8, allowLossyConversion: false)
+        append(data!)
+    }
 }

@@ -36,6 +36,7 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
         super.viewDidLoad()
         TOSBox.delegate = self
         view.backgroundColor = UIColor(r: 240, g: 240, b: 240)
+       
         
         
         // Set up UI
@@ -158,29 +159,50 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
     // If fields are filled, return true.
     func checkAllFieldsRequired() -> Bool {
         
+        
+        
         var message = ""
+        var usernameMsg = ""
+        var validEmailMsg = ""
+        var phoneFieldMsg = ""
+        var passwordFieldMsg = ""
+        var confirmPasswordFieldMsg = ""
+        var notMatchMsg = ""
+        var agreetoTOSMsg = ""
         var validFormat = false
         
-        if usernameField.isEmpty == true { message = "- Username cannot be blank\n" }
-        else if isValidEmail(emailField) != true { message = "- Email cannot be blank\n" }
-        else if phoneField.isEmpty == true { message = "- Phone number is required\n"}
-        else if passwordField.isEmpty == true { message = "- Password must be at least 6 characters\n" }
-        else if confirmField.isEmpty == true { message = "- Confirm password cannot be blank\n" }
-        else if passwordField != confirmField { message = "- Password does not match\n" }
-        else if agreeToTOS == false { message = "- Must agree to the terms\n" }
-        else { validFormat = true }
+      
         
         
-        if (validFormat == false){
-            let uiAlert = UIAlertController(
-                title: "Whoops!",
-                message: message,
-                preferredStyle: UIAlertControllerStyle.alert)
+        if usernameField.isEmpty == true || isValidEmail(emailField) != true || phoneField.isEmpty == true || passwordField.isEmpty == true || confirmField.isEmpty == true || passwordField != confirmField || TOSBox.on == false {
             
-            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default,handler: nil))
-            self.present(uiAlert, animated:true, completion: nil)
-        }
+            if usernameField.isEmpty == true { usernameMsg = "- Username cannot be blank\n" }
+            if isValidEmail(emailField) != true { validEmailMsg = "- Email is invalid/blank\n" }
+            if phoneField.isEmpty == true { phoneFieldMsg = "- Phone number is required\n"}
+            if passwordField.isEmpty == true { passwordFieldMsg = "- Password must be at least 6 characters\n" }
+            if confirmField.isEmpty == true { confirmPasswordFieldMsg = "- Confirm password cannot be blank\n" }
+            if passwordField != confirmField { notMatchMsg = "- Password does not match\n" }
+            if agreeToTOS == false { agreetoTOSMsg = "- Must agree to the terms\n" }
+            
+            
+            message = usernameMsg + validEmailMsg + phoneFieldMsg + passwordFieldMsg + confirmPasswordFieldMsg + notMatchMsg + agreetoTOSMsg
+            
+            
+            if (validFormat == false){
+                let uiAlert = UIAlertController(
+                    title: "Whoops!",
+                    message: message,
+                    preferredStyle: UIAlertControllerStyle.alert)
+                
+                uiAlert.addAction(UIAlertAction(title: "Ok", style: .default,handler: nil))
+                self.present(uiAlert, animated:true, completion: nil)
+            }
+            
+            
+        } else { validFormat = true }
         
+        
+       
         return validFormat
         
     }
@@ -251,6 +273,8 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
         imageView.layer.borderColor = UIColor.black.cgColor
         imageView.layer.cornerRadius = imageView.frame.height/2
         imageView.clipsToBounds = true
+        imageView.backgroundColor = UIColor(r: 104, g: 104, b: 104)
+
     }
     
     
@@ -262,6 +286,9 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
         picker.dismiss(animated: true, completion: nil)
     }
     
+
+    
+    
 }
 
 
@@ -272,5 +299,7 @@ extension UIColor {
         self.init(red: r/255, green: g/255, blue: b/255, alpha: 1)
     }
 }
+
+
 
 

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6fj-cb-itm">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Protection Points View Controller-->
+        <scene sceneID="x45-mw-3YT">
+            <objects>
+                <viewController id="6fj-cb-itm" customClass="ProtectionPointsViewController" customModule="ShareATextbook" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xX0-bS-LTC"/>
+                        <viewControllerLayoutGuide type="bottom" id="3f1-dB-bjn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gej-bQ-Pun">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FYe-v3-MBa">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="Sxi-St-Ytg"/>
+                                    <constraint firstAttribute="height" constant="70" id="n2g-xp-cT2"/>
+                                </constraints>
+                                <color key="barTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Protection Points" id="6C7-5H-XrM">
+                                        <barButtonItem key="leftBarButtonItem" title="Profile" id="lBw-IX-Col">
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="achievement" translatesAutoresizingMaskIntoConstraints="NO" id="h2o-ju-lq9">
+                                <rect key="frame" x="70" y="117" width="234" height="241"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wjp-49-fy8">
+                                <rect key="frame" x="0.0" y="415" width="375" height="252"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="wl3-iQ-Jc9" style="IBUITableViewCellStyleDefault" id="HIA-lL-9df">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HIA-lL-9df" id="IbF-EF-nSy">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wl3-iQ-Jc9">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Wjp-49-fy8" firstAttribute="top" secondItem="h2o-ju-lq9" secondAttribute="bottom" constant="57" id="BJ3-Ak-cAE"/>
+                            <constraint firstAttribute="trailing" secondItem="FYe-v3-MBa" secondAttribute="trailing" id="DoT-Nt-EFy"/>
+                            <constraint firstItem="h2o-ju-lq9" firstAttribute="top" secondItem="FYe-v3-MBa" secondAttribute="bottom" constant="47" id="PIx-Du-Spn"/>
+                            <constraint firstItem="Wjp-49-fy8" firstAttribute="leading" secondItem="gej-bQ-Pun" secondAttribute="leading" id="RCX-JN-qcF"/>
+                            <constraint firstAttribute="trailing" secondItem="Wjp-49-fy8" secondAttribute="trailing" id="XmV-8n-kXa"/>
+                            <constraint firstItem="h2o-ju-lq9" firstAttribute="leading" secondItem="gej-bQ-Pun" secondAttribute="leadingMargin" constant="54" id="Y0h-fo-tDY"/>
+                            <constraint firstItem="FYe-v3-MBa" firstAttribute="top" secondItem="xX0-bS-LTC" secondAttribute="bottom" constant="-20" id="k5v-nX-6tF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="h2o-ju-lq9" secondAttribute="trailing" constant="55" id="mhZ-4b-DfV"/>
+                            <constraint firstItem="3f1-dB-bjn" firstAttribute="top" secondItem="Wjp-49-fy8" secondAttribute="bottom" id="tlQ-ep-Lds"/>
+                            <constraint firstItem="FYe-v3-MBa" firstAttribute="leading" secondItem="gej-bQ-Pun" secondAttribute="leading" id="vZm-EI-m43"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jBb-Vv-in5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="128.80000000000001" y="25.637181409295355"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="achievement" width="175" height="241"/>
+    </resources>
+</document>
