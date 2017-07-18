@@ -28,16 +28,17 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
     var phoneField : String = ""
     var passwordField : String = ""
     var confirmField : String = ""
-    var agreeToTOS : Bool = true
+    var agreeToTOS : Bool = false
     
     var regDA = registrationDA()
+    var logDA = loginDA()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         TOSBox.delegate = self
         view.backgroundColor = UIColor(r: 240, g: 240, b: 240)
        
-        
+        definesPresentationContext = true
         
         // Set up UI
         setupNavigationBar()
@@ -66,34 +67,75 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
         confirmField = confirmPasswordField.text!
         
         
-        // Check if password field matches confirm field
-        if passwordField == confirmField {
-            // Convert password to SHA512
-            passwordField = maskPassword(passwordField).uppercased()
-            confirmField = maskPassword(confirmField).uppercased()
-        }
         
         // Check if the userfields is filled
         if checkAllFieldsRequired() == true {
             
+            // Check if password field matches confirm field
+            if passwordField == confirmField {
+                // Convert password to SHA512
+                passwordField = maskPassword(passwordField).uppercased()
+                confirmField = maskPassword(confirmField).uppercased()
+            }
+            
+            
             // Passing data to the Data Manager Function
-            userCreated = registrationDA.createUser(usernameField, emailField, passwordField, phoneField, showEmail, showPhone, userType)
+            registrationDA.createUser(usernameField, emailField, passwordField, phoneField, showEmail, showPhone, userType, onComplete:  {
+                (token, userId, isCreated, msg, title) -> Void in
+                
+                print(token)
+                print(userId)
+                print(isCreated)
+                
+                
+                userCreated = isCreated
+                
+                // Set global token
+                loginDA._loginToken = token
+                loginDA._userId = userId
+                
+                print("Is user created = \(userCreated)")
+                print("Message is : \(msg) ")
+                
+                
+                DispatchQueue.main.async() {
+                    [unowned self] in
+
+                    
+                    
+                    if isCreated == true {
+                        self.presentAlert(msg: msg, title: title)
+                        self.performSegue(withIdentifier: "ToLogin", sender: self)
+                    } else {
+                        self.presentAlert(msg: msg, title: title)
+                        
+                    }
+                    
+                   
+                    
+                   
+                }
+                
+                DispatchQueue.global(qos: .userInitiated).async {
+                    
+                }
+                
+                
+               
+                
+                
+            })
             
             
             // Print results
             print(userCreated)
             
-            // Hash user
-            if userCreated == true {
-                print("User created!")
-                
-                //regDA.loginAndPost(emailField, "")
-            }
+            
             
             
         } // End of the if
         
-        
+       
         
     } // end of create user
     
@@ -172,22 +214,26 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
         var validFormat = false
         
       
-        
+        // Validate if any fields are unfilled with text/incorrect fields
         
         if usernameField.isEmpty == true || isValidEmail(emailField) != true || phoneField.isEmpty == true || passwordField.isEmpty == true || confirmField.isEmpty == true || passwordField != confirmField || TOSBox.on == false {
             
-            if usernameField.isEmpty == true { usernameMsg = "- Username cannot be blank\n" }
-            if isValidEmail(emailField) != true { validEmailMsg = "- Email is invalid/blank\n" }
-            if phoneField.isEmpty == true { phoneFieldMsg = "- Phone number is required\n"}
-            if passwordField.isEmpty == true { passwordFieldMsg = "- Password must be at least 6 characters\n" }
-            if confirmField.isEmpty == true { confirmPasswordFieldMsg = "- Confirm password cannot be blank\n" }
-            if passwordField != confirmField { notMatchMsg = "- Password does not match\n" }
-            if agreeToTOS == false { agreetoTOSMsg = "- Must agree to the terms\n" }
+            
+            // If textfields are unfilled, show messages.
+            
+                if usernameField.isEmpty == true { usernameMsg = "- Username cannot be blank\n" }
+                if isValidEmail(emailField) != true { validEmailMsg = "- Email is invalid/blank\n" }
+                if phoneField.isEmpty == true { phoneFieldMsg = "- Phone number is required\n"}
+                if passwordField.isEmpty == true { passwordFieldMsg = "- Password must be at least 6 characters\n" }
+                if confirmField.isEmpty == true { confirmPasswordFieldMsg = "- Confirm password cannot be blank\n" }
+                if passwordField != confirmField { notMatchMsg = "- Password does not match\n" }
+                if agreeToTOS == false { agreetoTOSMsg = "- Must agree to the terms\n" }
             
             
-            message = usernameMsg + validEmailMsg + phoneFieldMsg + passwordFieldMsg + confirmPasswordFieldMsg + notMatchMsg + agreetoTOSMsg
-            
-            
+            // Combine all messages
+                message = usernameMsg + validEmailMsg + phoneFieldMsg + passwordFieldMsg + confirmPasswordFieldMsg + notMatchMsg + agreetoTOSMsg
+                
+            // If the textfields are unfilled, show an alert message with the messages
             if (validFormat == false){
                 let uiAlert = UIAlertController(
                     title: "Whoops!",
@@ -199,7 +245,12 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
             }
             
             
-        } else { validFormat = true }
+        } else {
+            // Else is a valid format, post
+            validFormat = true
+            
+                    
+        }
         
         
        
@@ -207,11 +258,16 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
         
     }
     
-    
-    // Create function to check if username exists in the database
-    func checkUserExist() -> Bool {
-        return false
+    func presentAlert(msg:String, title:String) {
+        let uiAlert = UIAlertController(
+            title: title,
+            message: msg,
+            preferredStyle: UIAlertControllerStyle.alert)
+        
+        uiAlert.addAction(UIAlertAction(title: "Ok", style: .default,handler: nil))
+        self.present(uiAlert, animated:true, completion: nil)
     }
+   
     
     // Function to check if checkbox is checked.
     func didTap(_ checkBox: BEMCheckBox) {
@@ -286,7 +342,7 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
         picker.dismiss(animated: true, completion: nil)
     }
     
-
+  
     
     
 }

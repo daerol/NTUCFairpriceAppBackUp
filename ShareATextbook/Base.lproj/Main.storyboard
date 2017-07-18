@@ -86,7 +86,7 @@
                                                         <state key="normal" title="Login"/>
                                                         <connections>
                                                             <action selector="loginBtn:" destination="0Jd-1D-2iW" eventType="touchUpInside" id="DHv-Cx-3oX"/>
-                                                            <segue destination="49e-Tb-3d3" kind="show" id="eav-UD-dxz"/>
+                                                            <segue destination="49e-Tb-3d3" kind="show" identifier="LoginSegue" id="eav-UD-dxz"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -104,7 +104,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Registration"/>
                                 <connections>
-                                    <segue destination="2kV-ik-tUZ" kind="presentation" modalTransitionStyle="flipHorizontal" id="EeL-tL-po1"/>
+                                    <segue destination="2kV-ik-tUZ" kind="presentation" identifier="" modalTransitionStyle="flipHorizontal" id="EeL-tL-po1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -391,7 +391,7 @@
                                     <navigationItem title="Registration" id="FS2-Zs-iqx" customClass="Custom">
                                         <barButtonItem key="leftBarButtonItem" title="Login" id="OHE-vD-COh">
                                             <connections>
-                                                <segue destination="0Jd-1D-2iW" kind="presentation" modalTransitionStyle="flipHorizontal" id="Zx1-DO-luE"/>
+                                                <segue destination="0Jd-1D-2iW" kind="presentation" identifier="ToLogin" modalTransitionStyle="flipHorizontal" id="Zx1-DO-luE"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

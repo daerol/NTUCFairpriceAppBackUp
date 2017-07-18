@@ -16,9 +16,13 @@ class registrationDA: NSObject {
         
     }
     
-    static func createUser(_ name: String, _ email: String, _ password: String, _ phone: String, _ showEmail: String, _ showPhone: String, _ type: String) -> Bool {
+    static func createUser(_ name: String, _ email: String, _ password: String, _ phone: String, _ showEmail: String, _ showPhone: String, _ type: String, onComplete: @escaping (String, String, Bool, String, String) -> Void) {
         
         var isCreated : Bool = false
+        var token : String = ""
+        var userId : String = ""
+        var msg : String = ""
+        var title : String = ""
         
         
         
@@ -38,15 +42,31 @@ class registrationDA: NSObject {
                 
                 if response != nil
                 {
-                    isCreated = false
                     print(json!)
-                    if let token = (json?["token"].string!) {
-                          print(token)
-                    }
-                    if let userId = (json?["id"].string!) {
-                        print(userId)
-                    }
+//                    if let token = (json?["token"].string!) {
+//                          print(token)
+//                    }
+//                    if let userId = (json?["id"].string!) {
+//                        print(userId)
+//                    }
                     
+                    if (json?["error"].exists())! {
+                        isCreated = false
+                        token = "empty"
+                        userId = "empty"
+                        msg = (json!["msg"].string!)
+                        title = "Failed!"
+                        onComplete(token, userId, isCreated, msg, title)
+                        
+                    } else {
+                        isCreated = true
+                        token = (json!["token"].string!)
+                        userId = (json!["userid"].string!)
+                        msg = "You may login your account with email and password!"
+                        title = "Success!"
+                        onComplete(token, userId, isCreated, msg, title)
+                        
+                    }
                   
                     
                     
@@ -65,10 +85,7 @@ class registrationDA: NSObject {
             print(isCreated)
         } // End of Dispatch Queue
         
-        isCreated = true
         
-        
-        return isCreated
     }
     
     
