@@ -24,7 +24,6 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
     var post: Posting?
     
     var isOwner: Bool?
-    var postImageSourceList: [ImageSource]? = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
