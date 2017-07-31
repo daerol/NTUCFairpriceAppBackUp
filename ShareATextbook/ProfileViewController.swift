@@ -1,0 +1,203 @@
+//
+//  ProfileViewController.swift
+//  ntucTest
+//
+//  Created by Chia Li Yun on 11/5/17.
+//  Copyright © 2017 Chia Li Yun. All rights reserved.
+//
+
+import UIKit
+
+class ProfileViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    @IBOutlet weak var profileInfoStackView: UIStackView!
+    @IBOutlet weak var itemCollectionView: UICollectionView!
+    @IBOutlet weak var pointStackView: UIStackView!
+    @IBOutlet weak var pointLabel: UILabel!
+    @IBOutlet weak var locationStackView: UIStackView!
+    @IBOutlet weak var name: UILabel!
+    
+    @IBOutlet weak var editProfileButton: CustomUIButton!
+    @IBOutlet weak var preferredLocation: UILabel!
+    
+    @IBOutlet weak var profileInfoView: UIView!
+    @IBOutlet weak var editProfileView: UIView!
+    
+    @IBOutlet weak var numberOfPost: UILabel!
+    
+    private let leftAndRightPadding: CGFloat = 16.0
+    private let numberOfItemsPerRow: CGFloat = 2.0
+    private let heightAdjustment: CGFloat = 80.0
+    
+    var postList: [Posting]?
+    var user: User?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //  Tap Gestures
+        let pointStackViewTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapPointStackView))
+        pointStackView.addGestureRecognizer(pointStackViewTapGesture)
+        
+        let locationStackViewTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapLocationStackView))
+        locationStackView.addGestureRecognizer(locationStackViewTapGesture)
+        
+        if user == nil {
+            user = SharedVariables.user
+            name.text = SharedVariables.user.username
+            preferredLocation.text = "Serangoon North Avenue 4"
+        } else {
+            //  If is owner
+            name.text = user!.username
+            preferredLocation.text = user!.preferredloc
+            
+        }
+        
+        //  If owner, remove the edit profile view
+        self.profileInfoStackView.removeArrangedSubview(editProfileView)
+        
+//        DispatchQueue.global(qos: .userInitiated).async {
+            PostingDataManager.getPostingList(onComplete: {
+                postingList in
+                
+                print("enter 1")
+                
+                self.postList = postingList
+                
+                DispatchQueue.main.async(execute: {
+                    self.numberOfPost.text = String(postingList.count)
+                    self.itemCollectionView.reloadData()
+                })
+            })
+//        }
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowItemDetails" {
+            
+//            let barViewControllers = segue.destination as! UITabBarController
+//            let itemDetailViewController = barViewControllers.viewControllers![0] as! PostDetailViewController
+            
+            let itemDetailViewController = segue.destination as! PostDetailViewController
+            let indexPath = self.itemCollectionView.indexPathsForSelectedItems
+            
+            print("index path \(String(describing: indexPath))")
+            
+            print("selected index \(indexPath?[0].row)")
+            
+            if indexPath != nil {
+                let post = postList?[(indexPath?[0].row)!]
+                
+                //  MARK:   Set post variable
+                itemDetailViewController.post = post
+                
+                //  MARK:   Set post ownership to allow editing of post
+                if true {
+                    itemDetailViewController.isOwner = true
+                } else {
+                    itemDetailViewController.isOwner = false
+                }
+            }
+        } else if segue.identifier == "EditProfileSegue" {
+            let editProfileViewController = segue.destination as! EditProfileViewController
+            
+            editProfileViewController.user = user
+        }
+    }
+    
+    func didTapPointStackView() {
+        pointLabel.text = "1000"
+    }
+    
+    func didTapLocationStackView() {
+        user?.preferredloc = "Serangoon North Avenue 4"
+        
+        if OpenPhoneApplication.openMap(url: "https://www.apple.com/ios/maps/") {
+            let location = user?.preferredloc.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            
+            UIApplication.shared.openURL(URL(string:
+                "http://maps.apple.com/?daddr=" + location!)!)
+        } else {
+            //  Alert user that Apple Map does not exist
+            let alert = UIAlertController(title: "Apple Map is not installed in your phone", message: "Please install from __", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+    }
+
+    
+    func settingsButtonClicked() {
+        print("clicked!")
+        let settingsStoryboard = UIStoryboard(name: "Profile", bundle: nil)
+        let vc = settingsStoryboard.instantiateViewController(withIdentifier: "SettingsStoryboard") as! SettingsViewController
+        self.present(vc, animated: true, completion: nil)
+    }
+
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("enter 2")
+//        return postList!.count
+        
+        if postList != nil {
+            return postList!.count
+        } else {
+            return 0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = itemCollectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ItemCollectionViewCell
+        
+//        cell.itemImage.image = #imageLiteral(resourceName: "textbook")
+//        cell.itemTitle.text = "My PAL's Are Here! Workbook 3B LALA"
+//        cell.itemDetail.text = "Test testss"
+//        
+//        if indexPath.row%2 == 0 {
+//            cell.itemTag.text = "Reserved"
+//            cell.backgroundColor = Colors.blue
+//            cell.itemTitle.textColor = Colors.white
+//            cell.itemDetail.textColor = Colors.lightestGray
+//        } else {
+//            cell.itemTag.isHidden = true
+//        }
+        let postStatus = postList![indexPath.row].status
+
+        cell.itemImage.image = #imageLiteral(resourceName: "textbook")
+        cell.itemTitle.text = postList![indexPath.row].name
+        cell.itemDetail.text = postList![indexPath.row].publisher! + " " + postList![indexPath.row].edition!
+        
+        if postList![indexPath.row].status == "" {
+             cell.itemTag.isHidden = true
+        } else {
+            if postStatus == "accepted" {
+                cell.itemTag.text = "Donated"
+                cell.backgroundColor = Colors.blue
+            } else if postStatus == "reserved" {
+                cell.itemTag.text = "Reserved"
+                cell.backgroundColor = Colors.darkRed
+            }
+        }
+        let filePath = postList![indexPath.row].photos[0]
+        
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let width = (itemCollectionView.bounds.width - leftAndRightPadding) / numberOfItemsPerRow
+
+        return CGSize(width: width, height: width + heightAdjustment)
+    }
+
+    
+}

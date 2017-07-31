@@ -8,9 +8,9 @@
 
 import UIKit
 
-class CustomNavigationViewController: UINavigationController {
+open class CustomNavigationViewController: UINavigationController {
 
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -19,13 +19,25 @@ class CustomNavigationViewController: UINavigationController {
         UIApplication.shared.statusBarStyle = .lightContent
         
         //  Set text color to white
-        self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: colors.white]
+        self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Colors.white]
+        
+        //  Set back button color to white
+        self.navigationBar.tintColor = Colors.white
         
         //  Set background color to red
-        self.navigationBar.barTintColor = colors.red
+        self.navigationBar.barTintColor = Colors.darkRed
+        
+//        let title = self.navigationItem.title
+//        
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action: #selector(settingsButtonClicked))
+//            
+//        if title == "Profile" {
+//            print("Profile nav")
+//            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action: #selector(settingsButtonClicked))
+//        }
     }
 
-    override func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
