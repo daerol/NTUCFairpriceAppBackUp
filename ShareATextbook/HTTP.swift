@@ -170,8 +170,35 @@ class HTTP {
     }
     
     
-    
+    class func postMultipartPhotos(url: String, token: String, tag: Int, image: UIImage, onComplete:
+        ((_: JSON?, _: URLResponse?, _: Error?, _:Int?) -> Void)?) {
+        
+        let imageData = UIImageJPEGRepresentation(image, 0.7)
+        
+        if imageData != nil {
+            let request = createRequest(url: url, token: token, imageData: imageData!)
+            
+            URLSession.shared.dataTask(with: request)
+            {
+                data, response, error in
+                
+                if data != nil {
+                    
+                    let json = JSON.init(data: data!)
+                    
+                    onComplete?(json, response, error, tag)
+                }
+                }.resume()
+        }
+        
+    }
     
     
 }
 
+extension NSMutableData {
+    func appendString(_ string: String) {
+        let data = string.data(using: String.Encoding.utf8, allowLossyConversion: false)
+        append(data!)
+    }
+}

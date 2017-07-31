@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0Jd-1D-2iW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0Jd-1D-2iW">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -178,8 +178,8 @@
                         <segue destination="FGD-Ue-pn7" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="Mpo-53-erK" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="yyt-SZ-G1x" kind="relationship" relationship="viewControllers" id="N0c-Tk-XhY"/>
-                        <segue destination="f5c-JA-0o9" kind="relationship" relationship="viewControllers" id="iOh-kv-Ohr"/>
-                        <segue destination="FCm-BW-X0A" kind="relationship" relationship="viewControllers" id="v5x-fU-L4v"/>
+                        <segue destination="8b9-fj-E1s" kind="relationship" relationship="viewControllers" id="TC1-uj-qsB"/>
+                        <segue destination="RPh-b8-O6x" kind="relationship" relationship="viewControllers" id="qqE-Mp-exq"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -195,11 +195,11 @@
                         <viewControllerLayoutGuide type="bottom" id="UlG-sg-oFR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Uzl-pl-gba">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhH-3O-if9">
-                                <rect key="frame" x="156" y="297" width="63" height="24"/>
+                                <rect key="frame" x="156" y="321.5" width="63" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -226,7 +226,7 @@
                         <viewControllerLayoutGuide type="bottom" id="HdT-H1-oRr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Pjg-b9-VbV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Others" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VzY-I2-jfd">
@@ -244,6 +244,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0bR-68-HL5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1149.5999999999999" y="1542.2788605697153"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="HrQ-Md-gcy">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="RPh-b8-O6x" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="Profile-1" id="43E-et-hk8"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8lA-KN-9Qf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-29" y="476"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="4Gr-6S-33g">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Map" id="8b9-fj-E1s" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" image="Location" id="CLo-zf-lPE"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N8G-IC-cCr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="463" y="476"/>
         </scene>
         <!--Item-->
         <scene sceneID="pwT-yN-Trp">
@@ -552,26 +572,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qzy-nR-bL1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1202.4000000000001" y="724.58770614692662"/>
-        </scene>
-        <!--Profile-->
-        <scene sceneID="7Fi-Ht-zzl">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Profile" id="FCm-BW-X0A" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="Profile-1" id="jI1-mB-bU3"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="03s-E5-ULM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-28" y="438"/>
-        </scene>
-        <!--Map-->
-        <scene sceneID="Rpm-d7-atl">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Map" id="f5c-JA-0o9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" image="Location" id="KOP-l0-pfl"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Iyi-Ye-Rdl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="706" y="443"/>
         </scene>
         <!--Home-->
         <scene sceneID="9Zs-8d-NfV">
