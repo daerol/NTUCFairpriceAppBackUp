@@ -30,12 +30,7 @@ class CustomTabBarController: UITabBarController {
         if self.tabBar.isHidden == true {
             menuButton.isHidden = true
         }
-//        let borderTop = CALayer()
-//        borderTop.borderColor = colors.darkRed.cgColor
-//        borderTop.frame = CGRect(x: 0, y: 0, width: self.tabBar.frame.width, height: 1)
-////        borderTop.borderWidth = 1.8
-//        borderTop.shadowColor = colors.darkGrey.cgColor
-//        self.tabBar.layer.addSublayer(borderTop)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,7 +48,8 @@ class CustomTabBarController: UITabBarController {
         menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 64))
         
         var menuButtonFrame = menuButton.frame
-        menuButtonFrame.origin.y = (self.view.bounds.height - menuButtonFrame.height) - 12
+        //menuButtonFrame.origin.y = (self.view.bounds.height - menuButtonFrame.height) - 12
+        menuButtonFrame.origin.y = -30
         menuButtonFrame.origin.x = self.view.bounds.width/2 - menuButtonFrame.size.width/2
         menuButton.frame = menuButtonFrame
         
@@ -65,9 +61,8 @@ class CustomTabBarController: UITabBarController {
         menuButton.addTarget(self, action: #selector(CustomTabBarController.menuButtonAction(_:)), for: UIControlEvents.touchUpInside)
         menuButton.tintColor = Colors.lightGrey
         
-        self.view.addSubview(menuButton)
-        
-        self.view.layoutIfNeeded()
+        self.tabBar.addSubview(menuButton)
+        self.tabBar.layoutIfNeeded()
     }
     
     var pickerController: DKImagePickerController = DKImagePickerController()
