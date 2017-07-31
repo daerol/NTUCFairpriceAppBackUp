@@ -18,6 +18,8 @@
 		8F32DB031F0BBE730021D095 /* RegistrationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F32DB021F0BBE730021D095 /* RegistrationDataManager.swift */; };
 		8F32DB051F0BBEB40021D095 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F32DB041F0BBEB40021D095 /* HomeViewController.swift */; };
 		8F32DB071F0BBF3B0021D095 /* homepage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F32DB061F0BBF3B0021D095 /* homepage.storyboard */; };
+		8F49A7A81F1DCEF800725A8D /* HomepageDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F49A7A71F1DCEF800725A8D /* HomepageDataManager.swift */; };
+		8F49A7AA1F1DD1FC00725A8D /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F49A7A91F1DD1FC00725A8D /* Categories.swift */; };
 		8FA25CC61F13654400CB14EF /* pointsystem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FA25CC51F13654400CB14EF /* pointsystem.storyboard */; };
 		8FDCAB021EFAFC14001D903F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDCAB011EFAFC14001D903F /* RegistrationViewController.swift */; };
 		8FDF30E61F0BD5AA00359916 /* feature.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FDF30E51F0BD5AA00359916 /* feature.xib */; };
@@ -75,6 +77,8 @@
 		8F32DB021F0BBE730021D095 /* RegistrationDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationDataManager.swift; sourceTree = "<group>"; };
 		8F32DB041F0BBEB40021D095 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8F32DB061F0BBF3B0021D095 /* homepage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = homepage.storyboard; sourceTree = "<group>"; };
+		8F49A7A71F1DCEF800725A8D /* HomepageDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageDataManager.swift; sourceTree = "<group>"; };
+		8F49A7A91F1DD1FC00725A8D /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		8FA25CC51F13654400CB14EF /* pointsystem.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = pointsystem.storyboard; sourceTree = "<group>"; };
 		8FDCAB011EFAFC14001D903F /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		8FDF30E51F0BD5AA00359916 /* feature.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = feature.xib; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				C920D69B1EB6259900D095FC /* User.swift */,
+				8F49A7A91F1DD1FC00725A8D /* Categories.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 			children = (
 				8F32DB021F0BBE730021D095 /* RegistrationDataManager.swift */,
 				2B81304F1F0BB03800FBA165 /* LoginDataManager.swift */,
+				8F49A7A71F1DCEF800725A8D /* HomepageDataManager.swift */,
 			);
 			name = DataManagers;
 			sourceTree = "<group>";
@@ -449,10 +455,12 @@
 				8F1F324D1F0194A100DE910C /* HomeContentTableViewCell.swift in Sources */,
 				8F32DB031F0BBE730021D095 /* RegistrationDataManager.swift in Sources */,
 				8F32DB051F0BBEB40021D095 /* HomeViewController.swift in Sources */,
+				8F49A7AA1F1DD1FC00725A8D /* Categories.swift in Sources */,
 				C9CF89111EB9F14000B5AE95 /* Constants.swift in Sources */,
 				C920D69E1EB6265400D095FC /* LoginViewController.swift in Sources */,
 				8F1F32421F0170C100DE910C /* BEMAnimationManager.m in Sources */,
 				8FF04A3C1F136677008FD87F /* ProtectionPointsViewController.swift in Sources */,
+				8F49A7A81F1DCEF800725A8D /* HomepageDataManager.swift in Sources */,
 				C920D66B1EB624E700D095FC /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

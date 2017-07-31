@@ -6,6 +6,10 @@
 //  Copyright © 2017 Chia Li Yun. All rights reserved.
 //
 
+
+
+// Remarks: Add spinner before loading data
+
 import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
@@ -23,12 +27,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     var featureArray = [Dictionary<String, String>]()
-
-    
+    var catDA = HomepageDataManager()
+    var categoriesList : [Categories] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         featureArray = [feature1, feature2, feature3]
         sliderScrollView.isPagingEnabled = true
@@ -37,7 +43,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         
         loadFeatures()
+        retrieveCategories()
         
+      
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        retrieveCategories()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        retrieveCategories()
     }
     
     
@@ -55,6 +72,56 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 featureView.frame.origin.x = CGFloat(index) * self.view.bounds.size.width
             }
         }
+        
+    }
+    
+    
+    
+    
+    func retrieveCategories() {
+        
+        // Question 2c
+        let url = "http://13.228.39.122/FP05_883458374658792/1.0/category/list"
+        let json = JSON.init([
+            "limit" : "200",
+            ])
+        
+        HTTP.postJSON(url: url, // URL to post to
+            json: json, // Pass in an empty object
+            onComplete: {
+                json, response, error in
+                
+                // This is what will happen after the download
+                // from the server is complete
+                
+                
+                if json == nil {
+                    return
+                    
+                }
+                
+                
+                print(json!.count)
+                
+                
+                // Question 2d
+                for var i in 0..<json!.count {
+                    let cat = Categories()
+                    
+                    cat.id = json![i]["id"].string!
+                    cat.displayOrder = json![i]["displayorder"].string!
+                    cat.heading = json![i]["heading"].string!
+                    cat.name = json![i]["name"].string!
+                    
+                    
+                    self.categoriesList.append(cat)
+                    print(cat.name)
+                }
+                
+                
+                
+        })
+        
         
     }
     
@@ -84,8 +151,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.backgroundImage.image = UIImage(named: s)
         cell.nameLabel.text = bookCat["name"]
         
+//        DispatchQueue.main.async() {
+//            
+//            let bookCat = self.categoriesList[indexPath.row]
+//            cell.backgroundImage?.image = #imageLiteral(resourceName: "cells")
+//            cell.nameLabel?.text = bookCat.name
+//        }
         
         
+
         return cell
     }
     

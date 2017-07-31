@@ -102,22 +102,16 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
                     [unowned self] in
 
                     
-                    
-                    if isCreated == true {
-                        self.presentAlert(msg: msg, title: title)
-                        self.performSegue(withIdentifier: "ToLogin", sender: self)
-                    } else {
-                        self.presentAlert(msg: msg, title: title)
+             // yet to fix
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                         
-                    }
+                        let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
+                        self.present(homeViewController, animated: true, completion: nil)
+                    
                     
                    
                     
                    
-                }
-                
-                DispatchQueue.global(qos: .userInitiated).async {
-                    
                 }
                 
                 

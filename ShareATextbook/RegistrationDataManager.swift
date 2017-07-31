@@ -185,7 +185,7 @@ class registrationDA: NSObject {
         //Now use image to create into NSData format
         let imageData:NSData = UIImagePNGRepresentation(image)! as NSData
         
-        let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
+        //let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
         
         
         r.httpBody = createBody(parameters: userToken,
