@@ -24,13 +24,15 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
     var post: Posting?
     
     var isOwner: Bool?
+    
+    var tabBar: CustomTabBarController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         //  MARK:   Hide tab bar at the bottom
-        let tabBar = self.tabBarController as! CustomTabBarController
-        tabBar.menuButton.isHidden = true
+        tabBar = self.tabBarController as! CustomTabBarController
+        //tabBar?.menuButton.isHidden = true
         
         //  MARK:   Set navigation title
         self.navigationItem.title = post?.name

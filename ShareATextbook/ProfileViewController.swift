@@ -34,7 +34,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        
         //  Tap Gestures
         let pointStackViewTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapPointStackView))
         pointStackView.addGestureRecognizer(pointStackViewTapGesture)
@@ -72,7 +72,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
 //        }
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
