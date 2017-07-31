@@ -16,7 +16,9 @@ class registrationDA: NSObject {
         
     }
     
-    static func createUser(_ name: String, _ email: String, _ password: String, _ phone: String, _ showEmail: String, _ showPhone: String, _ type: String, onComplete: @escaping (String, String, Bool, String, String) -> Void) {
+    
+    // Need to fix the profile image
+    static func createUser(_ name: String, _ email: String, _ password: String, _ phone: String, _ showEmail: String, _ showPhone: String, _ type: String,_ profileDP: UIImage, onComplete: @escaping (String, String, Bool, String, String) -> Void) {
         
         var isCreated : Bool = false
         var token : String = ""
@@ -24,70 +26,85 @@ class registrationDA: NSObject {
         var msg : String = ""
         var title : String = ""
         
+        let photoURL = DatabaseAPI.url + "photos/addu"
+        let addUserURL = DatabaseAPI.url + "user/add"
         
         
-        let json = JSON.init([
-            "name" : name,
-            "email" : email,
-            "password" : password,
-            "phone" : phone,
-            "showemail" : showEmail,
-            "showphone" : showPhone,
-            "type" : type
-            ])
-        
-        DispatchQueue.global(qos: .background).async {
-            HTTP.postJSON(url: "http://13.228.39.122/FP05_883458374658792/1.0/user/add", json: json, onComplete: {
-                json, response, error in
-                
-                if response != nil
-                {
-                    print(json!)
-//                    if let token = (json?["token"].string!) {
-//                          print(token)
-//                    }
-//                    if let userId = (json?["id"].string!) {
-//                        print(userId)
-//                    }
+        uploadProfileDP(photoURL, profileDP, onComplete: {
+            profileDP in
+            
+            
+            let json = JSON.init([
+                "name" : name,
+                "email" : email,
+                "password" : password,
+                "phone" : phone,
+                "showemail" : showEmail,
+                "showphone" : showPhone,
+                "type" : type
+                ])
+            
+            DispatchQueue.global(qos: .background).async {
+                HTTP.postJSON(url: addUserURL, json: json, onComplete: {
+                    json, response, error in
                     
-                    if (json?["error"].exists())! {
-                        isCreated = false
-                        token = "empty"
-                        userId = "empty"
-                        msg = (json!["msg"].string!)
-                        title = "Failed!"
-                        onComplete(token, userId, isCreated, msg, title)
+                    if response != nil
+                    {
+                        print(json!)
                         
-                    } else {
-                        isCreated = true
-                        token = (json!["token"].string!)
-                        userId = (json!["userid"].string!)
-                        msg = "You may login your account with email and password!"
-                        title = "Success!"
-                        onComplete(token, userId, isCreated, msg, title)
+                        if (json?["error"].exists())! {
+                            isCreated = false
+                            token = "empty"
+                            userId = "empty"
+                            msg = (json!["msg"].string!)
+                            title = "Failed!"
+                            onComplete(token, userId, isCreated, msg, title)
+                            
+                        } else {
+                            isCreated = true
+                            token = (json!["token"].string!)
+                            userId = (json!["userid"].string!)
+                            msg = "You may login your account with email and password!"
+                            title = "Success!"
+                            onComplete(token, userId, isCreated, msg, title)
+                            
+                        }
+                        
+                        
+                        
+                        return
                         
                     }
-                  
                     
-                    
-                    return
-                    
-                }
+                    if json != nil {
+                        print(json!)
+                        
+                    }
+                    isCreated = true
+                })
                 
-                if json != nil {
-                    print(json!)
-                    
-                }
-                isCreated = true
-            })
+                
+                print(isCreated)
+            } // End of Dispatch Queue
             
             
-            print(isCreated)
-        } // End of Dispatch Queue
+        }) // End of uploadProfileDP
         
         
     }
     
+    static func uploadProfileDP(_ url: String, _ profileImage: UIImage, onComplete: @escaping(_: [String]) -> Void) {
+        
+       
+        HTTP.postMultipartPhotos(url: url, token: SharedVariables.token, tag: 0, image: profileImage, onComplete: {
+            json, response, error, tag in
+            
+            print("json \(json)")
+            
+        })
+        
+        
+        }
     
     
     
@@ -169,58 +186,7 @@ class registrationDA: NSObject {
 
     
     
-    
-    
-    func postMultiPart(token: String, url: String, image: UIImage) {
-        
-        var r  = URLRequest(url: URL(string: url)!)
-        r.httpMethod = "POST"
-        let boundary = "Boundary-\(UUID().uuidString)"
-        r.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        
-        
-        
-        let userToken = ["token" : token]
-        
-        //Now use image to create into NSData format
-        let imageData:NSData = UIImagePNGRepresentation(image)! as NSData
-        
-        //let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
-        
-        
-        r.httpBody = createBody(parameters: userToken,
-                                boundary: boundary,
-                                data: UIImageJPEGRepresentation(image, 0.7)!,
-                                mimeType: "image/jpg",
-                                filename: "hello.jpg")
-        
-    }
-    
-    
-    func createBody(parameters: [String: String],
-                    boundary: String,
-                    data: Data,
-                    mimeType: String,
-                    filename: String) -> Data {
-        let body = NSMutableData()
-        
-        let boundaryPrefix = "--\(boundary)\r\n"
-        
-        for (key, value) in parameters {
-            body.appendString(boundaryPrefix)
-            body.appendString("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
-            body.appendString("\(value)\r\n")
-        }
-        
-        body.appendString(boundaryPrefix)
-        body.appendString("Content-Disposition: form-data; name=\"file\"; filename=\"\(filename)\"\r\n")
-        body.appendString("Content-Type: \(mimeType)\r\n\r\n")
-        body.append(data)
-        body.appendString("\r\n")
-        body.appendString("--".appending(boundary.appending("--")))
-        
-        return body as Data
-    }
+   
     
     
 }

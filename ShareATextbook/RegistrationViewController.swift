@@ -32,12 +32,12 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
     
     var regDA = registrationDA()
     var logDA = loginDA()
+    var profileImage : UIImage! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         TOSBox.delegate = self
         view.backgroundColor = UIColor(r: 240, g: 240, b: 240)
-       
         definesPresentationContext = true
         
         // Set up UI
@@ -80,7 +80,7 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
             
             
             // Passing data to the Data Manager Function
-            registrationDA.createUser(usernameField, emailField, passwordField, phoneField, showEmail, showPhone, userType, onComplete:  {
+            registrationDA.createUser(usernameField, emailField, passwordField, phoneField, showEmail, showPhone, userType, profileImage, onComplete:  {
                 (token, userId, isCreated, msg, title) -> Void in
                 
                 print(token)
@@ -332,6 +332,7 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
         
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         imageView.image = image
+        profileImage = image
         
         picker.dismiss(animated: true, completion: nil)
     }
