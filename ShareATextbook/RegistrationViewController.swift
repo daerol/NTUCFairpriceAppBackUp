@@ -32,7 +32,7 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
     
     var regDA = registrationDA()
     var logDA = loginDA()
-    var profileImage : UIImage! = nil
+    var profileImage : UIImage! = #imageLiteral(resourceName: "dp")
     
     override func viewDidLoad() {
         super.viewDidLoad()

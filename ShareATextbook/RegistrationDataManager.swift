@@ -31,11 +31,12 @@ class registrationDA: NSObject {
         
         
         uploadProfileDP(photoURL, profileDP, onComplete: {
-            profileDP in
+            photoP in
             
             
             let json = JSON.init([
                 "name" : name,
+                "photo" : photoP,
                 "email" : email,
                 "password" : password,
                 "phone" : phone,
@@ -43,6 +44,10 @@ class registrationDA: NSObject {
                 "showphone" : showPhone,
                 "type" : type
                 ])
+            
+            
+            print("SHOW THE USER PHOTO URL \(photoP)")
+            
             
             DispatchQueue.global(qos: .background).async {
                 HTTP.postJSON(url: addUserURL, json: json, onComplete: {
@@ -63,6 +68,7 @@ class registrationDA: NSObject {
                         } else {
                             isCreated = true
                             token = (json!["token"].string!)
+                            SharedVariables.token = (json!["token"].string!)
                             userId = (json!["userid"].string!)
                             msg = "You may login your account with email and password!"
                             title = "Success!"
@@ -93,79 +99,25 @@ class registrationDA: NSObject {
         
     }
     
-    static func uploadProfileDP(_ url: String, _ profileImage: UIImage, onComplete: @escaping(_: [String]) -> Void) {
+    static func uploadProfileDP(_ url: String, _ profileImage: UIImage, onComplete: @escaping(_: String) -> Void) {
         
+        var photoPath = ""
        
         HTTP.postMultipartPhotos(url: url, token: SharedVariables.token, tag: 0, image: profileImage, onComplete: {
             json, response, error, tag in
             
             print("json \(json)")
+            photoPath = json!["filepath"].string!
+            print("This is the user  \(photoPath)")
+            
+            onComplete(photoPath)
             
         })
         
         
         }
     
-    
-    
-    
-    
-    func loginAndPost(_ email: String, _ password: String) -> Bool {
-        
-        var posted = false
-        
-        var nonce : String = ""
-        let userType = "E"
-        
-        let json = JSON.init([
-            "email" : email
-            ])
-        
-        DispatchQueue.global(qos: .background).async{
-            HTTP.postJSON(url: "http://13.228.39.122/FP05_883458374658792/1.0/user/getnonce", json: json, onComplete: {
-                json, response, error in
-                
-                if response != nil
-                {
-                    print(json!)
-                    let nonce = (json!["nonce"].string!)
-                    print(nonce)
-                    
-                    let hashedPassword = self.sha512Hex(string: (self.sha512Hex(string: password).uppercased() + nonce )).uppercased()
-                    
-                    let loginJson = JSON.init([
-                        "type" : userType,
-                        "email" : email,
-                        "password" : hashedPassword
-                        ])
-                    
-                    HTTP.postJSON(url: "http://13.228.39.122/FP05_883458374658792/1.0/user/login", json: loginJson, onComplete: {
-                        json, response, error in
-                        
-                        if response != nil
-                        {
-                            print(json!)
-                            return
-                        }
-                        
-                        
-                    })
-                    
-                    posted = true
-                    return
-                }
-                
-            })
-            
-            
-        } // End of Dispatch Queue
-        
-        print(posted)
-        return posted
-        
-    }
-    
-    // Function to convert String to SHA512
+       // Function to convert String to SHA512
     func sha512Hex(string: String) -> String {
         let data = string.data(using: .utf8)!
         

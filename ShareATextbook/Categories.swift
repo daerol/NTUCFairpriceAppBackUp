@@ -15,6 +15,12 @@ class Categories: NSObject {
     var heading : String = ""
     var name : String = ""
     
+    init(id : String, displayOrder : String, heading : String, name : String) {
+        self.id = id
+        self.displayOrder = displayOrder
+        self.heading = heading
+        self.name = name
+    }
     
    
     
