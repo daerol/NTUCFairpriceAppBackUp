@@ -1,0 +1,6 @@
+framework module Pods_ShareATextbook {
+  umbrella header "Pods-ShareATextbook-umbrella.h"
+
+  export *
+  module * { export * }
+}
