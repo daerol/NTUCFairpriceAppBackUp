@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19B3D3DE49165A3011E79200 /* Pods_ShareATextbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83E37E6285D9CED1BB5FA45 /* Pods_ShareATextbook.framework */; };
 		2B8130501F0BB03800FBA165 /* LoginDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B81304F1F0BB03800FBA165 /* LoginDataManager.swift */; };
 		51E9C4601F09E39200DF9CD5 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51E9C45F1F09E39200DF9CD5 /* Search.storyboard */; };
 		8F034B931F2F1D4300C16F1A /* DKCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F034B911F2F1D4300C16F1A /* DKCamera.swift */; };
@@ -145,6 +146,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		06C3BFBBDC60A0A9A4D959D3 /* Pods-ShareATextbook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareATextbook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShareATextbook/Pods-ShareATextbook.debug.xcconfig"; sourceTree = "<group>"; };
 		2B81304F1F0BB03800FBA165 /* LoginDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginDataManager.swift; sourceTree = "<group>"; };
 		51E9C45F1F09E39200DF9CD5 /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		8F034B911F2F1D4300C16F1A /* DKCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DKCamera.swift; path = Source/DKCamera/DKCamera.swift; sourceTree = "<group>"; };
@@ -248,6 +250,8 @@
 		C9F3A4A01F2DE8AD0089DA2F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C9F3A4BB1F2DE9C90089DA2F /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		C9F3A4BD1F2DE9EE0089DA2F /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		CB52F9B7334471142FFCD4C4 /* Pods-ShareATextbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareATextbook.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShareATextbook/Pods-ShareATextbook.release.xcconfig"; sourceTree = "<group>"; };
+		D83E37E6285D9CED1BB5FA45 /* Pods_ShareATextbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShareATextbook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +261,7 @@
 			files = (
 				C9F3A4741F2DD6800089DA2F /* RSBarcodes.framework in Frameworks */,
 				8FF513F41F01EB13000211DB /* Security.framework in Frameworks */,
+				19B3D3DE49165A3011E79200 /* Pods_ShareATextbook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +289,15 @@
 				C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		61BB8212E32301D7E38CEBAD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				06C3BFBBDC60A0A9A4D959D3 /* Pods-ShareATextbook.debug.xcconfig */,
+				CB52F9B7334471142FFCD4C4 /* Pods-ShareATextbook.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		8F034B8E1F2F1D1C00C16F1A /* DKCamera */ = {
@@ -397,6 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				8FF513F31F01EB13000211DB /* Security.framework */,
+				D83E37E6285D9CED1BB5FA45 /* Pods_ShareATextbook.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -409,6 +424,7 @@
 				C920D6891EB624E700D095FC /* ShareATextbooUITests */,
 				C920D6661EB624E700D095FC /* Products */,
 				8FF513F21F01EB13000211DB /* Frameworks */,
+				61BB8212E32301D7E38CEBAD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -611,10 +627,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C920D68F1EB624E700D095FC /* Build configuration list for PBXNativeTarget "ShareATextbook" */;
 			buildPhases = (
+				D064B9A31114F89AE80823A8 /* [CP] Check Pods Manifest.lock */,
 				C920D6611EB624E700D095FC /* Sources */,
 				C920D6621EB624E700D095FC /* Frameworks */,
 				C920D6631EB624E700D095FC /* Resources */,
 				C9F3A4781F2DD6800089DA2F /* Embed Frameworks */,
+				96C42B19F6213568CAD3693D /* [CP] Embed Pods Frameworks */,
+				52FFC15615F5AF21A459616B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -762,6 +781,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		52FFC15615F5AF21A459616B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShareATextbook/Pods-ShareATextbook-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96C42B19F6213568CAD3693D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShareATextbook/Pods-ShareATextbook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D064B9A31114F89AE80823A8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C920D6611EB624E700D095FC /* Sources */ = {
@@ -993,6 +1060,7 @@
 		};
 		C920D6901EB624E700D095FC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06C3BFBBDC60A0A9A4D959D3 /* Pods-ShareATextbook.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1011,6 +1079,7 @@
 		};
 		C920D6911EB624E700D095FC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB52F9B7334471142FFCD4C4 /* Pods-ShareATextbook.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
