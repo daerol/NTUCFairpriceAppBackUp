@@ -12,6 +12,4 @@ pod 'FBSDKCoreKit', '~> 4.16.0'
 pod 'FBSDKShareKit', '~> 4.16.1'
 pod 'FBSDKLoginKit', '~> 4.16.1'
 
-
-
 end
