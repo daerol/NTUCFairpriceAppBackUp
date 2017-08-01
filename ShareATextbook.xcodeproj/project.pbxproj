@@ -36,6 +36,17 @@
 		C920D69E1EB6265400D095FC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C920D69D1EB6265400D095FC /* LoginViewController.swift */; };
 		C9690BC01EB994BB0054BAB7 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9690BBF1EB994BB0054BAB7 /* CustomTabBarController.swift */; };
 		C9CF89111EB9F14000B5AE95 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CF89101EB9F14000B5AE95 /* Constants.swift */; };
+		C9D52B8B1F2ED2BF00F36F50 /* ImageDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B8A1F2ED2BF00F36F50 /* ImageDownload.swift */; };
+		C9D52B951F2ED33E00F36F50 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B8D1F2ED33E00F36F50 /* ActivityIndicator.swift */; };
+		C9D52B961F2ED33E00F36F50 /* FullScreenSlideshowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B8E1F2ED33E00F36F50 /* FullScreenSlideshowViewController.swift */; };
+		C9D52B971F2ED33E00F36F50 /* ImageSlideshow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B8F1F2ED33E00F36F50 /* ImageSlideshow.swift */; };
+		C9D52B981F2ED33E00F36F50 /* ImageSlideshowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B901F2ED33E00F36F50 /* ImageSlideshowItem.swift */; };
+		C9D52B991F2ED33E00F36F50 /* InputSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B911F2ED33E00F36F50 /* InputSource.swift */; };
+		C9D52B9A1F2ED33E00F36F50 /* UIImage+AspectFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B921F2ED33E00F36F50 /* UIImage+AspectFit.swift */; };
+		C9D52B9B1F2ED33E00F36F50 /* UIImageView+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B931F2ED33E00F36F50 /* UIImageView+Tools.swift */; };
+		C9D52B9C1F2ED33E00F36F50 /* ZoomAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B941F2ED33E00F36F50 /* ZoomAnimatedTransitioning.swift */; };
+		C9D52BA01F2ED35D00F36F50 /* ic_cross_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D52B9E1F2ED35D00F36F50 /* ic_cross_white@2x.png */; };
+		C9D52BA11F2ED35D00F36F50 /* ic_cross_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D52B9F1F2ED35D00F36F50 /* ic_cross_white@3x.png */; };
 		C9F1F3831EC1FD8C00E8C71C /* CustomNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F1F3821EC1FD8C00E8C71C /* CustomNavigationViewController.swift */; };
 		C9F3A3CB1F2DCD710089DA2F /* NewItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9F3A3C91F2DCD710089DA2F /* NewItem.storyboard */; };
 		C9F3A3CC1F2DCD710089DA2F /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9F3A3CA1F2DCD710089DA2F /* Profile.storyboard */; };
@@ -182,6 +193,17 @@
 		C920D69D1EB6265400D095FC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C9690BBF1EB994BB0054BAB7 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		C9CF89101EB9F14000B5AE95 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C9D52B8A1F2ED2BF00F36F50 /* ImageDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownload.swift; sourceTree = "<group>"; };
+		C9D52B8D1F2ED33E00F36F50 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = Source/ImageSlideshow/ActivityIndicator.swift; sourceTree = "<group>"; };
+		C9D52B8E1F2ED33E00F36F50 /* FullScreenSlideshowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FullScreenSlideshowViewController.swift; path = Source/ImageSlideshow/FullScreenSlideshowViewController.swift; sourceTree = "<group>"; };
+		C9D52B8F1F2ED33E00F36F50 /* ImageSlideshow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageSlideshow.swift; path = Source/ImageSlideshow/ImageSlideshow.swift; sourceTree = "<group>"; };
+		C9D52B901F2ED33E00F36F50 /* ImageSlideshowItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageSlideshowItem.swift; path = Source/ImageSlideshow/ImageSlideshowItem.swift; sourceTree = "<group>"; };
+		C9D52B911F2ED33E00F36F50 /* InputSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InputSource.swift; path = Source/ImageSlideshow/InputSource.swift; sourceTree = "<group>"; };
+		C9D52B921F2ED33E00F36F50 /* UIImage+AspectFit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+AspectFit.swift"; path = "Source/ImageSlideshow/UIImage+AspectFit.swift"; sourceTree = "<group>"; };
+		C9D52B931F2ED33E00F36F50 /* UIImageView+Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+Tools.swift"; path = "Source/ImageSlideshow/UIImageView+Tools.swift"; sourceTree = "<group>"; };
+		C9D52B941F2ED33E00F36F50 /* ZoomAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZoomAnimatedTransitioning.swift; path = Source/ImageSlideshow/ZoomAnimatedTransitioning.swift; sourceTree = "<group>"; };
+		C9D52B9E1F2ED35D00F36F50 /* ic_cross_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ic_cross_white@2x.png"; path = "Source/ImageSlideshow/Assets/ic_cross_white@2x.png"; sourceTree = "<group>"; };
+		C9D52B9F1F2ED35D00F36F50 /* ic_cross_white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ic_cross_white@3x.png"; path = "Source/ImageSlideshow/Assets/ic_cross_white@3x.png"; sourceTree = "<group>"; };
 		C9F1F3821EC1FD8C00E8C71C /* CustomNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationViewController.swift; sourceTree = "<group>"; };
 		C9F3A3C91F2DCD710089DA2F /* NewItem.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewItem.storyboard; sourceTree = "<group>"; };
 		C9F3A3CA1F2DCD710089DA2F /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -273,6 +295,7 @@
 		51FD58861EDD401F00D07539 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C9D52B8A1F2ED2BF00F36F50 /* ImageDownload.swift */,
 				C917BDF31EF1563E00CBF4F1 /* HTTP.swift */,
 				C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */,
 			);
@@ -449,9 +472,35 @@
 			name = CustomViewControllers;
 			sourceTree = "<group>";
 		};
+		C9D52B8C1F2ED32F00F36F50 /* ImageSlideshow */ = {
+			isa = PBXGroup;
+			children = (
+				C9D52B9D1F2ED34300F36F50 /* Assets */,
+				C9D52B8D1F2ED33E00F36F50 /* ActivityIndicator.swift */,
+				C9D52B8E1F2ED33E00F36F50 /* FullScreenSlideshowViewController.swift */,
+				C9D52B8F1F2ED33E00F36F50 /* ImageSlideshow.swift */,
+				C9D52B901F2ED33E00F36F50 /* ImageSlideshowItem.swift */,
+				C9D52B911F2ED33E00F36F50 /* InputSource.swift */,
+				C9D52B921F2ED33E00F36F50 /* UIImage+AspectFit.swift */,
+				C9D52B931F2ED33E00F36F50 /* UIImageView+Tools.swift */,
+				C9D52B941F2ED33E00F36F50 /* ZoomAnimatedTransitioning.swift */,
+			);
+			name = ImageSlideshow;
+			sourceTree = "<group>";
+		};
+		C9D52B9D1F2ED34300F36F50 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				C9D52B9E1F2ED35D00F36F50 /* ic_cross_white@2x.png */,
+				C9D52B9F1F2ED35D00F36F50 /* ic_cross_white@3x.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 		C9F3A4281F2DD4700089DA2F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C9D52B8C1F2ED32F00F36F50 /* ImageSlideshow */,
 				C9F3A42E1F2DD4CF0089DA2F /* RSBarcodes.xcodeproj */,
 				C9F3A42D1F2DD4A20089DA2F /* DKCamera */,
 				C9F3A42C1F2DD49B0089DA2F /* DKImageManager */,
@@ -728,6 +777,8 @@
 				C9F3A4461F2DD5260089DA2F /* DKImagePickerController.bundle in Resources */,
 				8FDF30E61F0BD5AA00359916 /* feature.xib in Resources */,
 				8F32DB071F0BBF3B0021D095 /* homepage.storyboard in Resources */,
+				C9D52BA11F2ED35D00F36F50 /* ic_cross_white@3x.png in Resources */,
+				C9D52BA01F2ED35D00F36F50 /* ic_cross_white@2x.png in Resources */,
 				C9F3A4381F2DD4E60089DA2F /* Info-iOS.plist in Resources */,
 				C9F3A44B1F2DD5260089DA2F /* Info.plist in Resources */,
 				C920D6721EB624E700D095FC /* Assets.xcassets in Resources */,
@@ -766,6 +817,7 @@
 				C9F3A4611F2DD57E0089DA2F /* DKImageManager.swift in Sources */,
 				C9F3A4721F2DD5D80089DA2F /* CustomUILabel.swift in Sources */,
 				2B8130501F0BB03800FBA165 /* LoginDataManager.swift in Sources */,
+				C9D52B951F2ED33E00F36F50 /* ActivityIndicator.swift in Sources */,
 				C9F3A45C1F2DD5680089DA2F /* DKAssetGroupDetailBaseCell.swift in Sources */,
 				8F1F32441F0170C100DE910C /* BEMCheckBoxGroup.m in Sources */,
 				C9F3A45D1F2DD5680089DA2F /* DKAssetGroupDetailCameraCell.swift in Sources */,
@@ -777,6 +829,7 @@
 				C9F3A4491F2DD5260089DA2F /* DKImageResource.swift in Sources */,
 				C9F3A4A21F2DE8AD0089DA2F /* SettingsViewController.swift in Sources */,
 				C9F3A4841F2DE73B0089DA2F /* CategoryDataManager.swift in Sources */,
+				C9D52B961F2ED33E00F36F50 /* FullScreenSlideshowViewController.swift in Sources */,
 				C9F1F3831EC1FD8C00E8C71C /* CustomNavigationViewController.swift in Sources */,
 				C9F3A4471F2DD5260089DA2F /* DKImagePickerController.swift in Sources */,
 				8FDCAB021EFAFC14001D903F /* RegistrationViewController.swift in Sources */,
@@ -784,6 +837,7 @@
 				C9F3A4711F2DD5D80089DA2F /* CustomUIButton.swift in Sources */,
 				C917BDF61EF1566D00CBF4F1 /* SwiftyJSON.swift in Sources */,
 				8F1F32451F0170C100DE910C /* BEMPathManager.m in Sources */,
+				C9D52B9B1F2ED33E00F36F50 /* UIImageView+Tools.swift in Sources */,
 				C9F3A4BC1F2DE9C90089DA2F /* ItemCollectionViewCell.swift in Sources */,
 				C920D66D1EB624E700D095FC /* SecondViewController.swift in Sources */,
 				C9690BC01EB994BB0054BAB7 /* CustomTabBarController.swift in Sources */,
@@ -791,6 +845,7 @@
 				8F1F32361EFF00D700DE910C /* CustomUIViewButtons.swift in Sources */,
 				C9F3A4731F2DD5D80089DA2F /* CustomUIView.swift in Sources */,
 				C9F3A45E1F2DD5680089DA2F /* DKAssetGroupDetailImageCell.swift in Sources */,
+				C9D52B981F2ED33E00F36F50 /* ImageSlideshowItem.swift in Sources */,
 				C9F3A4931F2DE79B0089DA2F /* ImagePickerViewController.swift in Sources */,
 				8FDF30E81F0BD69400359916 /* FeatureView.swift in Sources */,
 				C9F3A4911F2DE79B0089DA2F /* BarcodeReaderViewController.swift in Sources */,
@@ -798,9 +853,12 @@
 				C9F3A43E1F2DD5110089DA2F /* UITextField+fixCaretPosition.swift in Sources */,
 				C920D6691EB624E700D095FC /* AppDelegate.swift in Sources */,
 				C9F3A3D01F2DCE1F0089DA2F /* Posting.swift in Sources */,
+				C9D52B9A1F2ED33E00F36F50 /* UIImage+AspectFit.swift in Sources */,
+				C9D52B971F2ED33E00F36F50 /* ImageSlideshow.swift in Sources */,
 				8F1F324D1F0194A100DE910C /* HomeContentTableViewCell.swift in Sources */,
 				C9F3A3CF1F2DCE1F0089DA2F /* ISBN.swift in Sources */,
 				C9F3A4511F2DD53C0089DA2F /* DKAssetGroupDetailVC.swift in Sources */,
+				C9D52B8B1F2ED2BF00F36F50 /* ImageDownload.swift in Sources */,
 				C9F3A4541F2DD53C0089DA2F /* DKPermissionView.swift in Sources */,
 				8F32DB031F0BBE730021D095 /* RegistrationDataManager.swift in Sources */,
 				C9F3A4971F2DE79B0089DA2F /* SubjectViewController.swift in Sources */,
@@ -814,6 +872,7 @@
 				C9F3A43C1F2DD5110089DA2F /* SkyFloatingLabelTextField.swift in Sources */,
 				C9CF89111EB9F14000B5AE95 /* Constants.swift in Sources */,
 				C9F3A4521F2DD53C0089DA2F /* DKAssetGroupGridLayout.swift in Sources */,
+				C9D52B9C1F2ED33E00F36F50 /* ZoomAnimatedTransitioning.swift in Sources */,
 				C9F3A4691F2DD5A00089DA2F /* DKAssetGroup.swift in Sources */,
 				C9F3A4961F2DE79B0089DA2F /* PostingImageCollectionViewCell.swift in Sources */,
 				C920D69E1EB6265400D095FC /* LoginViewController.swift in Sources */,
@@ -821,6 +880,7 @@
 				8F1F32421F0170C100DE910C /* BEMAnimationManager.m in Sources */,
 				C920D66B1EB624E700D095FC /* FirstViewController.swift in Sources */,
 				C9F3A4531F2DD53C0089DA2F /* DKAssetGroupListVC.swift in Sources */,
+				C9D52B991F2ED33E00F36F50 /* InputSource.swift in Sources */,
 				C9F3A3D21F2DCE530089DA2F /* Category.swift in Sources */,
 				C9F3A49E1F2DE7F40089DA2F /* ProfileViewController.swift in Sources */,
 				C9F3A47F1F2DD8830089DA2F /* PostingViewController.swift in Sources */,

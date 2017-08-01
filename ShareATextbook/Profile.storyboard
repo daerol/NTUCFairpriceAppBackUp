@@ -846,6 +846,7 @@
                                                     </constraints>
                                                     <state key="normal" image="chat"/>
                                                     <connections>
+                                                        <action selector="chatAction:" destination="eP6-iz-cN4" eventType="touchUpInside" id="b4U-2q-121"/>
                                                         <action selector="chatButton:" destination="eP6-iz-cN4" eventType="touchUpInside" id="VoV-dU-3Je"/>
                                                     </connections>
                                                 </button>
@@ -857,6 +858,7 @@
                                                     </constraints>
                                                     <state key="normal" image="bookmark"/>
                                                     <connections>
+                                                        <action selector="bookmarkAction:" destination="eP6-iz-cN4" eventType="touchUpInside" id="lg8-UB-I4c"/>
                                                         <action selector="bookmarkButton:" destination="eP6-iz-cN4" eventType="touchUpInside" id="1Jx-Yw-wnP"/>
                                                     </connections>
                                                 </button>
@@ -925,6 +927,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
+                                            <outlet property="bookmarkButton" destination="b6s-ss-3vi" id="0X3-Ce-IC9"/>
+                                            <outlet property="chatButton" destination="5Ps-C4-Nhe" id="a8V-rh-nRR"/>
                                             <outlet property="itemDetail" destination="Krc-e1-wuh" id="eME-Dk-uTR"/>
                                             <outlet property="itemImage" destination="q0s-pU-UmZ" id="j4a-98-7zm"/>
                                             <outlet property="itemTag" destination="8k1-jM-als" id="eIo-vm-g7o"/>
@@ -957,6 +961,7 @@
                         <outlet property="itemCollectionView" destination="HCn-9G-cda" id="3W6-Cs-7Gz"/>
                         <outlet property="locationStackView" destination="6zi-Z8-FEm" id="M1F-0I-5qy"/>
                         <outlet property="name" destination="gmh-Sw-xOl" id="9uD-ik-Jig"/>
+                        <outlet property="numberOfDonatedPost" destination="Cm8-7j-D2d" id="PWw-oZ-goG"/>
                         <outlet property="numberOfPost" destination="uHp-aC-t5W" id="5Rv-uQ-tn1"/>
                         <outlet property="pointLabel" destination="j28-fs-zqF" id="NTI-gn-1Pv"/>
                         <outlet property="pointStackView" destination="Zpw-zg-MkG" id="lN9-fG-xdq"/>
@@ -1140,7 +1145,7 @@
                                     <constraint firstItem="Qpw-gf-3lv" firstAttribute="leading" secondItem="20I-tN-1kH" secondAttribute="leading" id="qd0-2u-5YS"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fOh-4Z-DNf">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fOh-4Z-DNf" customClass="ImageSlideshow" customModule="ShareATextbook" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="375" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1226,6 +1231,7 @@
                         <outlet property="postDate" destination="paQ-mS-4Kx" id="pYt-en-SC3"/>
                         <outlet property="postDescription" destination="oJd-Bc-Ghq" id="efg-C1-Vgn"/>
                         <outlet property="postEducationLevel" destination="z7v-2t-XXj" id="vny-39-JgX"/>
+                        <outlet property="postImageSlideshow" destination="fOh-4Z-DNf" id="6np-2I-g0Q"/>
                         <outlet property="postName" destination="PLp-nf-vm0" id="9Nl-ef-Q6w"/>
                         <outlet property="postPreferredLocation" destination="cPx-N9-8x0" id="VgP-rL-08f"/>
                         <outlet property="postPreferredLocationStackView" destination="sn6-tw-4OO" id="cpt-hE-GQi"/>

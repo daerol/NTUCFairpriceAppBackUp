@@ -24,6 +24,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBOutlet weak var editProfileView: UIView!
     
     @IBOutlet weak var numberOfPost: UILabel!
+    @IBOutlet weak var numberOfDonatedPost: UILabel!
     
     private let leftAndRightPadding: CGFloat = 16.0
     private let numberOfItemsPerRow: CGFloat = 2.0
@@ -64,12 +65,30 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
                 
                 self.postList = postingList
                 
+                var itemAvailable = 0
+                var itemDonated = 0
+                for post in postingList {
+                    let postItem: Posting = post
+                    if postItem.status == "" || postItem.status == "R" {
+                        itemAvailable += 1
+                    } else {
+                        itemDonated += 1
+                    }
+                    
+                    let total = itemAvailable + itemDonated
+                    
+                    if total == postingList.count {
+                        DispatchQueue.main.async(execute: {
+                            self.numberOfPost.text = String(itemAvailable)
+                            self.numberOfDonatedPost.text = String(itemDonated)
+                        })
+                    }
+                }
+                
                 DispatchQueue.main.async(execute: {
-                    self.numberOfPost.text = String(postingList.count)
                     self.itemCollectionView.reloadData()
                 })
             })
-//        }
         
     }
     
@@ -86,10 +105,6 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
             
             let itemDetailViewController = segue.destination as! PostDetailViewController
             let indexPath = self.itemCollectionView.indexPathsForSelectedItems
-            
-            print("index path \(String(describing: indexPath))")
-            
-            print("selected index \(indexPath?[0].row)")
             
             if indexPath != nil {
                 let post = postList?[(indexPath?[0].row)!]
@@ -158,18 +173,6 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = itemCollectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ItemCollectionViewCell
         
-//        cell.itemImage.image = #imageLiteral(resourceName: "textbook")
-//        cell.itemTitle.text = "My PAL's Are Here! Workbook 3B LALA"
-//        cell.itemDetail.text = "Test testss"
-//        
-//        if indexPath.row%2 == 0 {
-//            cell.itemTag.text = "Reserved"
-//            cell.backgroundColor = Colors.blue
-//            cell.itemTitle.textColor = Colors.white
-//            cell.itemDetail.textColor = Colors.lightestGray
-//        } else {
-//            cell.itemTag.isHidden = true
-//        }
         let postStatus = postList![indexPath.row].status
 
         cell.itemImage.image = #imageLiteral(resourceName: "textbook")
@@ -179,15 +182,36 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         if postList![indexPath.row].status == "" {
              cell.itemTag.isHidden = true
         } else {
-            if postStatus == "accepted" {
+            if postStatus == "D" {
                 cell.itemTag.text = "Donated"
+                cell.itemTitle.textColor = Colors.white
+                cell.itemDetail.textColor = Colors.white
+                cell.bookmarkButton.tintColor = Colors.white
+                cell.chatButton.tintColor = Colors.white
                 cell.backgroundColor = Colors.blue
-            } else if postStatus == "reserved" {
+            } else if postStatus == "R" {
                 cell.itemTag.text = "Reserved"
+                cell.itemTitle.textColor = Colors.white
+                cell.itemDetail.textColor = Colors.white
+                cell.bookmarkButton.tintColor = Colors.white
+                cell.chatButton.tintColor = Colors.white
                 cell.backgroundColor = Colors.darkRed
             }
         }
         let filePath = postList![indexPath.row].photos[0]
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            let url = URL(string: DatabaseAPI.imageDownloadURL + filePath + DatabaseAPI.imageSizeR1000)
+            ImageDownload.downloadImage(url: url!, onComplete: {
+                data in
+                
+                DispatchQueue.main.async() { () -> Void in
+                    cell.itemImage.contentMode = .scaleAspectFit
+                    cell.itemImage.image = UIImage(data: data)
+                    print("donee")
+                }
+            })
+        }
         
         return cell
     }
