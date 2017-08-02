@@ -10,6 +10,7 @@ import UIKit
 
 class User: NSObject, NSCoding {
     
+    var userId: String
     var username : String
     var password : String
     var preferredloc: String?
@@ -18,7 +19,8 @@ class User: NSObject, NSCoding {
     var phoneNumber: String
     var photo: String
     
-    init(username: String, password: String, preferredloc: String, id: String, email: String, phoneNumber: String, photo:String) {
+    init(userId: String, username: String, password: String, preferredloc: String, id: String, email: String, phoneNumber: String, photo:String) {
+        self.userId = userId
         self.username = username
         self.password = password
         self.preferredloc = preferredloc
@@ -31,6 +33,7 @@ class User: NSObject, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
+        self.userId = aDecoder.decodeObject(forKey: "userid") as? String ?? ""
         self.username = aDecoder.decodeObject(forKey: "username") as? String ?? ""
         self.password = aDecoder.decodeObject(forKey: "password") as? String ?? ""
         self.preferredloc = aDecoder.decodeObject(forKey: "preferredloc") as? String ?? ""
@@ -41,6 +44,7 @@ class User: NSObject, NSCoding {
     }
     
     func encode(with aCoder: NSCoder) {
+        aCoder.encode(userId, forKey: "userid")
         aCoder.encode(username, forKey: "username")
         aCoder.encode(password, forKey: "passsword")
         aCoder.encode(preferredloc, forKey: "preferredloc")

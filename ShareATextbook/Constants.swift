@@ -28,6 +28,10 @@ struct DatabaseAPI {
     static let imageSizeR1000: String = "_r1000"
     static let imageSizeR600: String = "_r600"
     
+    static let userImageDownloadURL: String = "http://13.228.39.122/fpsatimgdev/loadimage.aspx?q=users/"
+    static let userImageSizeC150 = "_c150"
+    static let userImageSizeC300 = "_c300"
+    
     /// Check if the response is an error
     ///
     /// - Parameter json: json response from Database API
@@ -62,7 +66,7 @@ struct Strings {
 struct SharedVariables {
     static var id: String = ""
     static var token: String = ""
-    static var user: User = User(username: "", password: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
+    static var user: User = User(userId: "", username: "", password: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
     
 }
 
