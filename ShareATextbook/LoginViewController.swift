@@ -69,7 +69,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                             json, response, error in
                           
                             //  LI YUN ADDED
-                            let user = User(username: "", password: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
+                            let user = User(userId: "", username: "", password: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
                           
                             if json != nil {
                                 print(json!)
@@ -86,6 +86,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                                 
                                 //  LI YUN ADDED
                             user.id = json!["id"].string!
+                            user.userId = json!["userid"].string!
                             user.username = json!["name"].string!
                             user.preferredloc = json!["preferredloc"] != JSON.null ? json!["preferredloc"].string! : ""
                             user.email = json!["email"] != JSON.null ? json!["email"].string! : ""
@@ -213,6 +214,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         loginButton.delegate = self
         
+        //  TO BE REMOVED
+        emailTextField.text = "Davidkwong@email.com"
+        passwordTextfield.text = "davidPassword"
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
