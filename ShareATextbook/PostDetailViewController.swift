@@ -9,6 +9,8 @@
 import UIKit
 class PostDetailViewController: UIViewController, UIScrollViewDelegate {
     
+    
+    @IBOutlet weak var postImageSlideshow: ImageSlideshow!
     @IBOutlet var postName: UILabel?
     @IBOutlet var postPublisherEdition: UILabel?
     @IBOutlet var postEducationLevel: UILabel?
@@ -25,13 +27,13 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
     
     var isOwner: Bool?
     
-    var tabBar: CustomTabBarController?
+    var postImageSourceList: [ImageSource]? = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         //  MARK:   Hide tab bar at the bottom
-        tabBar = self.tabBarController as! CustomTabBarController
+        let tabBar = self.tabBarController as! CustomTabBarController
         //tabBar?.menuButton.isHidden = true
         
         //  MARK:   Set navigation title
@@ -56,7 +58,34 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
             self.navigationItem.rightBarButtonItem  = editButton
         }
         
+        //  Set image slide show
+        postImageSlideshow.backgroundColor = UIColor.white
+        postImageSlideshow.pageControl.currentPageIndicatorTintColor = UIColor.white
+        postImageSlideshow.pageControl.pageIndicatorTintColor = UIColor.lightGray
+        postImageSlideshow.contentScaleMode = UIViewContentMode.scaleAspectFit
         
+        // optional way to show activity indicator during image load (skipping the line will show no activity indicator)
+        postImageSlideshow.activityIndicator = DefaultActivityIndicator()
+        postImageSlideshow.currentPageChanged = { page in
+            print("current page:", page)
+        }
+        
+        //  Download image
+        for i in 0..<post!.photos.count {
+            let url = URL(string: DatabaseAPI.imageDownloadURL + (post?.photos[i])! + DatabaseAPI.imageSizeR1000)
+            ImageDownload.downloadImage(url: url!, onComplete: {
+                data in
+                
+                DispatchQueue.main.async() { () -> Void in
+                    let image = UIImage(data: data)
+                    self.postImageSourceList?.append(ImageSource(image: image!))
+                    self.postImageSlideshow.setImageInputs(self.postImageSourceList!)
+                }
+            })
+            
+        }
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(didTap))
+        postImageSlideshow.addGestureRecognizer(recognizer)
     }
     
     func editButtonAction() {
@@ -90,5 +119,10 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-
+    //  MARK: DidTap function when user click on the imageslideshow
+    func didTap() {
+        let fullScreenController = postImageSlideshow.presentFullScreenController(from: self)
+        // set the activity indicator for full screen controller (skipping the line will show no activity indicator)
+        fullScreenController.slideshow.activityIndicator = DefaultActivityIndicator(style: .white, color: nil)
+    }
 }

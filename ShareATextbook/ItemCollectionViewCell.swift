@@ -40,14 +40,15 @@ class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var itemTitle: UILabel!
     @IBOutlet weak var itemDetail: UILabel!
     @IBOutlet weak var itemTag: UILabel!
+    @IBOutlet weak var bookmarkButton: UIButton!
+    @IBOutlet weak var chatButton: UIButton!
     
-    @IBAction func chatButton(_ sender: UIButton) {
-        print("chatla )")
+    @IBAction func bookmarkAction(_ sender: Any) {
     }
     
-    @IBAction func bookmarkButton(_ sender: UIButton) {
-        print("bookmark")
+    @IBAction func chatAction(_ sender: Any) {
     }
+    
     
     
 }

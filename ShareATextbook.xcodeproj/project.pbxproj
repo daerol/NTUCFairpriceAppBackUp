@@ -65,8 +65,27 @@
 		C920D68B1EB624E700D095FC /* ntucTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C920D68A1EB624E700D095FC /* ntucTestUITests.swift */; };
 		C920D69C1EB6259900D095FC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C920D69B1EB6259900D095FC /* User.swift */; };
 		C920D69E1EB6265400D095FC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C920D69D1EB6265400D095FC /* LoginViewController.swift */; };
+		C92BA2581F317CF3005934E8 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BA2571F317CF3005934E8 /* ChangePasswordViewController.swift */; };
+		C92BA25C1F318216005934E8 /* CustomUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BA25B1F318216005934E8 /* CustomUIImageView.swift */; };
+		C92BA25E1F318B04005934E8 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C958BC8A1F308B94004A83A4 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C92BA2601F3194A1005934E8 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BA25F1F3194A1005934E8 /* CameraViewController.swift */; };
+		C958BC8F1F308BFD004A83A4 /* LocationValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958BC8E1F308BFD004A83A4 /* LocationValue.swift */; };
+		C958BC911F308D04004A83A4 /* CustomCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958BC901F308D04004A83A4 /* CustomCells.swift */; };
+		C958BC941F308F0C004A83A4 /* Geocoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958BC931F308F0C004A83A4 /* Geocoding.swift */; };
+		C958BC961F308F5A004A83A4 /* FloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958BC951F308F5A004A83A4 /* FloatLabelTextField.swift */; };
 		C9690BC01EB994BB0054BAB7 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9690BBF1EB994BB0054BAB7 /* CustomTabBarController.swift */; };
 		C9CF89111EB9F14000B5AE95 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CF89101EB9F14000B5AE95 /* Constants.swift */; };
+		C9D52B8B1F2ED2BF00F36F50 /* ImageDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B8A1F2ED2BF00F36F50 /* ImageDownload.swift */; };
+		C9D52B951F2ED33E00F36F50 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B8D1F2ED33E00F36F50 /* ActivityIndicator.swift */; };
+		C9D52B961F2ED33E00F36F50 /* FullScreenSlideshowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B8E1F2ED33E00F36F50 /* FullScreenSlideshowViewController.swift */; };
+		C9D52B971F2ED33E00F36F50 /* ImageSlideshow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B8F1F2ED33E00F36F50 /* ImageSlideshow.swift */; };
+		C9D52B981F2ED33E00F36F50 /* ImageSlideshowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B901F2ED33E00F36F50 /* ImageSlideshowItem.swift */; };
+		C9D52B991F2ED33E00F36F50 /* InputSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B911F2ED33E00F36F50 /* InputSource.swift */; };
+		C9D52B9A1F2ED33E00F36F50 /* UIImage+AspectFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B921F2ED33E00F36F50 /* UIImage+AspectFit.swift */; };
+		C9D52B9B1F2ED33E00F36F50 /* UIImageView+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B931F2ED33E00F36F50 /* UIImageView+Tools.swift */; };
+		C9D52B9C1F2ED33E00F36F50 /* ZoomAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B941F2ED33E00F36F50 /* ZoomAnimatedTransitioning.swift */; };
+		C9D52BA01F2ED35D00F36F50 /* ic_cross_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D52B9E1F2ED35D00F36F50 /* ic_cross_white@2x.png */; };
+		C9D52BA11F2ED35D00F36F50 /* ic_cross_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D52B9F1F2ED35D00F36F50 /* ic_cross_white@3x.png */; };
 		C9F1F3831EC1FD8C00E8C71C /* CustomNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F1F3821EC1FD8C00E8C71C /* CustomNavigationViewController.swift */; };
 		C9F3A3CB1F2DCD710089DA2F /* NewItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9F3A3C91F2DCD710089DA2F /* NewItem.storyboard */; };
 		C9F3A3CC1F2DCD710089DA2F /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9F3A3CA1F2DCD710089DA2F /* Profile.storyboard */; };
@@ -115,6 +134,20 @@
 			remoteGlobalIDString = C920D6641EB624E700D095FC;
 			remoteInfo = ntucTest;
 		};
+		C958BC891F308B94004A83A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C958BC841F308B94004A83A4 /* Eureka.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 51729DEB1B9A4F5E004A00EB;
+			remoteInfo = Eureka;
+		};
+		C958BC8B1F308B94004A83A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C958BC841F308B94004A83A4 /* Eureka.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 51729DF51B9A4F5E004A00EB;
+			remoteInfo = EurekaTests;
+		};
 		C9F3A4321F2DD4CF0089DA2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C9F3A42E1F2DD4CF0089DA2F /* RSBarcodes.xcodeproj */;
@@ -138,6 +171,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C92BA25E1F318B04005934E8 /* Eureka.framework in Embed Frameworks */,
 				C9F3A4751F2DD6800089DA2F /* RSBarcodes.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -216,8 +250,27 @@
 		C920D68C1EB624E700D095FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C920D69B1EB6259900D095FC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C920D69D1EB6265400D095FC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C92BA2571F317CF3005934E8 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		C92BA25B1F318216005934E8 /* CustomUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIImageView.swift; sourceTree = "<group>"; };
+		C92BA25F1F3194A1005934E8 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		C958BC841F308B94004A83A4 /* Eureka.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Eureka.xcodeproj; sourceTree = "<group>"; };
+		C958BC8E1F308BFD004A83A4 /* LocationValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationValue.swift; sourceTree = "<group>"; };
+		C958BC901F308D04004A83A4 /* CustomCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCells.swift; sourceTree = "<group>"; };
+		C958BC931F308F0C004A83A4 /* Geocoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geocoding.swift; sourceTree = "<group>"; };
+		C958BC951F308F5A004A83A4 /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatLabelTextField.swift; sourceTree = "<group>"; };
 		C9690BBF1EB994BB0054BAB7 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		C9CF89101EB9F14000B5AE95 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C9D52B8A1F2ED2BF00F36F50 /* ImageDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownload.swift; sourceTree = "<group>"; };
+		C9D52B8D1F2ED33E00F36F50 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = Source/ImageSlideshow/ActivityIndicator.swift; sourceTree = "<group>"; };
+		C9D52B8E1F2ED33E00F36F50 /* FullScreenSlideshowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FullScreenSlideshowViewController.swift; path = Source/ImageSlideshow/FullScreenSlideshowViewController.swift; sourceTree = "<group>"; };
+		C9D52B8F1F2ED33E00F36F50 /* ImageSlideshow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageSlideshow.swift; path = Source/ImageSlideshow/ImageSlideshow.swift; sourceTree = "<group>"; };
+		C9D52B901F2ED33E00F36F50 /* ImageSlideshowItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageSlideshowItem.swift; path = Source/ImageSlideshow/ImageSlideshowItem.swift; sourceTree = "<group>"; };
+		C9D52B911F2ED33E00F36F50 /* InputSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InputSource.swift; path = Source/ImageSlideshow/InputSource.swift; sourceTree = "<group>"; };
+		C9D52B921F2ED33E00F36F50 /* UIImage+AspectFit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+AspectFit.swift"; path = "Source/ImageSlideshow/UIImage+AspectFit.swift"; sourceTree = "<group>"; };
+		C9D52B931F2ED33E00F36F50 /* UIImageView+Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+Tools.swift"; path = "Source/ImageSlideshow/UIImageView+Tools.swift"; sourceTree = "<group>"; };
+		C9D52B941F2ED33E00F36F50 /* ZoomAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZoomAnimatedTransitioning.swift; path = Source/ImageSlideshow/ZoomAnimatedTransitioning.swift; sourceTree = "<group>"; };
+		C9D52B9E1F2ED35D00F36F50 /* ic_cross_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ic_cross_white@2x.png"; path = "Source/ImageSlideshow/Assets/ic_cross_white@2x.png"; sourceTree = "<group>"; };
+		C9D52B9F1F2ED35D00F36F50 /* ic_cross_white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ic_cross_white@3x.png"; path = "Source/ImageSlideshow/Assets/ic_cross_white@3x.png"; sourceTree = "<group>"; };
 		C9F1F3821EC1FD8C00E8C71C /* CustomNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationViewController.swift; sourceTree = "<group>"; };
 		C9F3A3C91F2DCD710089DA2F /* NewItem.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewItem.storyboard; sourceTree = "<group>"; };
 		C9F3A3CA1F2DCD710089DA2F /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -285,6 +338,7 @@
 		51FD58861EDD401F00D07539 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C9D52B8A1F2ED2BF00F36F50 /* ImageDownload.swift */,
 				C917BDF31EF1563E00CBF4F1 /* HTTP.swift */,
 				C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */,
 			);
@@ -547,13 +601,62 @@
 				C9F1F3821EC1FD8C00E8C71C /* CustomNavigationViewController.swift */,
 				8F1F32351EFF00D700DE910C /* CustomUIViewButtons.swift */,
 				8FDF30E71F0BD69400359916 /* FeatureView.swift */,
+				C92BA25B1F318216005934E8 /* CustomUIImageView.swift */,
 			);
 			name = CustomViewControllers;
+			sourceTree = "<group>";
+		};
+		C958BC851F308B94004A83A4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C958BC8A1F308B94004A83A4 /* Eureka.framework */,
+				C958BC8C1F308B94004A83A4 /* EurekaTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C958BC921F308EE4004A83A4 /* Eureka */ = {
+			isa = PBXGroup;
+			children = (
+				C958BC951F308F5A004A83A4 /* FloatLabelTextField.swift */,
+				C958BC931F308F0C004A83A4 /* Geocoding.swift */,
+				C958BC8E1F308BFD004A83A4 /* LocationValue.swift */,
+				C958BC901F308D04004A83A4 /* CustomCells.swift */,
+				C958BC841F308B94004A83A4 /* Eureka.xcodeproj */,
+			);
+			name = Eureka;
+			sourceTree = "<group>";
+		};
+		C9D52B8C1F2ED32F00F36F50 /* ImageSlideshow */ = {
+			isa = PBXGroup;
+			children = (
+				C9D52B9D1F2ED34300F36F50 /* Assets */,
+				C9D52B8D1F2ED33E00F36F50 /* ActivityIndicator.swift */,
+				C9D52B8E1F2ED33E00F36F50 /* FullScreenSlideshowViewController.swift */,
+				C9D52B8F1F2ED33E00F36F50 /* ImageSlideshow.swift */,
+				C9D52B901F2ED33E00F36F50 /* ImageSlideshowItem.swift */,
+				C9D52B911F2ED33E00F36F50 /* InputSource.swift */,
+				C9D52B921F2ED33E00F36F50 /* UIImage+AspectFit.swift */,
+				C9D52B931F2ED33E00F36F50 /* UIImageView+Tools.swift */,
+				C9D52B941F2ED33E00F36F50 /* ZoomAnimatedTransitioning.swift */,
+			);
+			name = ImageSlideshow;
+			sourceTree = "<group>";
+		};
+		C9D52B9D1F2ED34300F36F50 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				C9D52B9E1F2ED35D00F36F50 /* ic_cross_white@2x.png */,
+				C9D52B9F1F2ED35D00F36F50 /* ic_cross_white@3x.png */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 		C9F3A4281F2DD4700089DA2F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C958BC921F308EE4004A83A4 /* Eureka */,
+				C9D52B8C1F2ED32F00F36F50 /* ImageSlideshow */,
 				8F034B901F2F1D2D00C16F1A /* DKImagePickerController */,
 				8F034B8F1F2F1D2200C16F1A /* DKImageManager */,
 				8F034B8E1F2F1D1C00C16F1A /* DKCamera */,
@@ -616,6 +719,8 @@
 				C9F3A4BB1F2DE9C90089DA2F /* ItemCollectionViewCell.swift */,
 				C9F3A4991F2DE7F40089DA2F /* EditProfileViewController.swift */,
 				C9F3A49B1F2DE7F40089DA2F /* ProfileViewController.swift */,
+				C92BA2571F317CF3005934E8 /* ChangePasswordViewController.swift */,
+				C92BA25F1F3194A1005934E8 /* CameraViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -720,6 +825,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = C958BC851F308B94004A83A4 /* Products */;
+					ProjectRef = C958BC841F308B94004A83A4 /* Eureka.xcodeproj */;
+				},
+				{
 					ProductGroup = C9F3A42F1F2DD4CF0089DA2F /* Products */;
 					ProjectRef = C9F3A42E1F2DD4CF0089DA2F /* RSBarcodes.xcodeproj */;
 				},
@@ -734,6 +843,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		C958BC8A1F308B94004A83A4 /* Eureka.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Eureka.framework;
+			remoteRef = C958BC891F308B94004A83A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C958BC8C1F308B94004A83A4 /* EurekaTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = EurekaTests.xctest;
+			remoteRef = C958BC8B1F308B94004A83A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		C9F3A4331F2DD4CF0089DA2F /* RSBarcodes.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -759,6 +882,8 @@
 				8F034BA61F2F1D8F00C16F1A /* DKImagePickerController.bundle in Resources */,
 				8FDF30E61F0BD5AA00359916 /* feature.xib in Resources */,
 				8F32DB071F0BBF3B0021D095 /* homepage.storyboard in Resources */,
+				C9D52BA11F2ED35D00F36F50 /* ic_cross_white@3x.png in Resources */,
+				C9D52BA01F2ED35D00F36F50 /* ic_cross_white@2x.png in Resources */,
 				C9F3A4381F2DD4E60089DA2F /* Info-iOS.plist in Resources */,
 				C920D6721EB624E700D095FC /* Assets.xcassets in Resources */,
 				C920D6701EB624E700D095FC /* Main.storyboard in Resources */,
@@ -844,6 +969,8 @@
 				C9F3A4721F2DD5D80089DA2F /* CustomUILabel.swift in Sources */,
 				8F034BB21F2F1DBA00C16F1A /* DKAssetGroupDetailVC.swift in Sources */,
 				2B8130501F0BB03800FBA165 /* LoginDataManager.swift in Sources */,
+				C9D52B951F2ED33E00F36F50 /* ActivityIndicator.swift in Sources */,
+				C9F3A45C1F2DD5680089DA2F /* DKAssetGroupDetailBaseCell.swift in Sources */,
 				8F034BBE1F2F1DC900C16F1A /* DKAssetGroupDetailCameraCell.swift in Sources */,
 				8F1F32441F0170C100DE910C /* BEMCheckBoxGroup.m in Sources */,
 				C9F3A4951F2DE79B0089DA2F /* PostingDetailsFormTableViewController.swift in Sources */,
@@ -852,6 +979,7 @@
 				C9F3A4851F2DE73B0089DA2F /* ISBNDataManager.swift in Sources */,
 				C9F3A4A21F2DE8AD0089DA2F /* SettingsViewController.swift in Sources */,
 				C9F3A4841F2DE73B0089DA2F /* CategoryDataManager.swift in Sources */,
+				C9D52B961F2ED33E00F36F50 /* FullScreenSlideshowViewController.swift in Sources */,
 				C9F1F3831EC1FD8C00E8C71C /* CustomNavigationViewController.swift in Sources */,
 				8FDCAB021EFAFC14001D903F /* RegistrationViewController.swift in Sources */,
 				C9F3A47C1F2DD8090089DA2F /* CustomCameraUIDelegate.swift in Sources */,
@@ -864,6 +992,7 @@
 				C917BDF61EF1566D00CBF4F1 /* SwiftyJSON.swift in Sources */,
 				8F034B991F2F1D6B00C16F1A /* DKGroupDataManager.swift in Sources */,
 				8F1F32451F0170C100DE910C /* BEMPathManager.m in Sources */,
+				C9D52B9B1F2ED33E00F36F50 /* UIImageView+Tools.swift in Sources */,
 				C9F3A4BC1F2DE9C90089DA2F /* ItemCollectionViewCell.swift in Sources */,
 				C920D66D1EB624E700D095FC /* SecondViewController.swift in Sources */,
 				C9690BC01EB994BB0054BAB7 /* CustomTabBarController.swift in Sources */,
@@ -871,38 +1000,60 @@
 				8F034BA71F2F1D8F00C16F1A /* DKImagePickerController.swift in Sources */,
 				8F1F32361EFF00D700DE910C /* CustomUIViewButtons.swift in Sources */,
 				C9F3A4731F2DD5D80089DA2F /* CustomUIView.swift in Sources */,
+				C9F3A45E1F2DD5680089DA2F /* DKAssetGroupDetailImageCell.swift in Sources */,
+				C9D52B981F2ED33E00F36F50 /* ImageSlideshowItem.swift in Sources */,
 				8F034BA91F2F1D8F00C16F1A /* DKImageResource.swift in Sources */,
 				C9F3A4931F2DE79B0089DA2F /* ImagePickerViewController.swift in Sources */,
 				8FDF30E81F0BD69400359916 /* FeatureView.swift in Sources */,
+				C92BA25C1F318216005934E8 /* CustomUIImageView.swift in Sources */,
 				C9F3A4911F2DE79B0089DA2F /* BarcodeReaderViewController.swift in Sources */,
+				C958BC911F308D04004A83A4 /* CustomCells.swift in Sources */,
+				C9F3A43E1F2DD5110089DA2F /* UITextField+fixCaretPosition.swift in Sources */,
 				C920D6691EB624E700D095FC /* AppDelegate.swift in Sources */,
 				C9F3A3D01F2DCE1F0089DA2F /* Posting.swift in Sources */,
+				C9D52B9A1F2ED33E00F36F50 /* UIImage+AspectFit.swift in Sources */,
+				C9D52B971F2ED33E00F36F50 /* ImageSlideshow.swift in Sources */,
 				8F1F324D1F0194A100DE910C /* HomeContentTableViewCell.swift in Sources */,
 				C9F3A3CF1F2DCE1F0089DA2F /* ISBN.swift in Sources */,
+				C9F3A4511F2DD53C0089DA2F /* DKAssetGroupDetailVC.swift in Sources */,
+				C9D52B8B1F2ED2BF00F36F50 /* ImageDownload.swift in Sources */,
+				C9F3A4541F2DD53C0089DA2F /* DKPermissionView.swift in Sources */,
 				8F32DB031F0BBE730021D095 /* RegistrationDataManager.swift in Sources */,
 				8F034BA81F2F1D8F00C16F1A /* DKImagePickerControllerDefaultUIDelegate.swift in Sources */,
-				8F034BB31F2F1DBA00C16F1A /* DKAssetGroupGridLayout.swift in Sources */,
 				C9F3A4971F2DE79B0089DA2F /* SubjectViewController.swift in Sources */,
-				8F034BC81F2F1E9B00C16F1A /* PostDetailViewController.swift in Sources */,
 				C9F3A4901F2DE79B0089DA2F /* BarcodeReaderCaptureViewController.swift in Sources */,
 				8F32DB051F0BBEB40021D095 /* HomeViewController.swift in Sources */,
+				C9F3A49D1F2DE7F40089DA2F /* PostDetailViewController.swift in Sources */,
+				C9F3A4A11F2DE8AD0089DA2F /* SettingsTableViewCell.swift in Sources */,
+				C9F3A45B1F2DD5680089DA2F /* DKAssetGroupCellItemProtocol.swift in Sources */,
+				C9F3A4681F2DD5A00089DA2F /* DKAsset.swift in Sources */,
+				C9F3A43C1F2DD5110089DA2F /* SkyFloatingLabelTextField.swift in Sources */,
+				C958BC941F308F0C004A83A4 /* Geocoding.swift in Sources */,
+				C9CF89111EB9F14000B5AE95 /* Constants.swift in Sources */,
+				C9F3A4521F2DD53C0089DA2F /* DKAssetGroupGridLayout.swift in Sources */,
+				C9D52B9C1F2ED33E00F36F50 /* ZoomAnimatedTransitioning.swift in Sources */,
+				C9F3A4691F2DD5A00089DA2F /* DKAssetGroup.swift in Sources */,
 				8F49A7AA1F1DD1FC00725A8D /* Categories.swift in Sources */,
 				8F034BBD1F2F1DC900C16F1A /* DKAssetGroupDetailBaseCell.swift in Sources */,
 				8F034BC51F2F1DF000C16F1A /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
-				C9CF89111EB9F14000B5AE95 /* Constants.swift in Sources */,
 				C9F3A4961F2DE79B0089DA2F /* PostingImageCollectionViewCell.swift in Sources */,
+				C92BA2601F3194A1005934E8 /* CameraViewController.swift in Sources */,
 				C920D69E1EB6265400D095FC /* LoginViewController.swift in Sources */,
 				C9F3A4BE1F2DE9EE0089DA2F /* TestViewController.swift in Sources */,
 				8F1F32421F0170C100DE910C /* BEMAnimationManager.m in Sources */,
 				8FF04A3C1F136677008FD87F /* ProtectionPointsViewController.swift in Sources */,
 				8F034BBF1F2F1DC900C16F1A /* DKAssetGroupDetailImageCell.swift in Sources */,
-				8F034B9D1F2F1D8000C16F1A /* DKAsset.swift in Sources */,
 				8F034B931F2F1D4300C16F1A /* DKCamera.swift in Sources */,
 				8F49A7A81F1DCEF800725A8D /* HomepageDataManager.swift in Sources */,
 				C920D66B1EB624E700D095FC /* FirstViewController.swift in Sources */,
+				C9F3A4531F2DD53C0089DA2F /* DKAssetGroupListVC.swift in Sources */,
+				C92BA2581F317CF3005934E8 /* ChangePasswordViewController.swift in Sources */,
+				C9D52B991F2ED33E00F36F50 /* InputSource.swift in Sources */,
 				8F034B961F2F1D4F00C16F1A /* DKImageManager.swift in Sources */,
 				C9F3A3D21F2DCE530089DA2F /* Category.swift in Sources */,
 				C9F3A49E1F2DE7F40089DA2F /* ProfileViewController.swift in Sources */,
+				C958BC8F1F308BFD004A83A4 /* LocationValue.swift in Sources */,
+				C958BC961F308F5A004A83A4 /* FloatLabelTextField.swift in Sources */,
 				C9F3A47F1F2DD8830089DA2F /* PostingViewController.swift in Sources */,
 				C9F3A49C1F2DE7F40089DA2F /* EditProfileViewController.swift in Sources */,
 			);

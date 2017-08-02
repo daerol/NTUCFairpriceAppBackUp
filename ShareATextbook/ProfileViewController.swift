@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ProfileViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -24,6 +25,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBOutlet weak var editProfileView: UIView!
     
     @IBOutlet weak var numberOfPost: UILabel!
+    @IBOutlet weak var numberOfDonatedPost: UILabel!
     
     private let leftAndRightPadding: CGFloat = 16.0
     private let numberOfItemsPerRow: CGFloat = 2.0
@@ -31,6 +33,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     
     var postList: [Posting]?
     var user: User?
+    
+    var preferredLocationValue: LocationValue = LocationValue()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,19 +46,43 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         let locationStackViewTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapLocationStackView))
         locationStackView.addGestureRecognizer(locationStackViewTapGesture)
         
+        //  TO BE REMOVED
+//        if user == nil {
+//            user = SharedVariables.user
+//            name.text = SharedVariables.user.username
+//            preferredLocation.text = "Serangoon North Avenue 4"
+//        } else {
+//            //  If is owner
+//            name.text = user!.username
+//            preferredLocation.text = user!.preferredloc
+//            
+//        }
+        //  If is profile
         if user == nil {
-            user = SharedVariables.user
-            name.text = SharedVariables.user.username
-            preferredLocation.text = "Serangoon North Avenue 4"
+            let decodeUser = UserDefaults.standard.object(forKey: "User") as! Data
+            user =  NSKeyedUnarchiver.unarchiveObject(with: decodeUser) as! User
         } else {
-            //  If is owner
-            name.text = user!.username
-            preferredLocation.text = user!.preferredloc
-            
+            //  If is others profile, remove edit profile view
+            self.profileInfoStackView.removeArrangedSubview(editProfileView)
         }
         
+        name.text = user?.username
+        
+        if user?.preferredloc != "" {
+            let preferredLocArr = user?.preferredloc?.components(separatedBy: "|")
+            let coordArr = preferredLocArr?[0].components(separatedBy: ",")
+            
+            if preferredLocArr?[1] != "-" {
+                preferredLocation.text = preferredLocArr?[1]
+            } else {
+                preferredLocation.text = preferredLocArr?[2]
+            }
+        }
+//        preferredLocation.text = user?.preferredloc
+        
+        
         //  If owner, remove the edit profile view
-        self.profileInfoStackView.removeArrangedSubview(editProfileView)
+//        self.profileInfoStackView.removeArrangedSubview(editProfileView)
         
 //        DispatchQueue.global(qos: .userInitiated).async {
             PostingDataManager.getPostingList(onComplete: {
@@ -64,12 +92,30 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
                 
                 self.postList = postingList
                 
+                var itemAvailable = 0
+                var itemDonated = 0
+                for post in postingList {
+                    let postItem: Posting = post
+                    if postItem.status == "" || postItem.status == "R" {
+                        itemAvailable += 1
+                    } else {
+                        itemDonated += 1
+                    }
+                    
+                    let total = itemAvailable + itemDonated
+                    
+                    if total == postingList.count {
+                        DispatchQueue.main.async(execute: {
+                            self.numberOfPost.text = String(itemAvailable)
+                            self.numberOfDonatedPost.text = String(itemDonated)
+                        })
+                    }
+                }
+                
                 DispatchQueue.main.async(execute: {
-                    self.numberOfPost.text = String(postingList.count)
                     self.itemCollectionView.reloadData()
                 })
             })
-//        }
         
     }
     
@@ -86,10 +132,6 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
             
             let itemDetailViewController = segue.destination as! PostDetailViewController
             let indexPath = self.itemCollectionView.indexPathsForSelectedItems
-            
-            print("index path \(String(describing: indexPath))")
-            
-            print("selected index \(indexPath?[0].row)")
             
             if indexPath != nil {
                 let post = postList?[(indexPath?[0].row)!]
@@ -119,7 +161,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         user?.preferredloc = "Serangoon North Avenue 4"
         
         if OpenPhoneApplication.openMap(url: "https://www.apple.com/ios/maps/") {
-            let location = user?.preferredloc.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            let location = user?.preferredloc?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             
             UIApplication.shared.openURL(URL(string:
                 "http://maps.apple.com/?daddr=" + location!)!)
@@ -158,18 +200,6 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = itemCollectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ItemCollectionViewCell
         
-//        cell.itemImage.image = #imageLiteral(resourceName: "textbook")
-//        cell.itemTitle.text = "My PAL's Are Here! Workbook 3B LALA"
-//        cell.itemDetail.text = "Test testss"
-//        
-//        if indexPath.row%2 == 0 {
-//            cell.itemTag.text = "Reserved"
-//            cell.backgroundColor = Colors.blue
-//            cell.itemTitle.textColor = Colors.white
-//            cell.itemDetail.textColor = Colors.lightestGray
-//        } else {
-//            cell.itemTag.isHidden = true
-//        }
         let postStatus = postList![indexPath.row].status
 
         cell.itemImage.image = #imageLiteral(resourceName: "textbook")
@@ -179,15 +209,36 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         if postList![indexPath.row].status == "" {
              cell.itemTag.isHidden = true
         } else {
-            if postStatus == "accepted" {
+            if postStatus == "D" {
                 cell.itemTag.text = "Donated"
+                cell.itemTitle.textColor = Colors.white
+                cell.itemDetail.textColor = Colors.white
+                cell.bookmarkButton.tintColor = Colors.white
+                cell.chatButton.tintColor = Colors.white
                 cell.backgroundColor = Colors.blue
-            } else if postStatus == "reserved" {
+            } else if postStatus == "R" {
                 cell.itemTag.text = "Reserved"
+                cell.itemTitle.textColor = Colors.white
+                cell.itemDetail.textColor = Colors.white
+                cell.bookmarkButton.tintColor = Colors.white
+                cell.chatButton.tintColor = Colors.white
                 cell.backgroundColor = Colors.darkRed
             }
         }
         let filePath = postList![indexPath.row].photos[0]
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            let url = URL(string: DatabaseAPI.imageDownloadURL + filePath + DatabaseAPI.imageSizeR1000)
+            ImageDownload.downloadImage(url: url!, onComplete: {
+                data in
+                
+                DispatchQueue.main.async() { () -> Void in
+                    cell.itemImage.contentMode = .scaleAspectFit
+                    cell.itemImage.image = UIImage(data: data)
+                    print("donee")
+                }
+            })
+        }
         
         return cell
     }

@@ -26,6 +26,7 @@ struct DatabaseAPI {
     
     static let imageDownloadURL: String = "http://13.228.39.122/fpsatimgdev/loadimage.aspx?q=postings/"
     static let imageSizeR1000: String = "_r1000"
+    static let imageSizeR600: String = "_r600"
     
     /// Check if the response is an error
     ///
@@ -54,12 +55,14 @@ struct DatabaseAPI {
 
 struct Strings {
     static let choosePrompt = "Choose one"
+    static let profileMissingFieldErrorMsg = "You cannot leave blank\n"
+    static let invalidFieldMsg = "Please ensure the correct format\n"
 }
 
 struct SharedVariables {
     static var id: String = ""
     static var token: String = ""
-    static var user: User = User(username: "", password: "", preferredloc: "", id: "", email: "", phoneNumber: "")
+    static var user: User = User(username: "", password: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
     
 }
 
