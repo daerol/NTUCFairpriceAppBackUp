@@ -15,7 +15,8 @@ class PostingDataManager: NSObject {
         let postListURL = DatabaseAPI.url + "posting/list"
         let postListReqJSON: JSON = [
             "limit": "50",
-            "userid": SharedVariables.id
+            "userid": SharedVariables.id,
+            "isavailabile": "N"
         ]
 
         var post: Posting = Posting()
