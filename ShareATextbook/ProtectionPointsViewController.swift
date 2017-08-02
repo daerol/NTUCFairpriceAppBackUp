@@ -11,11 +11,20 @@ import UIKit
 class ProtectionPointsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
+    let categories = [["title" : "Positive Records", "img" : "smiley"], ["title" : "Negative Records", "img" : "sad"]]
+    
+    
+    
+    
   
     override func viewDidLoad() {
         super.viewDidLoad()
          view.backgroundColor = UIColor(r: 240, g: 240, b: 240)
         setupNavigationBar()
+        
+        
+        
+        
     }
 
     
@@ -35,14 +44,21 @@ class ProtectionPointsViewController: UIViewController, UITableViewDelegate, UIT
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return categories.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PointsTableViewCell
         
-        cell.titleCell?.text = "Reward Points"
+        
+        let pp = categories[indexPath.row]
+        let s = pp["img"]!
+        cell.imageCell.image = UIImage(named: s)
+        cell.titleCell.text = pp["title"]
+        
+//        cell.titleCell?.text = "Reward Points"
+//        cell.imageCell?.image = #imageLiteral(resourceName: "smiley")
         
         
         return cell
