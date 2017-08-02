@@ -29,34 +29,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         //        self.performSegue(withIdentifier: LOGIN_SEGUE, sender: nil)
     }
     
-    /**@IBAction func fbLoginBtn(_ sender: Any) {
-     FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: self)
-     {
-     (result, error) in
-     if error != nil {
-     print ("FB Login failed:", error!)
-     return
-     }
-     
-     let socialToken = result?.token.tokenString
-     print(socialToken)
-     
-     loginDataManager.socialLogin(socialToken: socialToken!, onComplete: {
-     (token, userId, isLogin) -> Void in
-     
-     GlobalLoginVar.token = token
-     GlobalLoginVar.userId = userId
-     
-     if (isLogin) {
-     DispatchQueue.main.async() {
-     [unonwned self] in
-     self.performSegue(withIdentifier: "HomeViewController", sender: self)
-     }
-     }
-     })
-     }
-     }**/
-    
     func emailLogin()
     {
         emailField = emailTextField.text!
@@ -66,6 +38,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         print(passwordField)
         var token : String!
         var userId : String!
+        
+        let emailStored = UserDefaults.standard.string(forKey: "emailField")
+        let passStored = UserDefaults.standard.string(forKey: "passwordField")
         
         let json = JSON.init([
             "email" : emailField
@@ -85,7 +60,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                         print(json!)
                         
                         let nonce = (json!["nonce"].string)
-                        password = self.sha512Hex(string: (self.sha512Hex(string: self.passwordTextfield.text!).uppercased() + nonce!)).uppercased()
+                        if emailStored == self.emailField && passStored == self.passwordField {
+                            password = self.sha512Hex(string: (self.sha512Hex(string: self.passwordTextfield.text!).uppercased() + nonce!)).uppercased()
+                        }
+                        else{
+                            self.displayMyAlertMessage(userMessage: "Username/Password is incorrect!")
+                        }
                         
                         let loginJson = JSON.init([
                             "type" : "E",
@@ -200,6 +180,18 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         return sha512Hex(string: password)
     }
     
+    func displayMyAlertMessage(userMessage:String)
+    {
+        
+        var myAlert = UIAlertController(title:"Alert", message:userMessage, preferredStyle: UIAlertControllerStyle.alert);
+        
+        let okAction = UIAlertAction(title:"Ok", style:UIAlertActionStyle.default, handler:nil);
+        myAlert.addAction(okAction);
+        
+        self.present(myAlert, animated:true, completion:nil);
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -222,6 +214,17 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
         
         print("Successfully logged in with facebook...")
+        
+        DispatchQueue.main.async {
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
+            self.present(homeViewController, animated: true, completion: nil)
+            
+            UserDefaults.standard.set(true, forKey: "isLoggedIn")
+            UserDefaults.standard.synchronize()
+        }
+
     }
     
     override func didReceiveMemoryWarning() {

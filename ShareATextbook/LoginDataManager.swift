@@ -13,7 +13,35 @@ class loginDA: NSObject {
    static var _loginToken : String = ""
    static var _userId : String = ""
     
+    class func socialLogin(socialToken: String, onComplete: @escaping (String, String, Bool) -> Void) {
+        
+        var isLogin = false
+        var token = ""
+        var userId = ""
+        
+        let json = JSON.init([
+            "type" : "F",
+            "token" : socialToken
+            ])
+        
+        DispatchQueue.global(qos: .background).async {
+            HTTP.postJSON(url: "http://13.228.39.122/FP05_883458374658792/1.0/user/login", json: json, onComplete: {
+                json, response, error in
+                
+                if json != nil {
+                    print(json!)
+                    isLogin = true
+                    token = (json!["token"].string)!
+                    userId = (json!["userid"].string)!
+                    onComplete(token, userId, isLogin)
+                }
+            })
+            
+            return
+            
+        } // End of Dispatch Queue
     
+    }
     
     
     
