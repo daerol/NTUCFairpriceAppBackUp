@@ -85,18 +85,19 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                                 //                            let saveUserId: Bool = KeychainWrapper.standard.set(userId, value(forKey: "userid"))
                                 
                                 //  LI YUN ADDED
-//                            user.id = json!["id"].string!
-//                            user.username = json!["name"].string!
-//                            user.preferredloc = json!["preferredloc"] != JSON.null ? json!["preferredloc"].string! : ""
-//                            user.email = json!["email"] != JSON.null ? json!["email"].string! : ""
-//                            user.phoneNumber = json!["phone"] != JSON.null ? json!["phone"].string! : ""
-//                            user.photo = json!["photo"] != JSON.null ? json!["photo"].string! : ""
-//                            
-//                            //  UserDefaults
-//                            UserDefaults.standard.set(token, forKey: "Token")
-//                            //  Encode user object
-//                            let encodedUserData = NSKeyedArchiver.archivedData(withRootObject: user)
-//                            UserDefaults.standard.set(encodedUserData, forKey: "User")
+                            user.id = json!["id"].string!
+                            user.username = json!["name"].string!
+                            user.preferredloc = json!["preferredloc"] != JSON.null ? json!["preferredloc"].string! : ""
+                            user.email = json!["email"] != JSON.null ? json!["email"].string! : ""
+                            user.phoneNumber = json!["phone"] != JSON.null ? json!["phone"].string! : ""
+                            user.photo = json!["photo"] != JSON.null ? json!["photo"].string! : ""
+                            
+                            //  UserDefaults
+                            UserDefaults.standard.set(token, forKey: "Token")
+                            UserDefaults.standard.set(password, forKey: "HashedPassword")
+                            //  Encode user object
+                            let encodedUserData = NSKeyedArchiver.archivedData(withRootObject: user)
+                            UserDefaults.standard.set(encodedUserData, forKey: "User")
 
                               
                                 if token == nil
