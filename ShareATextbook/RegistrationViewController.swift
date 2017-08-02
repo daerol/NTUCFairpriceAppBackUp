@@ -28,15 +28,17 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
     var phoneField : String = ""
     var passwordField : String = ""
     var confirmField : String = ""
-    var agreeToTOS : Bool = true
+    var agreeToTOS : Bool = false
     
     var regDA = registrationDA()
+    var logDA = loginDA()
+    var profileImage : UIImage! = #imageLiteral(resourceName: "dp")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         TOSBox.delegate = self
         view.backgroundColor = UIColor(r: 240, g: 240, b: 240)
-        
+        definesPresentationContext = true
         
         // Set up UI
         setupNavigationBar()
@@ -65,34 +67,69 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
         confirmField = confirmPasswordField.text!
         
         
-        // Check if password field matches confirm field
-        if passwordField == confirmField {
-            // Convert password to SHA512
-            passwordField = maskPassword(passwordField).uppercased()
-            confirmField = maskPassword(confirmField).uppercased()
-        }
         
         // Check if the userfields is filled
         if checkAllFieldsRequired() == true {
             
+            // Check if password field matches confirm field
+            if passwordField == confirmField {
+                // Convert password to SHA512
+                passwordField = maskPassword(passwordField).uppercased()
+                confirmField = maskPassword(confirmField).uppercased()
+            }
+            
+            
             // Passing data to the Data Manager Function
-            userCreated = registrationDA.createUser(usernameField, emailField, passwordField, phoneField, showEmail, showPhone, userType)
+            registrationDA.createUser(usernameField, emailField, passwordField, phoneField, showEmail, showPhone, userType, profileImage, onComplete:  {
+                (token, userId, isCreated, msg, title) -> Void in
+                
+                print(token)
+                print(userId)
+                print(isCreated)
+                
+                
+                userCreated = isCreated
+                
+                // Set global token
+                loginDA._loginToken = token
+                loginDA._userId = userId
+                
+                print("Is user created = \(userCreated)")
+                print("Message is : \(msg) ")
+                
+                
+                DispatchQueue.main.async() {
+                    [unowned self] in
+
+                    
+             // yet to fix
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        
+                        let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
+                        self.present(homeViewController, animated: true, completion: nil)
+                    
+                    
+                   
+                    
+                   
+                }
+                
+                
+               
+                
+                
+            })
             
             
             // Print results
             print(userCreated)
             
-            // Hash user
-            if userCreated == true {
-                print("User created!")
-                
-                //regDA.loginAndPost(emailField, "")
-            }
+            
             
             
         } // End of the if
         
-        
+       
         
     } // end of create user
     
@@ -158,38 +195,73 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
     // If fields are filled, return true.
     func checkAllFieldsRequired() -> Bool {
         
+        
+        
         var message = ""
+        var usernameMsg = ""
+        var validEmailMsg = ""
+        var phoneFieldMsg = ""
+        var passwordFieldMsg = ""
+        var confirmPasswordFieldMsg = ""
+        var notMatchMsg = ""
+        var agreetoTOSMsg = ""
         var validFormat = false
         
-        if usernameField.isEmpty == true { message = "- Username cannot be blank\n" }
-        else if isValidEmail(emailField) != true { message = "- Email cannot be blank\n" }
-        else if phoneField.isEmpty == true { message = "- Phone number is required\n"}
-        else if passwordField.isEmpty == true { message = "- Password must be at least 6 characters\n" }
-        else if confirmField.isEmpty == true { message = "- Confirm password cannot be blank\n" }
-        else if passwordField != confirmField { message = "- Password does not match\n" }
-        else if agreeToTOS == false { message = "- Must agree to the terms\n" }
-        else { validFormat = true }
+      
+        // Validate if any fields are unfilled with text/incorrect fields
         
-        
-        if (validFormat == false){
-            let uiAlert = UIAlertController(
-                title: "Whoops!",
-                message: message,
-                preferredStyle: UIAlertControllerStyle.alert)
+        if usernameField.isEmpty == true || isValidEmail(emailField) != true || phoneField.isEmpty == true || passwordField.isEmpty == true || confirmField.isEmpty == true || passwordField != confirmField || TOSBox.on == false {
             
-            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default,handler: nil))
-            self.present(uiAlert, animated:true, completion: nil)
+            
+            // If textfields are unfilled, show messages.
+            
+                if usernameField.isEmpty == true { usernameMsg = "- Username cannot be blank\n" }
+                if isValidEmail(emailField) != true { validEmailMsg = "- Email is invalid/blank\n" }
+                if phoneField.isEmpty == true { phoneFieldMsg = "- Phone number is required\n"}
+                if passwordField.isEmpty == true { passwordFieldMsg = "- Password must be at least 6 characters\n" }
+                if confirmField.isEmpty == true { confirmPasswordFieldMsg = "- Confirm password cannot be blank\n" }
+                if passwordField != confirmField { notMatchMsg = "- Password does not match\n" }
+                if agreeToTOS == false { agreetoTOSMsg = "- Must agree to the terms\n" }
+            
+            
+            // Combine all messages
+                message = usernameMsg + validEmailMsg + phoneFieldMsg + passwordFieldMsg + confirmPasswordFieldMsg + notMatchMsg + agreetoTOSMsg
+                
+            // If the textfields are unfilled, show an alert message with the messages
+            if (validFormat == false){
+                let uiAlert = UIAlertController(
+                    title: "Whoops!",
+                    message: message,
+                    preferredStyle: UIAlertControllerStyle.alert)
+                
+                uiAlert.addAction(UIAlertAction(title: "Ok", style: .default,handler: nil))
+                self.present(uiAlert, animated:true, completion: nil)
+            }
+            
+            
+        } else {
+            // Else is a valid format, post
+            validFormat = true
+            
+                    
         }
         
+        
+       
         return validFormat
         
     }
     
-    
-    // Create function to check if username exists in the database
-    func checkUserExist() -> Bool {
-        return false
+    func presentAlert(msg:String, title:String) {
+        let uiAlert = UIAlertController(
+            title: title,
+            message: msg,
+            preferredStyle: UIAlertControllerStyle.alert)
+        
+        uiAlert.addAction(UIAlertAction(title: "Ok", style: .default,handler: nil))
+        self.present(uiAlert, animated:true, completion: nil)
     }
+   
     
     // Function to check if checkbox is checked.
     func didTap(_ checkBox: BEMCheckBox) {
@@ -251,6 +323,8 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
         imageView.layer.borderColor = UIColor.black.cgColor
         imageView.layer.cornerRadius = imageView.frame.height/2
         imageView.clipsToBounds = true
+        imageView.backgroundColor = UIColor(r: 104, g: 104, b: 104)
+
     }
     
     
@@ -258,9 +332,13 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
         
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         imageView.image = image
+        profileImage = image
         
         picker.dismiss(animated: true, completion: nil)
     }
+    
+  
+    
     
 }
 
@@ -272,5 +350,7 @@ extension UIColor {
         self.init(red: r/255, green: g/255, blue: b/255, alpha: 1)
     }
 }
+
+
 
 

@@ -7,68 +7,93 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
-class LoginViewController: UIViewController {
-
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
+    
+    //    private let LOGIN_SEGUE = "loginSegue"
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet var passwordTextfield : UITextField!
     
     var emailField : String = ""
     var passwordField : String = ""
+    var loggedUserId : String = ""
+    var loggedToken : String = ""
+    
+    let loginButton = FBSDKLoginButton()
+    
+    
     
     @IBAction func loginBtn(_ sender: Any) {
         emailLogin()
+        //        self.performSegue(withIdentifier: LOGIN_SEGUE, sender: nil)
     }
-    
     
     func emailLogin()
     {
-        let email = emailTextField.text!
-        var password = passwordTextfield.text!
-        
+        emailField = emailTextField.text!
+        passwordField = passwordTextfield.text!
+        var password = ""
+        print(emailField)
+        print(passwordField)
         var token : String!
         var userId : String!
         
-        let json = JSON.init([
-            "email" : email
-        ])
+        let emailStored = UserDefaults.standard.string(forKey: "emailField")
+        let passStored = UserDefaults.standard.string(forKey: "passwordField")
         
-        DispatchQueue.global(qos: .background).async {
-            HTTP.postJSON(url: "http://13.228.39.122/FP05_883458374658792/1.0/user/getnonce", json: json, onComplete: {
-                json, response, error in
-                
-                if error != nil {
-                    print(error!)
-                    return
-                }
-                
-                if response != nil
-                {
-                    print(json!)
+        let json = JSON.init([
+            "email" : emailField
+            ])
+        if checkAllFieldsRequired() == true {
+            DispatchQueue.global(qos: .background).async {
+                HTTP.postJSON(url: "http://13.228.39.122/FP05_883458374658792/1.0/user/getnonce", json: json, onComplete: {
+                    json, response, error in
                     
-                    let nonce = (json!["nonce"].string)
-                    password = self.sha512Hex(string: (self.sha512Hex(string: self.passwordTextfield.text!).uppercased() + nonce!)).uppercased()
-                    let loginJson = JSON.init([
-                        "type" : "E",
-                        "email" : email,
-                        "password" : password
-                        ])
+                    if error != nil {
+                        print(error!)
+                        return
+                    }
                     
-                    HTTP.postJSON(url: "http://13.228.39.122/FP05_883458374658792/1.0/user/login", json: loginJson, onComplete: {
-                        json, response, error in
+                    if response != nil
+                    {
+                        print(json!)
+          
+                        let nonce = (json!["nonce"].string)
+                        if emailStored == self.emailField && passStored == self.passwordField {
+                            password = self.sha512Hex(string: (self.sha512Hex(string: self.passwordTextfield.text!).uppercased() + nonce!)).uppercased()
+
+                        }
+                        else{
+                            self.displayMyAlertMessage(userMessage: "Username/Password is incorrect!")
+                        }
                         
-                        //  LI YUN ADDED
-                        let user = User(username: "", password: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
+                        let loginJson = JSON.init([
+                            "type" : "E",
+                            "email" : self.emailField,
+                            "password" : password
+                            ])
                         
-                        if json != nil {
-                            print("s:\(json!)")
-                            token = (json!["token"].string)
-                            userId = (json!["userid"].string)
-                            print(token)
-                            print(userId)
-                            print(json!["email"] != JSON.null ? json!["email"].string! : "")
-                            
+                        HTTP.postJSON(url: "http://13.228.39.122/FP05_883458374658792/1.0/user/login", json: loginJson, onComplete: {
+                            json, response, error in
+                          
                             //  LI YUN ADDED
+                            let user = User(username: "", password: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
+                          
+                            if json != nil {
+                                print(json!)
+                                token = (json!["token"].string)
+                                userId = (json!["userid"].string)
+                                //                                print(token)
+                                //                                print(userId)
+                                self.loggedUserId = userId
+                                self.loggedToken = token
+                                print("LoggedUserId = \(self.loggedUserId)")
+                                print("LoggedToken = \(self.loggedToken)")
+                                //                            let saveToken: Bool = KeychainWrapper.standard.set(token, forKey: "sessionToken")
+                                //                            let saveUserId: Bool = KeychainWrapper.standard.set(userId, value(forKey: "userid"))
+                                
+                                //  LI YUN ADDED
                             user.id = json!["id"].string!
                             user.username = json!["name"].string!
                             user.preferredloc = json!["preferredloc"] != JSON.null ? json!["preferredloc"].string! : ""
@@ -81,31 +106,61 @@ class LoginViewController: UIViewController {
                             //  Encode user object
                             let encodedUserData = NSKeyedArchiver.archivedData(withRootObject: user)
                             UserDefaults.standard.set(encodedUserData, forKey: "User")
+
+                              
+                                if token == nil
+                                {
+                                    print(error!)
+                                }
+                                else
+                                {
+                                    DispatchQueue.main.async {
+                                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                                        
+                                        let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
+                                        self.present(homeViewController, animated: true, completion: nil)
+                                        
+                                        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                                        UserDefaults.standard.synchronize()
+                                    }
+                                    
+                                }
+                                return
+                            }
                             
-//                            let saveToken: Bool = KeychainWrapper.standard.set(token, forKey: "sessionToken")
-//                            let saveUserId: Bool = KeychainWrapper.standard.set(userId, value(forKey: "userid"))
-                            return
-                        }
-                        
-                        if error != nil {
-                            print(error!)
-                            return
-                        }
-                        
-                    })
-                    return
-                }
-            })
-        }
+                            if error != nil {
+                                print(error!)
+                                return
+                            }
+                            
+                        })
+                        return
+                    }
+                    
+                })
+            } // end of dispatcher
+        } // end of if checkallfields
+        return
     }
+    
+    func isLoggedIn() -> Bool{
+        return UserDefaults.standard.bool(forKey: "isLoggedIn")
+    }
+    
     func checkAllFieldsRequired() -> Bool
     {
         var message = ""
+        var usernameMsg = ""
+        var passwordMsg = ""
         var validFormat = false
         
-        if emailField.isEmpty == true {message = "Email is required!"}
-        else if passwordField.isEmpty == true {message = "Invalid Password/Password is required!"}
-        else {validFormat = true}
+        if emailField.isEmpty == true || passwordField.isEmpty == true {
+            
+            if emailField.isEmpty == true {usernameMsg = "Email is required!\n"}
+            else if passwordField.isEmpty == true {passwordMsg = "Invalid Password/Password is required!\n"}
+        } else {validFormat = true}
+        
+        message = usernameMsg + passwordMsg
         
         if (validFormat == false)
         {
@@ -144,32 +199,67 @@ class LoginViewController: UIViewController {
         return sha512Hex(string: password)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    func displayMyAlertMessage(userMessage:String)
+    {
         
-//        TO-BE-REMOVED
-        emailTextField.text = "Davidkwong@email.com"
-        passwordTextfield.text = "davidPassword"
+        var myAlert = UIAlertController(title:"Alert", message:userMessage, preferredStyle: UIAlertControllerStyle.alert);
+        
+        let okAction = UIAlertAction(title:"Ok", style:UIAlertActionStyle.default, handler:nil);
+        myAlert.addAction(okAction);
+        
+        self.present(myAlert, animated:true, completion:nil);
+        
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+        view.addSubview(loginButton)
+        
+        loginButton.frame = CGRect(x:16, y: 400, width: view.frame.width - 32, height: 50)
+        
+        loginButton.delegate = self
+    }
     
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("Did log out of facebook")
+    }
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        if error != nil {
+            print(error)
+            return
+        }
+        
+        print("Successfully logged in with facebook...")
+        
+        DispatchQueue.main.async {
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
+            self.present(homeViewController, animated: true, completion: nil)
+            
+            UserDefaults.standard.set(true, forKey: "isLoggedIn")
+            UserDefaults.standard.synchronize()
+        }
 
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

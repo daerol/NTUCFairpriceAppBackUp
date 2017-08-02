@@ -16,122 +16,108 @@ class registrationDA: NSObject {
         
     }
     
-    static func createUser(_ name: String, _ email: String, _ password: String, _ phone: String, _ showEmail: String, _ showPhone: String, _ type: String) -> Bool {
+    
+    // Need to fix the profile image
+    static func createUser(_ name: String, _ email: String, _ password: String, _ phone: String, _ showEmail: String, _ showPhone: String, _ type: String,_ profileDP: UIImage, onComplete: @escaping (String, String, Bool, String, String) -> Void) {
         
         var isCreated : Bool = false
+        var token : String = ""
+        var userId : String = ""
+        var msg : String = ""
+        var title : String = ""
+        
+        let photoURL = DatabaseAPI.url + "photos/addu"
+        let addUserURL = DatabaseAPI.url + "user/add"
         
         
-        
-        let json = JSON.init([
-            "name" : name,
-            "email" : email,
-            "password" : password,
-            "phone" : phone,
-            "showemail" : showEmail,
-            "showphone" : showPhone,
-            "type" : type
-            ])
-        
-        DispatchQueue.global(qos: .background).async {
-            HTTP.postJSON(url: "http://13.228.39.122/FP05_883458374658792/1.0/user/add", json: json, onComplete: {
-                json, response, error in
-                
-                if response != nil
-                {
-                    isCreated = false
-                    print(json!)
-                    if let token = (json?["token"].string!) {
-                          print(token)
-                    }
-                    if let userId = (json?["id"].string!) {
-                        print(userId)
-                    }
-                    
-                  
-                    
-                    
-                    return
-                    
-                }
-                
-                if json != nil {
-                    print(json!)
-                    
-                }
-                isCreated = true
-            })
+        uploadProfileDP(photoURL, profileDP, onComplete: {
+            photoP in
             
             
-            print(isCreated)
-        } // End of Dispatch Queue
-        
-        isCreated = true
-        
-        
-        return isCreated
-    }
-    
-    
-    
-    
-    
-    
-    func loginAndPost(_ email: String, _ password: String) -> Bool {
-        
-        var posted = false
-        
-        var nonce : String = ""
-        let userType = "E"
-        
-        let json = JSON.init([
-            "email" : email
-            ])
-        
-        DispatchQueue.global(qos: .background).async{
-            HTTP.postJSON(url: "http://13.228.39.122/FP05_883458374658792/1.0/user/getnonce", json: json, onComplete: {
-                json, response, error in
-                
-                if response != nil
-                {
-                    print(json!)
-                    let nonce = (json!["nonce"].string!)
-                    print(nonce)
+            let json = JSON.init([
+                "name" : name,
+                "photo" : photoP,
+                "email" : email,
+                "password" : password,
+                "phone" : phone,
+                "showemail" : showEmail,
+                "showphone" : showPhone,
+                "type" : type
+                ])
+            
+            
+            print("SHOW THE USER PHOTO URL \(photoP)")
+            
+            
+            DispatchQueue.global(qos: .background).async {
+                HTTP.postJSON(url: addUserURL, json: json, onComplete: {
+                    json, response, error in
                     
-                    let hashedPassword = self.sha512Hex(string: (self.sha512Hex(string: password).uppercased() + nonce )).uppercased()
-                    
-                    let loginJson = JSON.init([
-                        "type" : userType,
-                        "email" : email,
-                        "password" : hashedPassword
-                        ])
-                    
-                    HTTP.postJSON(url: "http://13.228.39.122/FP05_883458374658792/1.0/user/login", json: loginJson, onComplete: {
-                        json, response, error in
+                    if response != nil
+                    {
+                        print(json!)
                         
-                        if response != nil
-                        {
-                            print(json!)
-                            return
+                        if (json?["error"].exists())! {
+                            isCreated = false
+                            token = "empty"
+                            userId = "empty"
+                            msg = (json!["msg"].string!)
+                            title = "Failed!"
+                            onComplete(token, userId, isCreated, msg, title)
+                            
+                        } else {
+                            isCreated = true
+                            token = (json!["token"].string!)
+                            SharedVariables.token = (json!["token"].string!)
+                            userId = (json!["userid"].string!)
+                            msg = "You may login your account with email and password!"
+                            title = "Success!"
+                            onComplete(token, userId, isCreated, msg, title)
+                            
                         }
                         
                         
-                    })
+                        
+                        return
+                        
+                    }
                     
-                    posted = true
-                    return
-                }
+                    if json != nil {
+                        print(json!)
+                        
+                    }
+                    isCreated = true
+                })
                 
-            })
+                
+                print(isCreated)
+            } // End of Dispatch Queue
             
             
-        } // End of Dispatch Queue
+        }) // End of uploadProfileDP
         
-        print(posted)
-        return posted
         
     }
     
-    // Function to convert String to SHA512
+    static func uploadProfileDP(_ url: String, _ profileImage: UIImage, onComplete: @escaping(_: String) -> Void) {
+        
+        var photoPath = ""
+       
+        HTTP.postMultipartPhotos(url: url, token: SharedVariables.token, tag: 0, image: profileImage, onComplete: {
+            json, response, error, tag in
+            
+            print("json \(json)")
+            photoPath = json!["filepath"].string!
+            print("This is the user  \(photoPath)")
+            
+            onComplete(photoPath)
+            
+        })
+        
+        
+        }
+    
+       // Function to convert String to SHA512
     func sha512Hex(string: String) -> String {
         let data = string.data(using: .utf8)!
         
@@ -151,6 +137,8 @@ class registrationDA: NSObject {
     
 
     
+    
+   
     
     
 }

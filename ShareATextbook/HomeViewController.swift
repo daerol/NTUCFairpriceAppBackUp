@@ -6,29 +6,38 @@
 //  Copyright © 2017 Chia Li Yun. All rights reserved.
 //
 
+
+
+// Remarks: Add spinner before loading data
+
 import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
     
     @IBOutlet weak var sliderScrollView: UIScrollView!
+    @IBOutlet weak var tableView: UITableView!
     
     // HAVEN'T FIX THE CATEGORIES IMAGE
     
-    var categories = [["name" : "TEXTBOOK","img": "cells"], ["name" : "TYS","img": "cells"], ["name" : "PRIMARY 1","img": "cells"], ["name" : "PRIMARY 2","img": "cells"]]
     
+
     let feature1 = ["title" : "Textbooks", "description" : "Check them out!", "img" : "camera"]
     let feature2 = ["title" : "TYS", "description" : "Check them out!", "img" : "camera"]
     let feature3 = ["title" : "Primary 1", "description" : "Check them out!", "img" : "camera"]
     
     
     var featureArray = [Dictionary<String, String>]()
-
+    var categoriesList : [Categories] = []
+    var refreshControl : UIRefreshControl!
+    
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         featureArray = [feature1, feature2, feature3]
         sliderScrollView.isPagingEnabled = true
@@ -36,10 +45,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         sliderScrollView.showsHorizontalScrollIndicator = false
         
         
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(loadCategories), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl)
+        
+        
+        // Load datas
         loadFeatures()
+        loadCategories()
+        
+      
         
     }
     
+   
     
     func loadFeatures() {
         for (index, feature) in featureArray.enumerated() {
@@ -59,9 +79,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func loadCategories() {
+        HomepageDataManager.retrieveCategories(onComplete: {
+            categoriesListFromServer in
+            
+            
+            self.categoriesList = categoriesListFromServer
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        })
+    }
+
+    
+     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
+    
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -71,21 +106,28 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return categories.count
+        return self.categoriesList.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HomeContentTableViewCell
+//        
+//        let bookCat = categories[indexPath.row]
+//        
+//        let s = bookCat["img"]!
+//        cell.backgroundImage.image = UIImage(named: s)
+//        cell.nameLabel.text = bookCat["name"]
         
-        let bookCat = categories[indexPath.row]
+        DispatchQueue.main.async() {
+            
+            let bookCat = self.categoriesList[indexPath.row]
+            cell.backgroundImage?.image = #imageLiteral(resourceName: "cells")
+            cell.nameLabel?.text = bookCat.name
+        }
         
-        let s = bookCat["img"]!
-        cell.backgroundImage.image = UIImage(named: s)
-        cell.nameLabel.text = bookCat["name"]
         
-        
-        
+
         return cell
     }
     

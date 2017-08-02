@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zUR-gX-rAf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zUR-gX-rAf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
         <!--Custom Navigation View Controller-->
         <scene sceneID="aVO-yD-9Un">
             <objects>
-                <navigationController storyboardIdentifier="newItemDetailNavigationController" id="Y7P-Dm-2X9" customClass="CustomNavigationViewController" customModule="ntucTest" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="newItemDetailNavigationController" id="Y7P-Dm-2X9" customClass="CustomNavigationViewController" customModule="ShareATextbook" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rui-AH-6ET">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -29,7 +29,7 @@
         <!--Image Picker Controller-->
         <scene sceneID="RL0-Hj-s39">
             <objects>
-                <viewController id="zUR-gX-rAf" customClass="DKImagePickerController" customModule="ntucTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zUR-gX-rAf" customClass="DKImagePickerController" customModule="ShareATextbook" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Y0i-N1-X4R"/>
                         <viewControllerLayoutGuide type="bottom" id="5aH-4s-QMt"/>
@@ -65,7 +65,7 @@
         <!--Barcode Reader View Controller-->
         <scene sceneID="tmr-ji-Khp">
             <objects>
-                <viewController id="gKM-O4-ThW" customClass="BarcodeReaderViewController" customModule="ntucTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gKM-O4-ThW" customClass="BarcodeReaderViewController" customModule="ShareATextbook" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lHL-LT-0aB"/>
                         <viewControllerLayoutGuide type="bottom" id="1oc-EY-aFo"/>
@@ -160,7 +160,7 @@
         <!--Posting View Controller-->
         <scene sceneID="tkX-9Y-uJQ">
             <objects>
-                <viewController storyboardIdentifier="postingViewController" id="VcM-Z8-VlQ" customClass="PostingViewController" customModule="ntucTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="postingViewController" id="VcM-Z8-VlQ" customClass="PostingViewController" customModule="ShareATextbook" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aXe-bq-I5t"/>
                         <viewControllerLayoutGuide type="bottom" id="RAe-R7-Wrs"/>
@@ -191,7 +191,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="MTR-wI-4jM" customClass="PostingImageCollectionViewCell" customModule="ntucTest" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="MTR-wI-4jM" customClass="PostingImageCollectionViewCell" customModule="ShareATextbook" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -219,7 +219,7 @@
                                     <outlet property="delegate" destination="VcM-Z8-VlQ" id="IqI-NU-1zI"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dm9-f4-KXQ" customClass="CustomUIButton" customModule="ntucTest" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dm9-f4-KXQ" customClass="CustomUIButton" customModule="ShareATextbook" customModuleProvider="target">
                                 <rect key="frame" x="309" y="72" width="50" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="D4w-iF-ebk"/>
@@ -242,7 +242,7 @@
                                     <segue destination="wQS-2f-t7o" kind="show" identifier="barcodeReaderSegue" id="lDq-iM-Dc2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UwQ-QH-TvJ" customClass="CustomUIButton" customModule="ntucTest" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UwQ-QH-TvJ" customClass="CustomUIButton" customModule="ShareATextbook" customModuleProvider="target">
                                 <rect key="frame" x="251" y="72" width="50" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Jj1-TK-YGZ"/>
@@ -316,7 +316,7 @@
         <!--Posting Details Form Table View Controller-->
         <scene sceneID="r6d-Me-eD4">
             <objects>
-                <tableViewController id="qqm-mc-nJk" customClass="PostingDetailsFormTableViewController" customModule="ntucTest" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="qqm-mc-nJk" customClass="PostingDetailsFormTableViewController" customModule="ShareATextbook" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZzZ-gL-zL2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="395"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -331,7 +331,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Book Title" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1rQ-wm-DdD" customClass="SkyFloatingLabelTextField" customModule="ntucTest" customModuleProvider="target">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Book Title" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1rQ-wm-DdD" customClass="SkyFloatingLabelTextField" customModule="ShareATextbook" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="0.0" width="360" height="44"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -362,7 +362,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Book Publisher" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="e0K-s8-wIy" customClass="SkyFloatingLabelTextField" customModule="ntucTest" customModuleProvider="target">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Book Publisher" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="e0K-s8-wIy" customClass="SkyFloatingLabelTextField" customModule="ShareATextbook" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="0.0" width="360" height="43.5"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -393,7 +393,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Book Edition" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fTp-7H-tW8" customClass="SkyFloatingLabelTextField" customModule="ntucTest" customModuleProvider="target">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Book Edition" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fTp-7H-tW8" customClass="SkyFloatingLabelTextField" customModule="ShareATextbook" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="0.0" width="360" height="43.5"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -424,7 +424,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Book Description" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3Ja-HJ-vsh" customClass="SkyFloatingLabelTextField" customModule="ntucTest" customModuleProvider="target">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Book Description" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3Ja-HJ-vsh" customClass="SkyFloatingLabelTextField" customModule="ShareATextbook" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="0.0" width="360" height="43.5"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -455,7 +455,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Preferred Location" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TmI-Kh-5ot" customClass="SkyFloatingLabelTextField" customModule="ntucTest" customModuleProvider="target">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Preferred Location" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TmI-Kh-5ot" customClass="SkyFloatingLabelTextField" customModule="ShareATextbook" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="0.0" width="360" height="43.5"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -566,7 +566,7 @@
         <!--Test View Controller-->
         <scene sceneID="8Lg-wK-lBf">
             <objects>
-                <viewController id="30G-Ya-O77" customClass="TestViewController" customModule="ntucTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="30G-Ya-O77" customClass="TestViewController" customModule="ShareATextbook" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="f8i-RU-9jJ"/>
                         <viewControllerLayoutGuide type="bottom" id="ku2-MJ-YKp"/>
@@ -603,7 +603,7 @@
         <!--Barcode Reader View Controller-->
         <scene sceneID="lVU-qv-do1">
             <objects>
-                <viewController id="wQS-2f-t7o" customClass="BarcodeReaderViewController" customModule="ntucTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wQS-2f-t7o" customClass="BarcodeReaderViewController" customModule="ShareATextbook" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="W1D-kF-E1B"/>
                         <viewControllerLayoutGuide type="bottom" id="fQ3-ZL-EDT"/>
@@ -621,7 +621,7 @@
         <!--Education Level View Controller-->
         <scene sceneID="FwB-8b-kgd">
             <objects>
-                <viewController id="1h7-53-MOd" customClass="EducationLevelViewController" customModule="ntucTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1h7-53-MOd" customClass="EducationLevelViewController" customModule="ShareATextbook" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="x9g-LK-MxG"/>
                         <viewControllerLayoutGuide type="bottom" id="2eJ-cD-NwD"/>
@@ -668,7 +668,7 @@
         <!--Subject View Controller-->
         <scene sceneID="8NM-X1-Be2">
             <objects>
-                <viewController id="s3G-UI-gU5" customClass="SubjectViewController" customModule="ntucTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="s3G-UI-gU5" customClass="SubjectViewController" customModule="ShareATextbook" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9jx-pd-zY9"/>
                         <viewControllerLayoutGuide type="bottom" id="req-KC-rzb"/>
@@ -718,7 +718,7 @@
         <image name="Camera_Icon" width="28" height="21"/>
         <image name="Capture_Butt" width="80" height="80"/>
         <image name="Flash_Icon" width="13" height="22"/>
-        <image name="Location" width="50" height="50"/>
+        <image name="Location" width="25" height="25"/>
         <image name="addImage" width="100" height="100"/>
         <image name="barcodeScanner" width="100" height="100"/>
     </resources>

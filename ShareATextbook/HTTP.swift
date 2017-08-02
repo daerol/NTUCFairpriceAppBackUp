@@ -169,6 +169,7 @@ class HTTP {
                     onComplete: onComplete)
     }
     
+    
     class func postMultipartPhotos(url: String, token: String, tag: Int, image: UIImage, onComplete:
         ((_: JSON?, _: URLResponse?, _: Error?, _:Int?) -> Void)?) {
         
@@ -187,7 +188,7 @@ class HTTP {
                     
                     onComplete?(json, response, error, tag)
                 }
-            }.resume()
+                }.resume()
         }
         
     }
