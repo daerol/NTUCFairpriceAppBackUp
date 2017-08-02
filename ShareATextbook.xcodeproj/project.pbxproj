@@ -34,6 +34,14 @@
 		C920D68B1EB624E700D095FC /* ntucTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C920D68A1EB624E700D095FC /* ntucTestUITests.swift */; };
 		C920D69C1EB6259900D095FC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C920D69B1EB6259900D095FC /* User.swift */; };
 		C920D69E1EB6265400D095FC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C920D69D1EB6265400D095FC /* LoginViewController.swift */; };
+		C92BA2581F317CF3005934E8 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BA2571F317CF3005934E8 /* ChangePasswordViewController.swift */; };
+		C92BA25C1F318216005934E8 /* CustomUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BA25B1F318216005934E8 /* CustomUIImageView.swift */; };
+		C92BA25E1F318B04005934E8 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C958BC8A1F308B94004A83A4 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C92BA2601F3194A1005934E8 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BA25F1F3194A1005934E8 /* CameraViewController.swift */; };
+		C958BC8F1F308BFD004A83A4 /* LocationValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958BC8E1F308BFD004A83A4 /* LocationValue.swift */; };
+		C958BC911F308D04004A83A4 /* CustomCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958BC901F308D04004A83A4 /* CustomCells.swift */; };
+		C958BC941F308F0C004A83A4 /* Geocoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958BC931F308F0C004A83A4 /* Geocoding.swift */; };
+		C958BC961F308F5A004A83A4 /* FloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958BC951F308F5A004A83A4 /* FloatLabelTextField.swift */; };
 		C9690BC01EB994BB0054BAB7 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9690BBF1EB994BB0054BAB7 /* CustomTabBarController.swift */; };
 		C9CF89111EB9F14000B5AE95 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CF89101EB9F14000B5AE95 /* Constants.swift */; };
 		C9D52B8B1F2ED2BF00F36F50 /* ImageDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B8A1F2ED2BF00F36F50 /* ImageDownload.swift */; };
@@ -122,6 +130,20 @@
 			remoteGlobalIDString = C920D6641EB624E700D095FC;
 			remoteInfo = ntucTest;
 		};
+		C958BC891F308B94004A83A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C958BC841F308B94004A83A4 /* Eureka.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 51729DEB1B9A4F5E004A00EB;
+			remoteInfo = Eureka;
+		};
+		C958BC8B1F308B94004A83A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C958BC841F308B94004A83A4 /* Eureka.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 51729DF51B9A4F5E004A00EB;
+			remoteInfo = EurekaTests;
+		};
 		C9F3A4321F2DD4CF0089DA2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C9F3A42E1F2DD4CF0089DA2F /* RSBarcodes.xcodeproj */;
@@ -145,6 +167,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C92BA25E1F318B04005934E8 /* Eureka.framework in Embed Frameworks */,
 				C9F3A4751F2DD6800089DA2F /* RSBarcodes.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -191,6 +214,14 @@
 		C920D68C1EB624E700D095FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C920D69B1EB6259900D095FC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C920D69D1EB6265400D095FC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C92BA2571F317CF3005934E8 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		C92BA25B1F318216005934E8 /* CustomUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIImageView.swift; sourceTree = "<group>"; };
+		C92BA25F1F3194A1005934E8 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		C958BC841F308B94004A83A4 /* Eureka.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Eureka.xcodeproj; sourceTree = "<group>"; };
+		C958BC8E1F308BFD004A83A4 /* LocationValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationValue.swift; sourceTree = "<group>"; };
+		C958BC901F308D04004A83A4 /* CustomCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCells.swift; sourceTree = "<group>"; };
+		C958BC931F308F0C004A83A4 /* Geocoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geocoding.swift; sourceTree = "<group>"; };
+		C958BC951F308F5A004A83A4 /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatLabelTextField.swift; sourceTree = "<group>"; };
 		C9690BBF1EB994BB0054BAB7 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		C9CF89101EB9F14000B5AE95 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C9D52B8A1F2ED2BF00F36F50 /* ImageDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownload.swift; sourceTree = "<group>"; };
@@ -468,8 +499,30 @@
 				C9F1F3821EC1FD8C00E8C71C /* CustomNavigationViewController.swift */,
 				8F1F32351EFF00D700DE910C /* CustomUIViewButtons.swift */,
 				8FDF30E71F0BD69400359916 /* FeatureView.swift */,
+				C92BA25B1F318216005934E8 /* CustomUIImageView.swift */,
 			);
 			name = CustomViewControllers;
+			sourceTree = "<group>";
+		};
+		C958BC851F308B94004A83A4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C958BC8A1F308B94004A83A4 /* Eureka.framework */,
+				C958BC8C1F308B94004A83A4 /* EurekaTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C958BC921F308EE4004A83A4 /* Eureka */ = {
+			isa = PBXGroup;
+			children = (
+				C958BC951F308F5A004A83A4 /* FloatLabelTextField.swift */,
+				C958BC931F308F0C004A83A4 /* Geocoding.swift */,
+				C958BC8E1F308BFD004A83A4 /* LocationValue.swift */,
+				C958BC901F308D04004A83A4 /* CustomCells.swift */,
+				C958BC841F308B94004A83A4 /* Eureka.xcodeproj */,
+			);
+			name = Eureka;
 			sourceTree = "<group>";
 		};
 		C9D52B8C1F2ED32F00F36F50 /* ImageSlideshow */ = {
@@ -500,6 +553,7 @@
 		C9F3A4281F2DD4700089DA2F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C958BC921F308EE4004A83A4 /* Eureka */,
 				C9D52B8C1F2ED32F00F36F50 /* ImageSlideshow */,
 				C9F3A42E1F2DD4CF0089DA2F /* RSBarcodes.xcodeproj */,
 				C9F3A42D1F2DD4A20089DA2F /* DKCamera */,
@@ -638,6 +692,8 @@
 				C9F3A4991F2DE7F40089DA2F /* EditProfileViewController.swift */,
 				C9F3A49A1F2DE7F40089DA2F /* PostDetailViewController.swift */,
 				C9F3A49B1F2DE7F40089DA2F /* ProfileViewController.swift */,
+				C92BA2571F317CF3005934E8 /* ChangePasswordViewController.swift */,
+				C92BA25F1F3194A1005934E8 /* CameraViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -740,6 +796,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = C958BC851F308B94004A83A4 /* Products */;
+					ProjectRef = C958BC841F308B94004A83A4 /* Eureka.xcodeproj */;
+				},
+				{
 					ProductGroup = C9F3A42F1F2DD4CF0089DA2F /* Products */;
 					ProjectRef = C9F3A42E1F2DD4CF0089DA2F /* RSBarcodes.xcodeproj */;
 				},
@@ -754,6 +814,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		C958BC8A1F308B94004A83A4 /* Eureka.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Eureka.framework;
+			remoteRef = C958BC891F308B94004A83A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C958BC8C1F308B94004A83A4 /* EurekaTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = EurekaTests.xctest;
+			remoteRef = C958BC8B1F308B94004A83A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		C9F3A4331F2DD4CF0089DA2F /* RSBarcodes.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -848,7 +922,9 @@
 				C9D52B981F2ED33E00F36F50 /* ImageSlideshowItem.swift in Sources */,
 				C9F3A4931F2DE79B0089DA2F /* ImagePickerViewController.swift in Sources */,
 				8FDF30E81F0BD69400359916 /* FeatureView.swift in Sources */,
+				C92BA25C1F318216005934E8 /* CustomUIImageView.swift in Sources */,
 				C9F3A4911F2DE79B0089DA2F /* BarcodeReaderViewController.swift in Sources */,
+				C958BC911F308D04004A83A4 /* CustomCells.swift in Sources */,
 				C9F3A44A1F2DD5260089DA2F /* DKPopoverViewController.swift in Sources */,
 				C9F3A43E1F2DD5110089DA2F /* UITextField+fixCaretPosition.swift in Sources */,
 				C920D6691EB624E700D095FC /* AppDelegate.swift in Sources */,
@@ -870,19 +946,24 @@
 				C9F3A45B1F2DD5680089DA2F /* DKAssetGroupCellItemProtocol.swift in Sources */,
 				C9F3A4681F2DD5A00089DA2F /* DKAsset.swift in Sources */,
 				C9F3A43C1F2DD5110089DA2F /* SkyFloatingLabelTextField.swift in Sources */,
+				C958BC941F308F0C004A83A4 /* Geocoding.swift in Sources */,
 				C9CF89111EB9F14000B5AE95 /* Constants.swift in Sources */,
 				C9F3A4521F2DD53C0089DA2F /* DKAssetGroupGridLayout.swift in Sources */,
 				C9D52B9C1F2ED33E00F36F50 /* ZoomAnimatedTransitioning.swift in Sources */,
 				C9F3A4691F2DD5A00089DA2F /* DKAssetGroup.swift in Sources */,
 				C9F3A4961F2DE79B0089DA2F /* PostingImageCollectionViewCell.swift in Sources */,
+				C92BA2601F3194A1005934E8 /* CameraViewController.swift in Sources */,
 				C920D69E1EB6265400D095FC /* LoginViewController.swift in Sources */,
 				C9F3A4BE1F2DE9EE0089DA2F /* TestViewController.swift in Sources */,
 				8F1F32421F0170C100DE910C /* BEMAnimationManager.m in Sources */,
 				C920D66B1EB624E700D095FC /* FirstViewController.swift in Sources */,
 				C9F3A4531F2DD53C0089DA2F /* DKAssetGroupListVC.swift in Sources */,
+				C92BA2581F317CF3005934E8 /* ChangePasswordViewController.swift in Sources */,
 				C9D52B991F2ED33E00F36F50 /* InputSource.swift in Sources */,
 				C9F3A3D21F2DCE530089DA2F /* Category.swift in Sources */,
 				C9F3A49E1F2DE7F40089DA2F /* ProfileViewController.swift in Sources */,
+				C958BC8F1F308BFD004A83A4 /* LocationValue.swift in Sources */,
+				C958BC961F308F5A004A83A4 /* FloatLabelTextField.swift in Sources */,
 				C9F3A47F1F2DD8830089DA2F /* PostingViewController.swift in Sources */,
 				C9F3A49C1F2DE7F40089DA2F /* EditProfileViewController.swift in Sources */,
 			);

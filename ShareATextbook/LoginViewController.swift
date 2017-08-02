@@ -57,12 +57,31 @@ class LoginViewController: UIViewController {
                     HTTP.postJSON(url: "http://13.228.39.122/FP05_883458374658792/1.0/user/login", json: loginJson, onComplete: {
                         json, response, error in
                         
+                        //  LI YUN ADDED
+                        let user = User(username: "", password: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
+                        
                         if json != nil {
-                            print(json!)
+                            print("s:\(json!)")
                             token = (json!["token"].string)
                             userId = (json!["userid"].string)
                             print(token)
                             print(userId)
+                            print(json!["email"] != JSON.null ? json!["email"].string! : "")
+                            
+                            //  LI YUN ADDED
+                            user.id = json!["id"].string!
+                            user.username = json!["name"].string!
+                            user.preferredloc = json!["preferredloc"] != JSON.null ? json!["preferredloc"].string! : ""
+                            user.email = json!["email"] != JSON.null ? json!["email"].string! : ""
+                            user.phoneNumber = json!["phone"] != JSON.null ? json!["phone"].string! : ""
+                            user.photo = json!["photo"] != JSON.null ? json!["photo"].string! : ""
+                            
+                            //  UserDefaults
+                            UserDefaults.standard.set(token, forKey: "Token")
+                            //  Encode user object
+                            let encodedUserData = NSKeyedArchiver.archivedData(withRootObject: user)
+                            UserDefaults.standard.set(encodedUserData, forKey: "User")
+                            
 //                            let saveToken: Bool = KeychainWrapper.standard.set(token, forKey: "sessionToken")
 //                            let saveUserId: Bool = KeychainWrapper.standard.set(userId, value(forKey: "userid"))
                             return

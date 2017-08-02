@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ProfileViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -33,6 +34,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     var postList: [Posting]?
     var user: User?
     
+    var preferredLocationValue: LocationValue = LocationValue()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,19 +46,43 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         let locationStackViewTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapLocationStackView))
         locationStackView.addGestureRecognizer(locationStackViewTapGesture)
         
+        //  TO BE REMOVED
+//        if user == nil {
+//            user = SharedVariables.user
+//            name.text = SharedVariables.user.username
+//            preferredLocation.text = "Serangoon North Avenue 4"
+//        } else {
+//            //  If is owner
+//            name.text = user!.username
+//            preferredLocation.text = user!.preferredloc
+//            
+//        }
+        //  If is profile
         if user == nil {
-            user = SharedVariables.user
-            name.text = SharedVariables.user.username
-            preferredLocation.text = "Serangoon North Avenue 4"
+            let decodeUser = UserDefaults.standard.object(forKey: "User") as! Data
+            user =  NSKeyedUnarchiver.unarchiveObject(with: decodeUser) as! User
         } else {
-            //  If is owner
-            name.text = user!.username
-            preferredLocation.text = user!.preferredloc
-            
+            //  If is others profile, remove edit profile view
+            self.profileInfoStackView.removeArrangedSubview(editProfileView)
         }
         
+        name.text = user?.username
+        
+        if user?.preferredloc != "" {
+            let preferredLocArr = user?.preferredloc?.components(separatedBy: "|")
+            let coordArr = preferredLocArr?[0].components(separatedBy: ",")
+            
+            if preferredLocArr?[1] != "-" {
+                preferredLocation.text = preferredLocArr?[1]
+            } else {
+                preferredLocation.text = preferredLocArr?[2]
+            }
+        }
+//        preferredLocation.text = user?.preferredloc
+        
+        
         //  If owner, remove the edit profile view
-        self.profileInfoStackView.removeArrangedSubview(editProfileView)
+//        self.profileInfoStackView.removeArrangedSubview(editProfileView)
         
 //        DispatchQueue.global(qos: .userInitiated).async {
             PostingDataManager.getPostingList(onComplete: {
@@ -134,7 +161,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         user?.preferredloc = "Serangoon North Avenue 4"
         
         if OpenPhoneApplication.openMap(url: "https://www.apple.com/ios/maps/") {
-            let location = user?.preferredloc.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            let location = user?.preferredloc?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             
             UIApplication.shared.openURL(URL(string:
                 "http://maps.apple.com/?daddr=" + location!)!)
