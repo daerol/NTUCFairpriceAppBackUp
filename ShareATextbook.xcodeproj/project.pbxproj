@@ -36,6 +36,7 @@
 		8F034BC61F2F1DF000C16F1A /* UITextField+fixCaretPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F034BC31F2F1DF000C16F1A /* UITextField+fixCaretPosition.swift */; };
 		8F034BC81F2F1E9B00C16F1A /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F034BC71F2F1E9B00C16F1A /* PostDetailViewController.swift */; };
 		8F034BCF1F2F212500C16F1A /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F034BCE1F2F212500C16F1A /* Map.storyboard */; };
+		8F17E05D1F310893007EF6D7 /* Points.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F17E05C1F310893007EF6D7 /* Points.swift */; };
 		8F1F32361EFF00D700DE910C /* CustomUIViewButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F32351EFF00D700DE910C /* CustomUIViewButtons.swift */; };
 		8F1F32421F0170C100DE910C /* BEMAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F323B1F0170C100DE910C /* BEMAnimationManager.m */; };
 		8F1F32431F0170C100DE910C /* BEMCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F323D1F0170C100DE910C /* BEMCheckBox.m */; };
@@ -53,6 +54,7 @@
 		8FDF30E81F0BD69400359916 /* FeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF30E71F0BD69400359916 /* FeatureView.swift */; };
 		8FF04A3C1F136677008FD87F /* ProtectionPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF04A3B1F136677008FD87F /* ProtectionPointsViewController.swift */; };
 		8FF513F41F01EB13000211DB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF513F31F01EB13000211DB /* Security.framework */; };
+		8FFD6D451F31B5D0000FCE64 /* PointsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD6D441F31B5D0000FCE64 /* PointsTableViewCell.swift */; };
 		C917BDF41EF1563E00CBF4F1 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917BDF31EF1563E00CBF4F1 /* HTTP.swift */; };
 		C917BDF61EF1566D00CBF4F1 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */; };
 		C920D6691EB624E700D095FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C920D6681EB624E700D095FC /* AppDelegate.swift */; };
@@ -176,6 +178,7 @@
 		8F034BC31F2F1DF000C16F1A /* UITextField+fixCaretPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITextField+fixCaretPosition.swift"; path = "Source/SkyFloatingLabelTextField/UITextField+fixCaretPosition.swift"; sourceTree = "<group>"; };
 		8F034BC71F2F1E9B00C16F1A /* PostDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		8F034BCE1F2F212500C16F1A /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
+		8F17E05C1F310893007EF6D7 /* Points.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Points.swift; sourceTree = "<group>"; };
 		8F1F32351EFF00D700DE910C /* CustomUIViewButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIViewButtons.swift; sourceTree = "<group>"; };
 		8F1F323A1F0170C100DE910C /* BEMAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMAnimationManager.h; sourceTree = "<group>"; };
 		8F1F323B1F0170C100DE910C /* BEMAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMAnimationManager.m; sourceTree = "<group>"; };
@@ -198,6 +201,7 @@
 		8FDF30E71F0BD69400359916 /* FeatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureView.swift; sourceTree = "<group>"; };
 		8FF04A3B1F136677008FD87F /* ProtectionPointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtectionPointsViewController.swift; sourceTree = "<group>"; };
 		8FF513F31F01EB13000211DB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		8FFD6D441F31B5D0000FCE64 /* PointsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsTableViewCell.swift; sourceTree = "<group>"; };
 		C917BDF31EF1563E00CBF4F1 /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 		C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		C920D6651EB624E700D095FC /* ShareATextbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareATextbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -485,6 +489,7 @@
 				C9F3A3CE1F2DCE1F0089DA2F /* Posting.swift */,
 				C920D69B1EB6259900D095FC /* User.swift */,
 				8F49A7A91F1DD1FC00725A8D /* Categories.swift */,
+				8F17E05C1F310893007EF6D7 /* Points.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -519,6 +524,7 @@
 				8F1F324C1F0194A100DE910C /* HomeContentTableViewCell.swift */,
 				8F32DB041F0BBEB40021D095 /* HomeViewController.swift */,
 				8FF04A3B1F136677008FD87F /* ProtectionPointsViewController.swift */,
+				8FFD6D441F31B5D0000FCE64 /* PointsTableViewCell.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -843,6 +849,7 @@
 				8F034BB51F2F1DBA00C16F1A /* DKPermissionView.swift in Sources */,
 				C920D69C1EB6259900D095FC /* User.swift in Sources */,
 				C9F3A4721F2DD5D80089DA2F /* CustomUILabel.swift in Sources */,
+				8FFD6D451F31B5D0000FCE64 /* PointsTableViewCell.swift in Sources */,
 				8F034BB21F2F1DBA00C16F1A /* DKAssetGroupDetailVC.swift in Sources */,
 				2B8130501F0BB03800FBA165 /* LoginDataManager.swift in Sources */,
 				8F034BBE1F2F1DC900C16F1A /* DKAssetGroupDetailCameraCell.swift in Sources */,
@@ -863,6 +870,7 @@
 				8F034BC01F2F1DC900C16F1A /* DKAssetGroupDetailVideoCell.swift in Sources */,
 				8F034B9E1F2F1D8000C16F1A /* DKAssetGroup.swift in Sources */,
 				C917BDF61EF1566D00CBF4F1 /* SwiftyJSON.swift in Sources */,
+				8F17E05D1F310893007EF6D7 /* Points.swift in Sources */,
 				8F034B991F2F1D6B00C16F1A /* DKGroupDataManager.swift in Sources */,
 				8F1F32451F0170C100DE910C /* BEMPathManager.m in Sources */,
 				C9F3A4BC1F2DE9C90089DA2F /* ItemCollectionViewCell.swift in Sources */,
@@ -1069,7 +1077,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/ShareATextbook/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ShareATextbook;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ShareATextbookLol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = CheckboxHeader.h;
@@ -1088,7 +1096,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/ShareATextbook/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ShareATextbook;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ShareATextbookLol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = CheckboxHeader.h;

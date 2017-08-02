@@ -8,8 +8,10 @@
 
 import UIKit
 
-class ProtectionPointsViewController: UIViewController {
-
+class ProtectionPointsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
          view.backgroundColor = UIColor(r: 240, g: 240, b: 240)
@@ -38,8 +40,9 @@ class ProtectionPointsViewController: UIViewController {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HomeContentTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PointsTableViewCell
         
+        cell.titleCell?.text = "Reward Points"
         
         
         return cell
