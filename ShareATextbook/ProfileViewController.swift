@@ -154,7 +154,11 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func didTapPointStackView() {
-        pointLabel.text = "1000"
+//        pointLabel.text = "1000"
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "pointsystem", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "ProtectionPointsViewController") as! ProtectionPointsViewController
+        self.present(newViewController, animated: true, completion: nil)
     }
     
     func didTapLocationStackView() {
