@@ -39,9 +39,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         var token : String!
         var userId : String!
         
-        let emailStored = UserDefaults.standard.string(forKey: "emailField")
-        let passStored = UserDefaults.standard.string(forKey: "passwordField")
-        
         let json = JSON.init([
             "email" : emailField
             ])
@@ -60,13 +57,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                         print(json!)
           
                         let nonce = (json!["nonce"].string)
-                        if emailStored == self.emailField && passStored == self.passwordField {
-                            password = self.sha512Hex(string: (self.sha512Hex(string: self.passwordTextfield.text!).uppercased() + nonce!)).uppercased()
-
-                        }
-                        else{
-                            self.displayMyAlertMessage(userMessage: "Username/Password is incorrect!")
-                        }
+                        password = self.sha512Hex(string: (self.sha512Hex(string: self.passwordTextfield.text!).uppercased() + nonce!)).uppercased()
                         
                         let loginJson = JSON.init([
                             "type" : "E",
@@ -84,8 +75,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                                 print(json!)
                                 token = (json!["token"].string)
                                 userId = (json!["userid"].string)
-                                //                                print(token)
-                                //                                print(userId)
+                                        print(token)
+                                        print(userId)
                                 self.loggedUserId = userId
                                 self.loggedToken = token
                                 print("LoggedUserId = \(self.loggedUserId)")
@@ -221,8 +212,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         loginButton.delegate = self
         
-        emailTextField.text = "Davidkwong@email.com"
-        passwordTextfield.text = "davidPassword"
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
