@@ -69,7 +69,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                             json, response, error in
                           
                             //  LI YUN ADDED
-                            let user = User(userId: "", username: "", password: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
+                            let user = User(username: "", password: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
                           
                             if json != nil {
                                 print(json!)
@@ -85,8 +85,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                                 //                            let saveUserId: Bool = KeychainWrapper.standard.set(userId, value(forKey: "userid"))
                                 
                                 //  LI YUN ADDED
-                            user.id = json!["id"].string!
-                            user.userId = json!["userid"].string!
+                            user.id = json!["userid"].string!
                             user.username = json!["name"].string!
                             user.preferredloc = json!["preferredloc"] != JSON.null ? json!["preferredloc"].string! : ""
                             user.email = json!["email"] != JSON.null ? json!["email"].string! : ""
