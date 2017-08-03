@@ -38,7 +38,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     // ViewDidAppear function
     override func viewDidAppear(_ animated: Bool) {
-        let isUserLoggedIn = UserDefaults.standard.bool(forKey: "isUserLoggedIn")
+        let isUserLoggedIn = UserDefaults.standard.bool(forKey: "User")
         if(!isUserLoggedIn){
             let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginHome") as! LoginViewController
             self.navigationController?.pushViewController(loginViewController, animated: true)
@@ -142,7 +142,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                                         let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
                                         self.present(homeViewController, animated: true, completion: nil)
                                         
-                                        UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
+                                        UserDefaults.standard.set(true, forKey: "User")
                                         UserDefaults.standard.synchronize()
                                     }
                                     
@@ -201,7 +201,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                             let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
                             self.present(homeViewController, animated: true, completion: nil)
                             
-                            UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
+                            UserDefaults.standard.set(true, forKey: "User")
                             UserDefaults.standard.synchronize()
                     }
                 }

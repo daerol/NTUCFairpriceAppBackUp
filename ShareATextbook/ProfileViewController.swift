@@ -119,6 +119,28 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         
     }
     
+    // SHAH ADDED
+    func logOut() {
+        let isUserLoggedIn = UserDefaults.standard.bool(forKey: "User")
+        if (isUserLoggedIn) {
+            
+            loginDA.logOut(onComplete: {
+                (token, userId, isLoggedOut) -> Void in
+                
+                User.init(username: "", password: "", token: token, preferredloc: "", id: userId, email: "", phoneNumber: "", photo: "")
+                
+                UserDefaults.standard.removeObject(forKey: "User")
+                
+                DispatchQueue.main.async {
+                    let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginHome") as! LoginViewController
+                    self.navigationController?.pushViewController(loginViewController, animated: true)
+
+                }
+            })
+        }
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
