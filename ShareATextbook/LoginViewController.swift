@@ -9,7 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
     
     //    private let LOGIN_SEGUE = "loginSegue"
     @IBOutlet weak var emailTextField: UITextField!
@@ -22,10 +22,17 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     let loginButton = FBSDKLoginButton()
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     // ViewDidLoad function
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.emailTextField.delegate = self
+        self.passwordTextfield.delegate = self
         // Do any additional setup after loading the view.
         view.addSubview(loginButton)
         
@@ -38,16 +45,16 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     // ViewDidAppear function
     override func viewDidAppear(_ animated: Bool) {
-        let isUserLoggedIn = UserDefaults.standard.bool(forKey: "User")
+        let isUserLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
         if(!isUserLoggedIn){
             let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginHome") as! LoginViewController
             self.navigationController?.pushViewController(loginViewController, animated: true)
         }
         else {
-            //            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            //
-            //            let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
-            //            self.present(homeViewController, animated: true, completion: nil)
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+
+            let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
+            self.present(homeViewController, animated: true, completion: nil)
         }
     }
     // End ViewDidAppear function
@@ -107,8 +114,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                                 userId = (json!["userid"].string)
                                         print(token)
                                         print(userId)
-                                user.id = userId
-                                user.token = token
+                                self.loggedUserId = userId
+                                self.loggedToken = token
                                 print("LoggedUserId = \(userId)")
                                 print("LoggedToken = \(token)")
                                 //                            let saveToken: Bool = KeychainWrapper.standard.set(token, forKey: "sessionToken")
@@ -121,6 +128,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                             user.email = json!["email"] != JSON.null ? json!["email"].string! : ""
                             user.phoneNumber = json!["phone"] != JSON.null ? json!["phone"].string! : ""
                             user.photo = json!["photo"] != JSON.null ? json!["photo"].string! : ""
+                                
+                                print(user.id)
+                                print(user.username)
+                                print(user.email)
+                                print(user.token)
+                                print(user.phoneNumber)
                             
                             //  UserDefaults
                             UserDefaults.standard.set(token, forKey: "Token")
@@ -142,7 +155,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                                         let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
                                         self.present(homeViewController, animated: true, completion: nil)
                                         
-                                        UserDefaults.standard.set(true, forKey: "User")
+                                        UserDefaults.standard.set(true, forKey: "isLoggedIn")
                                         UserDefaults.standard.synchronize()
                                     }
                                     
@@ -201,11 +214,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                             let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
                             self.present(homeViewController, animated: true, completion: nil)
                             
-                            UserDefaults.standard.set(true, forKey: "User")
+                            UserDefaults.standard.set(true, forKey: "isLoggedIn")
                             UserDefaults.standard.synchronize()
                     }
                 }
-                2
+                
         print("Successfully logged in with facebook...")
                 
             })

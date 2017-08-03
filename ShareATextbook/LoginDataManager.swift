@@ -43,7 +43,7 @@ class loginDA: NSObject {
     
     }
     
-    class func logOut(onComplete: @escaping (String, String, Bool) -> Void) {
+    class func logOut() -> Void {
         var isLoggedOut = false
         var token = ""
         var userId = ""
@@ -62,7 +62,7 @@ class loginDA: NSObject {
                     isLoggedOut = true
                     token = (json!["token"].string)!
                     userId = (json!["userid"].string)!
-                    onComplete(token, userId, isLoggedOut)
+//                    onComplete(token, userId, isLoggedOut)
                 }
             })
             
