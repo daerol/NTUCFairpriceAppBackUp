@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		135B18491F327A860017B331 /* Logout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 135B18481F327A860017B331 /* Logout.storyboard */; };
 		19B3D3DE49165A3011E79200 /* Pods_ShareATextbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83E37E6285D9CED1BB5FA45 /* Pods_ShareATextbook.framework */; };
 		2B8130501F0BB03800FBA165 /* LoginDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B81304F1F0BB03800FBA165 /* LoginDataManager.swift */; };
 		51E9C4601F09E39200DF9CD5 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51E9C45F1F09E39200DF9CD5 /* Search.storyboard */; };
@@ -181,6 +182,7 @@
 
 /* Begin PBXFileReference section */
 		06C3BFBBDC60A0A9A4D959D3 /* Pods-ShareATextbook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareATextbook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShareATextbook/Pods-ShareATextbook.debug.xcconfig"; sourceTree = "<group>"; };
+		135B18481F327A860017B331 /* Logout.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Logout.storyboard; sourceTree = "<group>"; };
 		2B81304F1F0BB03800FBA165 /* LoginDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginDataManager.swift; sourceTree = "<group>"; };
 		51E9C45F1F09E39200DF9CD5 /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		8F034BC11F2F1DF000C16F1A /* SkyFloatingLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SkyFloatingLabelTextField.swift; path = Source/SkyFloatingLabelTextField/SkyFloatingLabelTextField.swift; sourceTree = "<group>"; };
@@ -479,6 +481,7 @@
 				51E9C45F1F09E39200DF9CD5 /* Search.storyboard */,
 				8F32DB061F0BBF3B0021D095 /* homepage.storyboard */,
 				8FA25CC51F13654400CB14EF /* pointsystem.storyboard */,
+				135B18481F327A860017B331 /* Logout.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -876,6 +879,7 @@
 				C920D6751EB624E700D095FC /* LaunchScreen.storyboard in Resources */,
 				8F034BCF1F2F212500C16F1A /* Map.storyboard in Resources */,
 				C9F3A3CB1F2DCD710089DA2F /* NewItem.storyboard in Resources */,
+				135B18491F327A860017B331 /* Logout.storyboard in Resources */,
 				C9F3A3CC1F2DCD710089DA2F /* Profile.storyboard in Resources */,
 				51E9C4601F09E39200DF9CD5 /* Search.storyboard in Resources */,
 				8FA25CC61F13654400CB14EF /* pointsystem.storyboard in Resources */,

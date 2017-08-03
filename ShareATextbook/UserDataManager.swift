@@ -22,7 +22,7 @@ class UserDataManager: NSObject {
         HTTP.postJSON(url: getUserURL, json: getUserJSON, onComplete: {
             json, response, error in
     
-            let user = User(username: "", password: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
+            let user = User(username: "", password: "", token: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
             
             if json != nil {
                 print(json!)

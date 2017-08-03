@@ -29,10 +29,18 @@
             </objects>
             <point key="canvasLocation" x="-1310" y="-487"/>
         </scene>
+        <!--Logout-->
+        <scene sceneID="LcM-v0-55u">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="LogoutStoryboard" storyboardName="Logout" id="b04-JM-ysD" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VZs-qo-bcL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-687" y="-497"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="mwi-mY-rae">
             <objects>
-                <viewController id="0Jd-1D-2iW" customClass="LoginViewController" customModule="ShareATextbook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginHome" id="0Jd-1D-2iW" customClass="LoginViewController" customModule="ShareATextbook" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PHW-CH-fA2"/>
                         <viewControllerLayoutGuide type="bottom" id="to9-GU-UgU"/>

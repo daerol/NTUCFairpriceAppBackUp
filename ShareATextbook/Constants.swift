@@ -62,7 +62,7 @@ struct Strings {
 struct SharedVariables {
     static var id: String = ""
     static var token: String = ""
-    static var user: User = User(username: "", password: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
+    static var user: User = User(username: "", password: "", token: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
     
 }
 

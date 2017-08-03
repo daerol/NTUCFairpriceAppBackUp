@@ -22,13 +22,43 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     let loginButton = FBSDKLoginButton()
     
+    // ViewDidLoad function
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+        view.addSubview(loginButton)
+        
+        loginButton.frame = CGRect(x:16, y: 400, width: view.frame.width - 32, height: 50)
+        
+        loginButton.delegate = self
+        
+    }
+    // End viewDidLoad function
     
+    // ViewDidAppear function
+    override func viewDidAppear(_ animated: Bool) {
+        let isUserLoggedIn = UserDefaults.standard.bool(forKey: "isUserLoggedIn")
+        if(!isUserLoggedIn){
+            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginHome") as! LoginViewController
+            self.navigationController?.pushViewController(loginViewController, animated: true)
+        }
+        else {
+            //            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            //
+            //            let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
+            //            self.present(homeViewController, animated: true, completion: nil)
+        }
+    }
+    // End ViewDidAppear function
     
+    // loginBtn function to call login functions within ViewController
     @IBAction func loginBtn(_ sender: Any) {
         emailLogin()
         //        self.performSegue(withIdentifier: LOGIN_SEGUE, sender: nil)
     }
     
+    // Create a function to log in via Email
     func emailLogin()
     {
         emailField = emailTextField.text!
@@ -69,7 +99,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                             json, response, error in
                           
                             //  LI YUN ADDED
-                            let user = User(username: "", password: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
+                            let user = User(username: "", password: "", token: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
                           
                             if json != nil {
                                 print(json!)
@@ -77,10 +107,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                                 userId = (json!["userid"].string)
                                         print(token)
                                         print(userId)
-                                self.loggedUserId = userId
-                                self.loggedToken = token
-                                print("LoggedUserId = \(self.loggedUserId)")
-                                print("LoggedToken = \(self.loggedToken)")
+                                user.id = userId
+                                user.token = token
+                                print("LoggedUserId = \(userId)")
+                                print("LoggedToken = \(token)")
                                 //                            let saveToken: Bool = KeychainWrapper.standard.set(token, forKey: "sessionToken")
                                 //                            let saveUserId: Bool = KeychainWrapper.standard.set(userId, value(forKey: "userid"))
                                 
@@ -112,7 +142,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                                         let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
                                         self.present(homeViewController, animated: true, completion: nil)
                                         
-                                        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                                        UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
                                         UserDefaults.standard.synchronize()
                                     }
                                     
@@ -134,38 +164,55 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         } // end of if checkallfields
         return
     }
+    // End Email Login
     
-    func isLoggedIn() -> Bool{
-        return UserDefaults.standard.bool(forKey: "isLoggedIn")
+    // FB Login and Logout functions
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("Did log out of facebook")
     }
     
-    func checkAllFieldsRequired() -> Bool
-    {
-        var message = ""
-        var usernameMsg = ""
-        var passwordMsg = ""
-        var validFormat = false
-        
-        if emailField.isEmpty == true || passwordField.isEmpty == true {
-            
-            if emailField.isEmpty == true {usernameMsg = "Email is required!\n"}
-            else if passwordField.isEmpty == true {passwordMsg = "Invalid Password/Password is required!\n"}
-        } else {validFormat = true}
-        
-        message = usernameMsg + passwordMsg
-        
-        if (validFormat == false)
-        {
-            let uiAlert = UIAlertController(
-                title: "Required Fields",
-                message: message,
-                preferredStyle: UIAlertControllerStyle.alert)
-            
-            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default,handler: nil))
-            self.present(uiAlert, animated:true, completion: nil)
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        if error != nil {
+            print(error)
+            return
         }
-        return validFormat
+        
+        FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: self)
+        { (result, error) in
+            
+            if error != nil {
+                print("FB Login failed!", error!)
+                return
+            }
+            
+            let socialToken = result?.token.tokenString
+            print(socialToken)
+            
+            loginDA.socialLogin(socialToken: socialToken!, onComplete: {
+                (token, userId, isLogin) -> Void in
+                
+                self.loggedToken = token
+                self.loggedUserId = userId
+                
+                if (isLogin) {
+                    DispatchQueue.main.async() {
+                            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                            
+                            let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
+                            self.present(homeViewController, animated: true, completion: nil)
+                            
+                            UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
+                            UserDefaults.standard.synchronize()
+                    }
+                }
+                2
+        print("Successfully logged in with facebook...")
+                
+            })
+            
+        }
     }
+    // End FB Login / Logout functions
     
     // Function to convert String to SHA512
     func sha512Hex(string: String) -> String {
@@ -203,41 +250,35 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func checkAllFieldsRequired() -> Bool
+    {
+        var message = ""
+        var usernameMsg = ""
+        var passwordMsg = ""
+        var validFormat = false
         
-        // Do any additional setup after loading the view.
-        view.addSubview(loginButton)
-        
-        loginButton.frame = CGRect(x:16, y: 400, width: view.frame.width - 32, height: 50)
-        
-        loginButton.delegate = self
-        
-    }
-    
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        print("Did log out of facebook")
-    }
-    
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        if error != nil {
-            print(error)
-            return
-        }
-        
-        print("Successfully logged in with facebook...")
-        
-        DispatchQueue.main.async {
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        if emailField.isEmpty == true || passwordField.isEmpty == true {
             
-            let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
-            self.present(homeViewController, animated: true, completion: nil)
+            if emailField.isEmpty == true {usernameMsg = "Email is required!\n"}
+            else if passwordField.isEmpty == true {passwordMsg = "Invalid Password/Password is required!\n"}
+        } else {validFormat = true}
+        
+        message = usernameMsg + passwordMsg
+        
+        if (validFormat == false)
+        {
+            let uiAlert = UIAlertController(
+                title: "Required Fields",
+                message: message,
+                preferredStyle: UIAlertControllerStyle.alert)
             
-            UserDefaults.standard.set(true, forKey: "isLoggedIn")
-            UserDefaults.standard.synchronize()
+            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default,handler: nil))
+            self.present(uiAlert, animated:true, completion: nil)
         }
+        return validFormat
+    }
 
-    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
