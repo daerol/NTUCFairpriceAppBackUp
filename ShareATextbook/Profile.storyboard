@@ -1407,8 +1407,8 @@
         <!--Settings-->
         <scene sceneID="lFX-xi-LfX">
             <objects>
-                <viewControllerPlaceholder storyboardName="Settings" id="5ms-Qb-FCQ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mjk-O2-1vI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Settings" id="5ms-Qb-FCQ" sceneMemberID="viewController"/>
             </objects>
             <point key="canvasLocation" x="1678" y="462"/>
         </scene>
