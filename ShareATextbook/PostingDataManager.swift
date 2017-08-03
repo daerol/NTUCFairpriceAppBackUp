@@ -10,13 +10,11 @@ import UIKit
 
 class PostingDataManager: NSObject {
 
-//    onComplete: ((_: [Posting]) -> Void?)
-    static func getPostingList(onComplete: ((_: [Posting]) -> Void)?) {
+    static func getPostingList(userId: String, isAvailable: String, onComplete: ((_: [Posting]) -> Void)?) {
         let postListURL = DatabaseAPI.url + "posting/list"
         let postListReqJSON: JSON = [
-            "limit": "50",
-            "userid": SharedVariables.id,
-            "isavailabile": "N"
+            "userid": userId,
+            "isavailabile": isAvailable
         ]
 
         var post: Posting = Posting()
@@ -25,10 +23,9 @@ class PostingDataManager: NSObject {
             json, response, error in
             
             if json != nil {
+                print("postList:\(json)")
                 if !DatabaseAPI.responseIsError(json: json!) {
                     var postingList: [Posting] = []
-                    print("no error \(json!.count)")
-                    print("json \(json)")
                     for i in 0..<json!.count {
                         let post = Posting();
                         
