@@ -14,7 +14,7 @@ class ProtectionPointsViewController: UIViewController, UITableViewDelegate, UIT
     let categories = [["title" : "Positive Records", "img" : "smiley"], ["title" : "Negative Records", "img" : "sad"]]
     
     
-    
+    @IBOutlet weak var tableView: UITableView!
     
   
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class ProtectionPointsViewController: UIViewController, UITableViewDelegate, UIT
     
     // Set up the navigation bar
     func setupNavigationBar() {
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Login", style: .plain, target: nil, action: nil )
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Points", style: .plain, target: nil, action: nil )
         
     }
 
@@ -45,6 +45,20 @@ class ProtectionPointsViewController: UIViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return categories.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        NSLog("You points cell number: \(indexPath.row)!")
+        
+        if indexPath.row == 0 {
+            didTapPointsRecord()
+        } else {
+            didTapPointsRecord()
+        }
+        
+        
+        
+        //self.performSegue(withIdentifier: "pptSys", sender: self)
     }
     
     
@@ -65,6 +79,43 @@ class ProtectionPointsViewController: UIViewController, UITableViewDelegate, UIT
     }
     
 
+    func didTapPointsRecord() {
+        //        pointLabel.text = "1000"
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "pointsystem", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "PointsRecordTableViewController") as! UITableViewController
+        self.navigationController?.pushViewController(newViewController, animated: true)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showRecords" {
+            
+    
+            let showRecordsViewController = segue.destination as! PointsRecordTableViewController
+            let indexPath = self.tableView.indexPathForSelectedRow
+            
+//            if indexPath != nil {
+//                let post = postList?[(indexPath?[0].row)!]
+//                
+//                //  MARK:   Set post variable
+//                itemDetailViewController.post = post
+//                
+//                //  MARK:   Set post ownership to allow editing of post
+//                if true {
+//                    itemDetailViewController.isOwner = true
+//                } else {
+//                    itemDetailViewController.isOwner = false
+//                }
+            }
+//        } else if segue.identifier == "EditProfileSegue" {
+//            let editProfileViewController = segue.destination as! EditProfileViewController
+//            
+//            editProfileViewController.user = user
+//        }
+    }
+    
+    
     
     
 }

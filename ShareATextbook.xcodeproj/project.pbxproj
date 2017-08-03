@@ -14,6 +14,7 @@
 		8F034BC51F2F1DF000C16F1A /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F034BC21F2F1DF000C16F1A /* SkyFloatingLabelTextFieldWithIcon.swift */; };
 		8F034BC61F2F1DF000C16F1A /* UITextField+fixCaretPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F034BC31F2F1DF000C16F1A /* UITextField+fixCaretPosition.swift */; };
 		8F034BCF1F2F212500C16F1A /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F034BCE1F2F212500C16F1A /* Map.storyboard */; };
+		8F04F2EF1F33198B00AA48EC /* PointsRecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F04F2EE1F33198B00AA48EC /* PointsRecordTableViewController.swift */; };
 		8F17E05D1F310893007EF6D7 /* Points.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F17E05C1F310893007EF6D7 /* Points.swift */; };
 		8F1F32361EFF00D700DE910C /* CustomUIViewButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F32351EFF00D700DE910C /* CustomUIViewButtons.swift */; };
 		8F1F32421F0170C100DE910C /* BEMAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F323B1F0170C100DE910C /* BEMAnimationManager.m */; };
@@ -33,6 +34,7 @@
 		8FF04A3C1F136677008FD87F /* ProtectionPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF04A3B1F136677008FD87F /* ProtectionPointsViewController.swift */; };
 		8FF513F41F01EB13000211DB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF513F31F01EB13000211DB /* Security.framework */; };
 		8FFD6D451F31B5D0000FCE64 /* PointsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD6D441F31B5D0000FCE64 /* PointsTableViewCell.swift */; };
+		8FFD6D491F31EA13000FCE64 /* PointsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD6D481F31EA13000FCE64 /* PointsDataManager.swift */; };
 		C917BDF41EF1563E00CBF4F1 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917BDF31EF1563E00CBF4F1 /* HTTP.swift */; };
 		C917BDF61EF1566D00CBF4F1 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */; };
 		C920D6691EB624E700D095FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C920D6681EB624E700D095FC /* AppDelegate.swift */; };
@@ -189,6 +191,7 @@
 		8F034BC21F2F1DF000C16F1A /* SkyFloatingLabelTextFieldWithIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SkyFloatingLabelTextFieldWithIcon.swift; path = Source/SkyFloatingLabelTextField/SkyFloatingLabelTextFieldWithIcon.swift; sourceTree = "<group>"; };
 		8F034BC31F2F1DF000C16F1A /* UITextField+fixCaretPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITextField+fixCaretPosition.swift"; path = "Source/SkyFloatingLabelTextField/UITextField+fixCaretPosition.swift"; sourceTree = "<group>"; };
 		8F034BCE1F2F212500C16F1A /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
+		8F04F2EE1F33198B00AA48EC /* PointsRecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsRecordTableViewController.swift; sourceTree = "<group>"; };
 		8F17E05C1F310893007EF6D7 /* Points.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Points.swift; sourceTree = "<group>"; };
 		8F1F32351EFF00D700DE910C /* CustomUIViewButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIViewButtons.swift; sourceTree = "<group>"; };
 		8F1F323A1F0170C100DE910C /* BEMAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMAnimationManager.h; sourceTree = "<group>"; };
@@ -213,6 +216,7 @@
 		8FF04A3B1F136677008FD87F /* ProtectionPointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtectionPointsViewController.swift; sourceTree = "<group>"; };
 		8FF513F31F01EB13000211DB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8FFD6D441F31B5D0000FCE64 /* PointsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsTableViewCell.swift; sourceTree = "<group>"; };
+		8FFD6D481F31EA13000FCE64 /* PointsDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsDataManager.swift; sourceTree = "<group>"; };
 		C917BDF31EF1563E00CBF4F1 /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 		C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		C920D6651EB624E700D095FC /* ShareATextbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareATextbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -399,6 +403,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8FFD6D4C1F31FFBE000FCE64 /* Protection Points */ = {
+			isa = PBXGroup;
+			children = (
+				8FF04A3B1F136677008FD87F /* ProtectionPointsViewController.swift */,
+				8FFD6D441F31B5D0000FCE64 /* PointsTableViewCell.swift */,
+				8F04F2EE1F33198B00AA48EC /* PointsRecordTableViewController.swift */,
+			);
+			name = "Protection Points";
+			sourceTree = "<group>";
+		};
 		C920D65C1EB624E700D095FC = {
 			isa = PBXGroup;
 			children = (
@@ -491,6 +505,7 @@
 		C920D69A1EB6254400D095FC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8FFD6D4C1F31FFBE000FCE64 /* Protection Points */,
 				C9F3A49F1F2DE8AD0089DA2F /* SettingsTableViewCell.swift */,
 				C9F3A4A01F2DE8AD0089DA2F /* SettingsViewController.swift */,
 				C9F3A4981F2DE7CE0089DA2F /* Profile */,
@@ -502,8 +517,6 @@
 				8FDCAB011EFAFC14001D903F /* RegistrationViewController.swift */,
 				8F1F324C1F0194A100DE910C /* HomeContentTableViewCell.swift */,
 				8F32DB041F0BBEB40021D095 /* HomeViewController.swift */,
-				8FF04A3B1F136677008FD87F /* ProtectionPointsViewController.swift */,
-				8FFD6D441F31B5D0000FCE64 /* PointsTableViewCell.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -518,6 +531,7 @@
 				8F32DB021F0BBE730021D095 /* RegistrationDataManager.swift */,
 				2B81304F1F0BB03800FBA165 /* LoginDataManager.swift */,
 				8F49A7A71F1DCEF800725A8D /* HomepageDataManager.swift */,
+				8FFD6D481F31EA13000FCE64 /* PointsDataManager.swift */,
 			);
 			name = DataManagers;
 			sourceTree = "<group>";
@@ -974,7 +988,6 @@
 				C920D69C1EB6259900D095FC /* User.swift in Sources */,
 				C9F3A4721F2DD5D80089DA2F /* CustomUILabel.swift in Sources */,
 				8FFD6D451F31B5D0000FCE64 /* PointsTableViewCell.swift in Sources */,
-				8F034BB21F2F1DBA00C16F1A /* DKAssetGroupDetailVC.swift in Sources */,
 				2B8130501F0BB03800FBA165 /* LoginDataManager.swift in Sources */,
 				C9D52B951F2ED33E00F36F50 /* ActivityIndicator.swift in Sources */,
 				8F1F32441F0170C100DE910C /* BEMCheckBoxGroup.m in Sources */,
@@ -995,7 +1008,6 @@
 				8F034BC41F2F1DF000C16F1A /* SkyFloatingLabelTextField.swift in Sources */,
 				C917BDF61EF1566D00CBF4F1 /* SwiftyJSON.swift in Sources */,
 				8F17E05D1F310893007EF6D7 /* Points.swift in Sources */,
-				8F034B991F2F1D6B00C16F1A /* DKGroupDataManager.swift in Sources */,
 				8F1F32451F0170C100DE910C /* BEMPathManager.m in Sources */,
 				C9D52B9B1F2ED33E00F36F50 /* UIImageView+Tools.swift in Sources */,
 				C92BA27D1F31A8F8005934E8 /* DKAssetGroupGridLayout.swift in Sources */,
@@ -1016,6 +1028,7 @@
 				C9F3A4911F2DE79B0089DA2F /* BarcodeReaderViewController.swift in Sources */,
 				C958BC911F308D04004A83A4 /* CustomCells.swift in Sources */,
 				C92BA2741F31A8E8005934E8 /* DKImageResource.swift in Sources */,
+				8FFD6D491F31EA13000FCE64 /* PointsDataManager.swift in Sources */,
 				C92BA2871F31A90A005934E8 /* DKAssetGroupDetailBaseCell.swift in Sources */,
 				C92BA28D1F31A933005934E8 /* DKImageManager.swift in Sources */,
 				C920D6691EB624E700D095FC /* AppDelegate.swift in Sources */,
@@ -1033,6 +1046,7 @@
 				C958BC941F308F0C004A83A4 /* Geocoding.swift in Sources */,
 				C9CF89111EB9F14000B5AE95 /* Constants.swift in Sources */,
 				C9D52B9C1F2ED33E00F36F50 /* ZoomAnimatedTransitioning.swift in Sources */,
+				8F04F2EF1F33198B00AA48EC /* PointsRecordTableViewController.swift in Sources */,
 				8F49A7AA1F1DD1FC00725A8D /* Categories.swift in Sources */,
 				C92BA27C1F31A8F8005934E8 /* DKAssetGroupDetailVC.swift in Sources */,
 				C92BA28A1F31A90A005934E8 /* DKAssetGroupDetailVideoCell.swift in Sources */,
