@@ -16,6 +16,7 @@
 		8F034BC61F2F1DF000C16F1A /* UITextField+fixCaretPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F034BC31F2F1DF000C16F1A /* UITextField+fixCaretPosition.swift */; };
 		8F034BCF1F2F212500C16F1A /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F034BCE1F2F212500C16F1A /* Map.storyboard */; };
 		8F04F2EF1F33198B00AA48EC /* PointsRecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F04F2EE1F33198B00AA48EC /* PointsRecordTableViewController.swift */; };
+		8F04F2F31F332B1800AA48EC /* PointsRecordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F04F2F21F332B1800AA48EC /* PointsRecordsTableViewCell.swift */; };
 		8F17E05D1F310893007EF6D7 /* Points.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F17E05C1F310893007EF6D7 /* Points.swift */; };
 		8F1F32361EFF00D700DE910C /* CustomUIViewButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F32351EFF00D700DE910C /* CustomUIViewButtons.swift */; };
 		8F1F32421F0170C100DE910C /* BEMAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F323B1F0170C100DE910C /* BEMAnimationManager.m */; };
@@ -197,6 +198,7 @@
 		8F034BC31F2F1DF000C16F1A /* UITextField+fixCaretPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITextField+fixCaretPosition.swift"; path = "Source/SkyFloatingLabelTextField/UITextField+fixCaretPosition.swift"; sourceTree = "<group>"; };
 		8F034BCE1F2F212500C16F1A /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		8F04F2EE1F33198B00AA48EC /* PointsRecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsRecordTableViewController.swift; sourceTree = "<group>"; };
+		8F04F2F21F332B1800AA48EC /* PointsRecordsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsRecordsTableViewCell.swift; sourceTree = "<group>"; };
 		8F17E05C1F310893007EF6D7 /* Points.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Points.swift; sourceTree = "<group>"; };
 		8F1F32351EFF00D700DE910C /* CustomUIViewButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIViewButtons.swift; sourceTree = "<group>"; };
 		8F1F323A1F0170C100DE910C /* BEMAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMAnimationManager.h; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 				8FF04A3B1F136677008FD87F /* ProtectionPointsViewController.swift */,
 				8FFD6D441F31B5D0000FCE64 /* PointsTableViewCell.swift */,
 				8F04F2EE1F33198B00AA48EC /* PointsRecordTableViewController.swift */,
+				8F04F2F21F332B1800AA48EC /* PointsRecordsTableViewCell.swift */,
 			);
 			name = "Protection Points";
 			sourceTree = "<group>";
@@ -838,7 +841,7 @@
 				TargetAttributes = {
 					C920D6641EB624E700D095FC = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 477DQDKY7M;
+						DevelopmentTeam = 89782M2XS3;
 						ProvisioningStyle = Automatic;
 					};
 					C920D67A1EB624E700D095FC = {
@@ -1056,6 +1059,7 @@
 				C920D6691EB624E700D095FC /* AppDelegate.swift in Sources */,
 				C92BA2881F31A90A005934E8 /* DKAssetGroupDetailCameraCell.swift in Sources */,
 				C9F3A3D01F2DCE1F0089DA2F /* Posting.swift in Sources */,
+				8F04F2F31F332B1800AA48EC /* PointsRecordsTableViewCell.swift in Sources */,
 				C9D52B9A1F2ED33E00F36F50 /* UIImage+AspectFit.swift in Sources */,
 				C92078C71F3360EA00262CFC /* MapAnnotation.swift in Sources */,
 				C9F948C31F31ECD90003EB55 /* MapViewViewController.swift in Sources */,
@@ -1254,7 +1258,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 477DQDKY7M;
+				DEVELOPMENT_TEAM = 89782M2XS3;
 				INFOPLIST_FILE = "$(SRCROOT)/ShareATextbook/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1273,7 +1277,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 477DQDKY7M;
+				DEVELOPMENT_TEAM = 89782M2XS3;
 				INFOPLIST_FILE = "$(SRCROOT)/ShareATextbook/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
