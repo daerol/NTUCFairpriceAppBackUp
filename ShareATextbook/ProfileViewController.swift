@@ -158,7 +158,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "pointsystem", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "ProtectionPointsViewController") as! ProtectionPointsViewController
-        self.present(newViewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(newViewController, animated: true)
     }
     
     func didTapLocationStackView() {
