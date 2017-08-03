@@ -38,6 +38,8 @@
 		8FFD6D491F31EA13000FCE64 /* PointsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD6D481F31EA13000FCE64 /* PointsDataManager.swift */; };
 		C917BDF41EF1563E00CBF4F1 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917BDF31EF1563E00CBF4F1 /* HTTP.swift */; };
 		C917BDF61EF1566D00CBF4F1 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */; };
+		C92078C51F33267700262CFC /* PinResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92078C41F33267700262CFC /* PinResultViewController.swift */; };
+		C92078C71F3360EA00262CFC /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92078C61F3360EA00262CFC /* MapAnnotation.swift */; };
 		C920D6691EB624E700D095FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C920D6681EB624E700D095FC /* AppDelegate.swift */; };
 		C920D66B1EB624E700D095FC /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C920D66A1EB624E700D095FC /* FirstViewController.swift */; };
 		C920D66D1EB624E700D095FC /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C920D66C1EB624E700D095FC /* SecondViewController.swift */; };
@@ -122,6 +124,8 @@
 		C9F3A4A21F2DE8AD0089DA2F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F3A4A01F2DE8AD0089DA2F /* SettingsViewController.swift */; };
 		C9F3A4BC1F2DE9C90089DA2F /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F3A4BB1F2DE9C90089DA2F /* ItemCollectionViewCell.swift */; };
 		C9F3A4BE1F2DE9EE0089DA2F /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F3A4BD1F2DE9EE0089DA2F /* TestViewController.swift */; };
+		C9F948BA1F31D9F40003EB55 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9F948B91F31D9F40003EB55 /* Settings.storyboard */; };
+		C9F948C31F31ECD90003EB55 /* MapViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F948C21F31ECD90003EB55 /* MapViewViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -221,6 +225,8 @@
 		8FFD6D481F31EA13000FCE64 /* PointsDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsDataManager.swift; sourceTree = "<group>"; };
 		C917BDF31EF1563E00CBF4F1 /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 		C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		C92078C41F33267700262CFC /* PinResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResultViewController.swift; sourceTree = "<group>"; };
+		C92078C61F3360EA00262CFC /* MapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		C920D6651EB624E700D095FC /* ShareATextbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareATextbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C920D6681EB624E700D095FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C920D66A1EB624E700D095FC /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -313,6 +319,8 @@
 		C9F3A4A01F2DE8AD0089DA2F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C9F3A4BB1F2DE9C90089DA2F /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		C9F3A4BD1F2DE9EE0089DA2F /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		C9F948B91F31D9F40003EB55 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		C9F948C21F31ECD90003EB55 /* MapViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewViewController.swift; sourceTree = "<group>"; };
 		CB52F9B7334471142FFCD4C4 /* Pods-ShareATextbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareATextbook.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShareATextbook/Pods-ShareATextbook.release.xcconfig"; sourceTree = "<group>"; };
 		D83E37E6285D9CED1BB5FA45 /* Pods_ShareATextbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShareATextbook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -486,6 +494,7 @@
 				C920D69B1EB6259900D095FC /* User.swift */,
 				8F49A7A91F1DD1FC00725A8D /* Categories.swift */,
 				8F17E05C1F310893007EF6D7 /* Points.swift */,
+				C92078C61F3360EA00262CFC /* MapAnnotation.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -493,14 +502,15 @@
 		C920D6991EB6253F00D095FC /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				8F034BCE1F2F212500C16F1A /* Map.storyboard */,
 				8FDF30E41F0BD56B00359916 /* XIB */,
 				C9F3A3C91F2DCD710089DA2F /* NewItem.storyboard */,
 				C9F3A3CA1F2DCD710089DA2F /* Profile.storyboard */,
+				8F034BCE1F2F212500C16F1A /* Map.storyboard */,
 				C920D66E1EB624E700D095FC /* Main.storyboard */,
 				51E9C45F1F09E39200DF9CD5 /* Search.storyboard */,
 				8F32DB061F0BBF3B0021D095 /* homepage.storyboard */,
 				8FA25CC51F13654400CB14EF /* pointsystem.storyboard */,
+				C9F948B91F31D9F40003EB55 /* Settings.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -508,6 +518,7 @@
 		C920D69A1EB6254400D095FC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C9F948BB1F31DB2F0003EB55 /* Map */,
 				8FFD6D4C1F31FFBE000FCE64 /* Protection Points */,
 				C9F3A49F1F2DE8AD0089DA2F /* SettingsTableViewCell.swift */,
 				C9F3A4A01F2DE8AD0089DA2F /* SettingsViewController.swift */,
@@ -748,6 +759,15 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
+		C9F948BB1F31DB2F0003EB55 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				C9F948C21F31ECD90003EB55 /* MapViewViewController.swift */,
+				C92078C41F33267700262CFC /* PinResultViewController.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -896,6 +916,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C92BA2761F31A8E8005934E8 /* Info.plist in Resources */,
+				C9F948BA1F31D9F40003EB55 /* Settings.storyboard in Resources */,
 				C920D6751EB624E700D095FC /* LaunchScreen.storyboard in Resources */,
 				8F034BCF1F2F212500C16F1A /* Map.storyboard in Resources */,
 				C9F3A3CB1F2DCD710089DA2F /* NewItem.storyboard in Resources */,
@@ -1029,6 +1050,7 @@
 				C92BA25C1F318216005934E8 /* CustomUIImageView.swift in Sources */,
 				C92BA2751F31A8E8005934E8 /* DKPopoverViewController.swift in Sources */,
 				C9F3A4911F2DE79B0089DA2F /* BarcodeReaderViewController.swift in Sources */,
+				C92078C51F33267700262CFC /* PinResultViewController.swift in Sources */,
 				C958BC911F308D04004A83A4 /* CustomCells.swift in Sources */,
 				C92BA2741F31A8E8005934E8 /* DKImageResource.swift in Sources */,
 				8FFD6D491F31EA13000FCE64 /* PointsDataManager.swift in Sources */,
@@ -1039,6 +1061,8 @@
 				C9F3A3D01F2DCE1F0089DA2F /* Posting.swift in Sources */,
 				8F04F2F31F332B1800AA48EC /* PointsRecordsTableViewCell.swift in Sources */,
 				C9D52B9A1F2ED33E00F36F50 /* UIImage+AspectFit.swift in Sources */,
+				C92078C71F3360EA00262CFC /* MapAnnotation.swift in Sources */,
+				C9F948C31F31ECD90003EB55 /* MapViewViewController.swift in Sources */,
 				C9D52B971F2ED33E00F36F50 /* ImageSlideshow.swift in Sources */,
 				8F1F324D1F0194A100DE910C /* HomeContentTableViewCell.swift in Sources */,
 				C9F3A3CF1F2DCE1F0089DA2F /* ISBN.swift in Sources */,
@@ -1238,7 +1262,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/ShareATextbook/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ShareATextbookLol;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ShareATextbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = CheckboxHeader.h;
@@ -1257,7 +1281,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/ShareATextbook/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ShareATextbookLol;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ShareATextbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = CheckboxHeader.h;

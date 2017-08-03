@@ -17,7 +17,7 @@ public class LocationValue: Equatable {
     var address: String
     
     var description: String {
-        let coord = String(location.coordinate.longitude) + "," + String(location.coordinate.latitude)
+        let coord = Formatter.formatDoubleToString(num: location.coordinate.latitude, noOfDecimal: 4) + "," + Formatter.formatDoubleToString(num: location.coordinate.longitude, noOfDecimal: 4)
         if descriptionName == "" {
             descriptionName = "-"
         }
@@ -41,6 +41,19 @@ public class LocationValue: Equatable {
             lhs.location == rhs.location &&
                 lhs.descriptionName == rhs.descriptionName &&
                 lhs.address == rhs.address
+    }
+    
+    public static func convertToLocationValue(locationDescription: String) -> LocationValue {
+        let preferredLocArr = locationDescription.components(separatedBy: "|")
+        let coordArr = preferredLocArr[0].components(separatedBy: ",")
+        
+        var loc = LocationValue()
+        
+        loc.location = CLLocation(latitude: CLLocationDegrees(string: (coordArr[0]))!, longitude: CLLocationDegrees(string: (coordArr[1]))!)
+        loc.descriptionName = (preferredLocArr[1])
+        loc.address = (preferredLocArr[2])
+        
+        return loc
     }
     
 }
