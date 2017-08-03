@@ -18,13 +18,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var sliderScrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var featureViewControl: UIPageControl!
+    
     // HAVEN'T FIX THE CATEGORIES IMAGE
     
     
 
-    let feature1 = ["title" : "Textbooks", "description" : "Check them out!", "img" : "camera"]
-    let feature2 = ["title" : "TYS", "description" : "Check them out!", "img" : "camera"]
-    let feature3 = ["title" : "Primary 1", "description" : "Check them out!", "img" : "camera"]
+    let feature1 = ["img" : "slider_1"]
+    let feature2 = ["img" : "slider_1"]
+    let feature3 = ["img" : "slider_1"]
     
     
     var featureArray = [Dictionary<String, String>]()
@@ -37,25 +39,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         featureArray = [feature1, feature2, feature3]
         sliderScrollView.isPagingEnabled = true
         sliderScrollView.contentSize = CGSize(width: self.view.bounds.width * CGFloat(featureArray.count), height: 250)
         sliderScrollView.showsHorizontalScrollIndicator = false
         
         
-        refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: #selector(loadCategories), for: UIControlEvents.valueChanged)
-        tableView.addSubview(refreshControl)
+        // delegates and data source
+        sliderScrollView.delegate = self
+        
+        
         
         
         // Load datas
         loadFeatures()
         loadCategories()
-        
-      
+        loadRefresh()
+       
         
     }
     
@@ -64,8 +64,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func loadFeatures() {
         for (index, feature) in featureArray.enumerated() {
             if let featureView = Bundle.main.loadNibNamed("feature", owner: self, options: nil)?.first as? FeatureView {
-                featureView.titleLabel.text = feature["title"]
-                featureView.descriptionLabel.text = feature["description"]
+//                featureView.titleLabel.text = feature["title"]
+//                featureView.descriptionLabel.text = feature["description"]
                 featureView.featureImageView.image = UIImage(named: feature["img"]!)
                 
                 
@@ -79,6 +79,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
+
     func loadCategories() {
         HomepageDataManager.retrieveCategories(onComplete: {
             categoriesListFromServer in
@@ -91,7 +92,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         })
     }
+    
+    
+    func loadRefresh() {
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(loadCategories), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl)
+    }
 
+    
+  
+    
+    
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let page = scrollView.contentOffset.x / scrollView.frame.size.width
+        featureViewControl.currentPage = Int(page)
+    }
     
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
