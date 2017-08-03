@@ -515,9 +515,10 @@ public final class LocationRow : SelectorRow<PushSelectorCell<LocationValue>, Ma
             let fmt = NumberFormatter()
             fmt.maximumFractionDigits = 4
             fmt.minimumFractionDigits = 4
-            let latitude = fmt.string(from: NSNumber(value: location.location.coordinate.latitude))!
-            let longitude = fmt.string(from: NSNumber(value: location.location.coordinate.longitude))!
+//            let latitude = fmt.string(from: NSNumber(value: location.location.coordinate.latitude))!
+//            let longitude = fmt.string(from: NSNumber(value: location.location.coordinate.longitude))!
             
+            print("location\(location.description)")
             if !(($0?.descriptionName.isEmpty)!) {
                 return $0?.descriptionName
             } else {
@@ -652,6 +653,7 @@ public class MapViewController : UIViewController, TypedRowControllerType, MKMap
         navigationItem.rightBarButtonItem = button
         
         if let value = row.value {
+            print("hi\(value.location.coordinate.latitude):\(value.location.coordinate.longitude)")
             let region = MKCoordinateRegionMakeWithDistance(value.location.coordinate, 400, 400)
             mapView.setRegion(region, animated: true)
         }
@@ -780,6 +782,7 @@ public class MapViewController : UIViewController, TypedRowControllerType, MKMap
                 placemark in
                 
                 self.locationValue = LocationValue(location: CLLocation(latitude: target.latitude, longitude: target.longitude), descriptionName: "", address: placemark.name!)
+                print("hehe\(target.latitude)")
             })
         }
         

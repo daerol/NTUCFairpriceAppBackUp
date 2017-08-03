@@ -85,7 +85,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
 //        self.profileInfoStackView.removeArrangedSubview(editProfileView)
         
 //        DispatchQueue.global(qos: .userInitiated).async {
-            PostingDataManager.getPostingList(onComplete: {
+            PostingDataManager.getPostingList(userId: (user?.id)!, isAvailable: "N", onComplete: {
                 postingList in
                 
                 print("enter 1")
@@ -154,7 +154,11 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func didTapPointStackView() {
-        pointLabel.text = "1000"
+//        pointLabel.text = "1000"
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "pointsystem", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "ProtectionPointsViewController") as! ProtectionPointsViewController
+        self.navigationController?.pushViewController(newViewController, animated: true)
     }
     
     func didTapLocationStackView() {
@@ -233,9 +237,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
                 data in
                 
                 DispatchQueue.main.async() { () -> Void in
-                    cell.itemImage.contentMode = .scaleAspectFit
+//                    cell.itemImage.contentMode = .scaleAspectFit
                     cell.itemImage.image = UIImage(data: data)
-                    print("donee")
                 }
             })
         }

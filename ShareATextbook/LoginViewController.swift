@@ -115,7 +115,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                                 //                            let saveUserId: Bool = KeychainWrapper.standard.set(userId, value(forKey: "userid"))
                                 
                                 //  LI YUN ADDED
-                            user.id = json!["id"].string!
+                            user.id = json!["userid"].string!
                             user.username = json!["name"].string!
                             user.preferredloc = json!["preferredloc"] != JSON.null ? json!["preferredloc"].string! : ""
                             user.email = json!["email"] != JSON.null ? json!["email"].string! : ""

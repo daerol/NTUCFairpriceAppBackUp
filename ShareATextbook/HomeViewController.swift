@@ -109,6 +109,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return self.categoriesList.count
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        NSLog("You selected cell number: \(indexPath.row)!")
+        //self.performSegue(withIdentifier: "pptSys", sender: self)
+    }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HomeContentTableViewCell

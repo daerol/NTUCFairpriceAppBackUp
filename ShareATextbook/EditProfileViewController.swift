@@ -70,22 +70,15 @@ class EditProfileViewController: FormViewController, UIImagePickerControllerDele
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: {
                 action in
                 
+                var photo: UIImage? = UIImage()
                 if self.didChangePhoto {
                     //  Upload photo
-                    HTTP.postMultipartPhotos(url: DatabaseAPI.url + "photos/addu", token: SharedVariables.token, tag: 0, image: self.userProfileImg.image!, onComplete: {
-                        json, response, error, tag in
-                        
-                        print("json \(json)")
-                        let path = json!["filepath"].string!
-                        print("This is the user  \(path)")
-                        
-                        self.photoPath = path
-                    })
+                    photo = self.userProfileImg.image
                 } else {
                     self.photoPath = (self.user?.photo)!
                 }
                 
-                UserDataManager.editUser(token: UserDefaults.standard.object(forKey: "Token") as! String, name: self.username, email: self.email, phone: self.phoneNo, showemail: "Y", showphone: "Y", notifyviaemail: "Y", notifyviasms: "Y", photo: self.photoPath, onComplete: {
+                UserDataManager.editUser(token: UserDefaults.standard.object(forKey: "Token") as! String, name: self.username, email: self.email, phone: self.phoneNo, showemail: "Y", showphone: "Y", notifyviaemail: "Y", notifyviasms: "Y", photoPath: self.photoPath, photo: photo!, didChangePhoto: self.didChangePhoto, preferredloc: (self.location?.description)!, onComplete: {
                     result, userId in
                     
                     print(result)
@@ -99,10 +92,10 @@ class EditProfileViewController: FormViewController, UIImagePickerControllerDele
                         UserDataManager.getUserById(id: userId, token: UserDefaults.standard.object(forKey: "Token") as! String, onComplete: {
                             user in
                             
-                            
-                            
                             let encodedUserData = NSKeyedArchiver.archivedData(withRootObject: user)
                             UserDefaults.standard.set(encodedUserData, forKey: "User")
+                            
+                            self.didChangePhoto = false
                         })
                     }
                 })
@@ -160,15 +153,16 @@ class EditProfileViewController: FormViewController, UIImagePickerControllerDele
         
         //  Download Profile Image
         DispatchQueue.global(qos: .userInitiated).async {
-//            let url = URL(string: DatabaseAPI.imageDownloadURL + self.photoPath + DatabaseAPI.imageSizeR600)
-            //  TO BE REMOVED AND CHANGED TO ABOVE CODE
-            let url = URL(string: DatabaseAPI.imageDownloadURL + "08145DC01B7BD2D5B2611F4B063DC8FCF59DE8784421ACF38EEB8F8AFBC5FE8B_6c9687bf6913460d8b90d3a89154f557" + DatabaseAPI.imageSizeR600)
+            let url = URL(string: DatabaseAPI.userImageDownloadURL + (self.user?.id)! + DatabaseAPI.userImageSizeC150)
+            print(url?.absoluteString)
             ImageDownload.downloadImage(url: url!, onComplete: {
                 data in
                 
                 DispatchQueue.main.async() { () -> Void in
                     self.userProfileImg.contentMode = .scaleAspectFill
                     self.userProfileImg.image = UIImage(data: data)
+                    
+//                    self.userProfileImg.transform = CGAffineTransform(rotationAngle: 90)
                 }
             })
         }
@@ -266,7 +260,6 @@ class EditProfileViewController: FormViewController, UIImagePickerControllerDele
                     }
                 }.onChange({
                     row in
-                    
                     self.location = row.value
                     self.tableView.reloadData()
                 })

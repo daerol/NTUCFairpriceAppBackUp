@@ -33,6 +33,7 @@ class User: NSObject, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
+//        self.userId = aDecoder.decodeObject(forKey: "userid") as? String ?? ""
         self.username = aDecoder.decodeObject(forKey: "username") as? String ?? ""
         self.password = aDecoder.decodeObject(forKey: "password") as? String ?? ""
         self.token = aDecoder.decodeObject(forKey: "token") as? String ?? ""
@@ -44,6 +45,7 @@ class User: NSObject, NSCoding {
     }
     
     func encode(with aCoder: NSCoder) {
+//        aCoder.encode(userId, forKey: "userid")
         aCoder.encode(username, forKey: "username")
         aCoder.encode(password, forKey: "passsword")
         aCoder.encode(preferredloc, forKey: "preferredloc")
