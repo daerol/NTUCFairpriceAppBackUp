@@ -372,15 +372,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		8F04F2FC1F3438CB00AA48EC /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				8F1F324C1F0194A100DE910C /* HomeContentTableViewCell.swift */,
-				8F32DB041F0BBEB40021D095 /* HomeViewController.swift */,
-			);
-			name = Home;
-			sourceTree = "<group>";
-		};
 		8F1F32391F0170C100DE910C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,7 +518,6 @@
 		C920D69A1EB6254400D095FC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				8F04F2FC1F3438CB00AA48EC /* Home */,
 				C9F948BB1F31DB2F0003EB55 /* Map */,
 				8FFD6D4C1F31FFBE000FCE64 /* Protection Points */,
 				C9F3A49F1F2DE8AD0089DA2F /* SettingsTableViewCell.swift */,
@@ -538,6 +528,8 @@
 				C920D66A1EB624E700D095FC /* FirstViewController.swift */,
 				C920D66C1EB624E700D095FC /* SecondViewController.swift */,
 				C920D69D1EB6265400D095FC /* LoginViewController.swift */,
+				8F1F324C1F0194A100DE910C /* HomeContentTableViewCell.swift */,
+				8F32DB041F0BBEB40021D095 /* HomeViewController.swift */,
 				8FDCAB011EFAFC14001D903F /* RegistrationViewController.swift */,
 			);
 			name = ViewControllers;
