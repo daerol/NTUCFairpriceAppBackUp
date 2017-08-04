@@ -25,6 +25,7 @@ class registrationDA: NSObject {
         var userId : String = ""
         var msg : String = ""
         var title : String = ""
+        var hashedPassword : String = ""
         
         let photoURL = DatabaseAPI.url + "photos/addu"
         let addUserURL = DatabaseAPI.url + "user/add"
@@ -66,12 +67,23 @@ class registrationDA: NSObject {
                             onComplete(token, userId, isCreated, msg, title)
                             
                         } else {
+                            
+                           
+                            
+                            
                             isCreated = true
                             token = (json!["token"].string!)
                             SharedVariables.token = (json!["token"].string!)
                             userId = (json!["userid"].string!)
                             msg = "You may login your account with email and password!"
                             title = "Success!"
+                            
+                            //  UserDefaults
+                            UserDefaults.standard.set(token, forKey: "Token")
+                            UserDefaults.standard.set(hashedPassword, forKey: "HashedPassword")
+                            
+                            
+                            
                             onComplete(token, userId, isCreated, msg, title)
                             
                         }

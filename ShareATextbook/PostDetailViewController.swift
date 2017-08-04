@@ -28,31 +28,78 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
     var isOwner: Bool?
     
     var postImageSourceList: [ImageSource]? = []
-
+    
+    @IBAction func requestPostAction(_ sender: Any) {
+        ChatDataManager.postRequest(token: UserDefaults.standard.object(forKey: "Token") as! String, postId: (post?.id)!, onComplete: {
+            success, messageId, error in
+            
+            let alert = UIAlertController(title: "You have successfully requested for the book", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        })
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //  MARK:   Hide tab bar at the bottom
-        let tabBar = self.tabBarController as! CustomTabBarController
-        //tabBar?.menuButton.isHidden = true
         
         //  MARK:   Set navigation title
         self.navigationItem.title = post?.name
         
-//        itemTitle.text = post?.name
         postName?.text = post?.name
         postPublisherEdition?.text = (post?.publisher!)! + " " + (post?.edition!)!
         postDate?.text = (post?.postDate.toString(style: .short))! + " by "
-        postPreferredLocation?.text = post?.preferredLocation
         postBy.text = post?.by
         postDescription?.text = post?.desc
         
-        print("post desc \(post?.desc)")
+        let preferredLocationValue: LocationValue = LocationValue.convertToLocationValue(locationDescription: (post?.preferredLocation)!)
+        if preferredLocationValue.description != "-" {
+            DispatchQueue.main.async {
+                self.postPreferredLocation?.text = preferredLocationValue.descriptionName
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.postPreferredLocation?.text = preferredLocationValue.address
+            }
+        }
+        
+        //  Get category names
+        DispatchQueue.global(qos: .userInitiated).async {
+            CategoryDataManager.getCategoryById(id: (self.post?.cateId[0])!, onComplete: {
+                cat1 in
+                DispatchQueue.main.async {
+                    self.postEducationLevel?.text = cat1.name
+                }
+            })
+            CategoryDataManager.getCategoryById(id: (self.post?.cateId[1])!, onComplete: {
+                cat2 in
+                DispatchQueue.main.async {
+                    self.postSubject?.text = cat2.name
+                }
+            })
+        }
+        
+        //  Download post owner dp
+        DispatchQueue.global(qos: .userInitiated).async {
+            let url = URL(string: DatabaseAPI.userImageDownloadURL + (self.post?.byId)! + DatabaseAPI.userImageSizeC150)
+            print(url?.absoluteString)
+            ImageDownload.downloadImage(url: url!, onComplete: {
+                data in
+                
+                DispatchQueue.main.async() { () -> Void in
+                    self.postByIcon.contentMode = .scaleAspectFill
+                    self.postByIcon.image = UIImage(data: data)
+                }
+            })
+        }
         
         //  MARK:   Add Tap Gestures
         let locationStackViewTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapLocationStackView))
         postPreferredLocationStackView.addGestureRecognizer(locationStackViewTapGesture)
-
+        
+        let userTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapUser))
+        postBy.addGestureRecognizer(userTapGesture)
+        postByIcon.addGestureRecognizer(userTapGesture)
+        
         if isOwner! {
             let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonAction))
             self.navigationItem.rightBarButtonItem  = editButton
@@ -109,9 +156,26 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
             present(alert, animated: true, completion: nil)
         }
     }
-
+    
+    func didTapUser() {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Profile", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        
+        UserDataManager.getUserById(id: (self.post?.byId)!, token: "", onComplete: {
+            user in
+            
+            newViewController.user = user
+            DispatchQueue.main.async(execute: {
+                //  Push the view controller
+                self.navigationController?.pushViewController(newViewController, animated: true)
+            })
+            
+        })
+        
+    }
+    
     override func viewDidLayoutSubviews() {
-
+        
     }
     
     override func didReceiveMemoryWarning() {

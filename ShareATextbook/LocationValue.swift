@@ -44,6 +44,7 @@ public class LocationValue: Equatable {
     }
     
     public static func convertToLocationValue(locationDescription: String) -> LocationValue {
+        print("locTest:\(locationDescription)")
         let preferredLocArr = locationDescription.components(separatedBy: "|")
         let coordArr = preferredLocArr[0].components(separatedBy: ",")
         
