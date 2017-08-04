@@ -42,7 +42,6 @@
 		C917BDF41EF1563E00CBF4F1 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917BDF31EF1563E00CBF4F1 /* HTTP.swift */; };
 		C917BDF61EF1566D00CBF4F1 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */; };
 		C91D26131F342994006DC4CC /* ChatDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91D26121F342994006DC4CC /* ChatDataManager.swift */; };
-		C92078C51F33267700262CFC /* PinResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92078C41F33267700262CFC /* PinResultViewController.swift */; };
 		C92078C71F3360EA00262CFC /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92078C61F3360EA00262CFC /* MapAnnotation.swift */; };
 		C920D6691EB624E700D095FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C920D6681EB624E700D095FC /* AppDelegate.swift */; };
 		C920D66B1EB624E700D095FC /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C920D66A1EB624E700D095FC /* FirstViewController.swift */; };
@@ -85,6 +84,8 @@
 		C958BC941F308F0C004A83A4 /* Geocoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958BC931F308F0C004A83A4 /* Geocoding.swift */; };
 		C958BC961F308F5A004A83A4 /* FloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958BC951F308F5A004A83A4 /* FloatLabelTextField.swift */; };
 		C9690BC01EB994BB0054BAB7 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9690BBF1EB994BB0054BAB7 /* CustomTabBarController.swift */; };
+		C9A8090A1F34501E004116FE /* PinResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A809091F34501E004116FE /* PinResultViewController.swift */; };
+		C9A8090C1F345028004116FE /* MapViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A8090B1F345028004116FE /* MapViewViewController.swift */; };
 		C9CF89111EB9F14000B5AE95 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CF89101EB9F14000B5AE95 /* Constants.swift */; };
 		C9D52B8B1F2ED2BF00F36F50 /* ImageDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B8A1F2ED2BF00F36F50 /* ImageDownload.swift */; };
 		C9D52B951F2ED33E00F36F50 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D52B8D1F2ED33E00F36F50 /* ActivityIndicator.swift */; };
@@ -128,7 +129,6 @@
 		C9F3A4A21F2DE8AD0089DA2F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F3A4A01F2DE8AD0089DA2F /* SettingsViewController.swift */; };
 		C9F3A4BC1F2DE9C90089DA2F /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F3A4BB1F2DE9C90089DA2F /* ItemCollectionViewCell.swift */; };
 		C9F3A4BE1F2DE9EE0089DA2F /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F3A4BD1F2DE9EE0089DA2F /* TestViewController.swift */; };
-		C9F948C31F31ECD90003EB55 /* MapViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F948C21F31ECD90003EB55 /* MapViewViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -232,7 +232,6 @@
 		C917BDF31EF1563E00CBF4F1 /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 		C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		C91D26121F342994006DC4CC /* ChatDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDataManager.swift; sourceTree = "<group>"; };
-		C92078C41F33267700262CFC /* PinResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResultViewController.swift; sourceTree = "<group>"; };
 		C92078C61F3360EA00262CFC /* MapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		C920D6651EB624E700D095FC /* ShareATextbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareATextbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C920D6681EB624E700D095FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -282,6 +281,8 @@
 		C958BC931F308F0C004A83A4 /* Geocoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geocoding.swift; sourceTree = "<group>"; };
 		C958BC951F308F5A004A83A4 /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatLabelTextField.swift; sourceTree = "<group>"; };
 		C9690BBF1EB994BB0054BAB7 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		C9A809091F34501E004116FE /* PinResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResultViewController.swift; sourceTree = "<group>"; };
+		C9A8090B1F345028004116FE /* MapViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewViewController.swift; sourceTree = "<group>"; };
 		C9CF89101EB9F14000B5AE95 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C9D52B8A1F2ED2BF00F36F50 /* ImageDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownload.swift; sourceTree = "<group>"; };
 		C9D52B8D1F2ED33E00F36F50 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = Source/ImageSlideshow/ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -326,7 +327,6 @@
 		C9F3A4A01F2DE8AD0089DA2F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C9F3A4BB1F2DE9C90089DA2F /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		C9F3A4BD1F2DE9EE0089DA2F /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		C9F948C21F31ECD90003EB55 /* MapViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewViewController.swift; sourceTree = "<group>"; };
 		CB52F9B7334471142FFCD4C4 /* Pods-ShareATextbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareATextbook.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShareATextbook/Pods-ShareATextbook.release.xcconfig"; sourceTree = "<group>"; };
 		D83E37E6285D9CED1BB5FA45 /* Pods_ShareATextbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShareATextbook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -533,6 +533,7 @@
 		C920D69A1EB6254400D095FC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C9A809081F344FEA004116FE /* Map */,
 				C1F885DF1F336D7A006ECA20 /* Search */,
 				8FFD6D4C1F31FFBE000FCE64 /* Protection Points */,
 				C9F3A49F1F2DE8AD0089DA2F /* SettingsTableViewCell.swift */,
@@ -677,6 +678,15 @@
 			name = Eureka;
 			sourceTree = "<group>";
 		};
+		C9A809081F344FEA004116FE /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				C9A8090B1F345028004116FE /* MapViewViewController.swift */,
+				C9A809091F34501E004116FE /* PinResultViewController.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
 		C9D52B8C1F2ED32F00F36F50 /* ImageSlideshow */ = {
 			isa = PBXGroup;
 			children = (
@@ -775,15 +785,6 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
-		C9F948BB1F31DB2F0003EB55 /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				C9F948C21F31ECD90003EB55 /* MapViewViewController.swift */,
-				C92078C41F33267700262CFC /* PinResultViewController.swift */,
-			);
-			name = Map;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -857,7 +858,7 @@
 				TargetAttributes = {
 					C920D6641EB624E700D095FC = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 89782M2XS3;
+						DevelopmentTeam = 477DQDKY7M;
 						ProvisioningStyle = Automatic;
 					};
 					C920D67A1EB624E700D095FC = {
@@ -1066,7 +1067,6 @@
 				C92BA25C1F318216005934E8 /* CustomUIImageView.swift in Sources */,
 				C92BA2751F31A8E8005934E8 /* DKPopoverViewController.swift in Sources */,
 				C9F3A4911F2DE79B0089DA2F /* BarcodeReaderViewController.swift in Sources */,
-				C92078C51F33267700262CFC /* PinResultViewController.swift in Sources */,
 				C958BC911F308D04004A83A4 /* CustomCells.swift in Sources */,
 				C92BA2741F31A8E8005934E8 /* DKImageResource.swift in Sources */,
 				8FFD6D491F31EA13000FCE64 /* PointsDataManager.swift in Sources */,
@@ -1078,7 +1078,6 @@
 				8F04F2F31F332B1800AA48EC /* PointsRecordsTableViewCell.swift in Sources */,
 				C9D52B9A1F2ED33E00F36F50 /* UIImage+AspectFit.swift in Sources */,
 				C92078C71F3360EA00262CFC /* MapAnnotation.swift in Sources */,
-				C9F948C31F31ECD90003EB55 /* MapViewViewController.swift in Sources */,
 				C9D52B971F2ED33E00F36F50 /* ImageSlideshow.swift in Sources */,
 				8F1F324D1F0194A100DE910C /* HomeContentTableViewCell.swift in Sources */,
 				C9F3A3CF1F2DCE1F0089DA2F /* ISBN.swift in Sources */,
@@ -1089,6 +1088,7 @@
 				C91D26131F342994006DC4CC /* ChatDataManager.swift in Sources */,
 				C9F3A4901F2DE79B0089DA2F /* BarcodeReaderCaptureViewController.swift in Sources */,
 				8F32DB051F0BBEB40021D095 /* HomeViewController.swift in Sources */,
+				C9A8090A1F34501E004116FE /* PinResultViewController.swift in Sources */,
 				C958BC941F308F0C004A83A4 /* Geocoding.swift in Sources */,
 				C9CF89111EB9F14000B5AE95 /* Constants.swift in Sources */,
 				C9D52B9C1F2ED33E00F36F50 /* ZoomAnimatedTransitioning.swift in Sources */,
@@ -1113,6 +1113,7 @@
 				C9F3A3D21F2DCE530089DA2F /* Category.swift in Sources */,
 				C9F3A49E1F2DE7F40089DA2F /* ProfileViewController.swift in Sources */,
 				C958BC8F1F308BFD004A83A4 /* LocationValue.swift in Sources */,
+				C9A8090C1F345028004116FE /* MapViewViewController.swift in Sources */,
 				C958BC961F308F5A004A83A4 /* FloatLabelTextField.swift in Sources */,
 				C9F3A47F1F2DD8830089DA2F /* PostingViewController.swift in Sources */,
 				C92BA27E1F31A8F8005934E8 /* DKAssetGroupListVC.swift in Sources */,
@@ -1277,7 +1278,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 89782M2XS3;
+				DEVELOPMENT_TEAM = 477DQDKY7M;
 				INFOPLIST_FILE = "$(SRCROOT)/ShareATextbook/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1296,7 +1297,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 89782M2XS3;
+				DEVELOPMENT_TEAM = 477DQDKY7M;
 				INFOPLIST_FILE = "$(SRCROOT)/ShareATextbook/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
