@@ -58,7 +58,12 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
             posting.desc = tableViewController.bookDescriptionTextField.text!
         }
         if tableViewController.preferredLocationTextField.text != "" {
-            posting.preferredLocation = tableViewController.preferredLocationTextField.text!
+            //  TO BE REMOVED
+            let decodeUser = UserDefaults.standard.object(forKey: "User") as! Data
+            let user =  NSKeyedUnarchiver.unarchiveObject(with: decodeUser) as! User
+            posting.preferredLocation = user.preferredloc!
+            //  CHANGE BACK TO THIS
+//            posting.preferredLocation = tableViewController.preferredLocationTextField.text!
         }
         if tableViewController.educationLevel.text != Strings.choosePrompt {
             let selectedEducationLevel = tableViewController.selectedEducationLevel
@@ -84,6 +89,7 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
         print(posting.preferredLocation)
         print(posting.cateId)
     
+        dismiss(animated: true, completion: nil)
         if errorMessage != "Some of the details are required\n" {
             let alert = UIAlertController(title: "Whoops", message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.cancel, handler: nil))
@@ -92,13 +98,15 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
             print("before size \(imageList.count)")
             print("edit \(isEdit)")
             if isEdit == false {
+                
                 //  Post
-                PostingDataManager.addPost(post: posting, postImageList: imageList, onComplete: {
+                PostingDataManager.addPost(post: posting, postImageList: imageList, token: UserDefaults.standard.object(forKey: "Token") as! String, onComplete: {
                     success, post in
                     
                     print("success \(success)")
                     print("id \(post.id)")
                     
+                    self.dismiss(animated: true, completion: nil)
                     
                 })
             } else {
@@ -202,10 +210,6 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
         
         if segue.identifier == "test" {
             let vc = segue.destination as! TestViewController
-//            for cell in imageListCollectionView.visibleCells as! [PostingImageCollectionViewCell] {
-//                // do something
-//                imageList.append(cell.image.image!)
-//            }
             
             for i in 0..<assets!.count {
                 let indexpath = IndexPath(row: i, section: 0)

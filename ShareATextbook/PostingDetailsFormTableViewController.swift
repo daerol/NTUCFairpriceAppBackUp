@@ -9,7 +9,7 @@
 import UIKit
 
 class PostingDetailsFormTableViewController: UITableViewController {
-
+    
     @IBOutlet weak var bookTitleTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var bookPublisherTextField: SkyFloatingLabelTextField!
     
@@ -53,12 +53,19 @@ class PostingDetailsFormTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        let decodeUser = UserDefaults.standard.object(forKey: "User") as! Data
+        let user =  NSKeyedUnarchiver.unarchiveObject(with: decodeUser) as! User
+        DispatchQueue.main.async(execute: {
+            
+            let preferredLocationVal: LocationValue = LocationValue.convertToLocationValue(locationDescription: user.preferredloc!)
+            
+            if preferredLocationVal.descriptionName != "-" {
+                self.preferredLocationTextField.text = preferredLocationVal.descriptionName
+            } else {
+                self.preferredLocationTextField.text = preferredLocationVal.address
+            }
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -81,11 +88,11 @@ class PostingDetailsFormTableViewController: UITableViewController {
             let subjectViewController = segue.destination as? SubjectViewController
             subjectViewController?.postDetailsFormViewController = self
             subjectViewController?.subjectCategoryList = subjectCategoryList
-        
+            
             if selectedSubject != nil {
                 subjectViewController?.selectedSubject = selectedSubject!
             }
         }
     }
-
+    
 }

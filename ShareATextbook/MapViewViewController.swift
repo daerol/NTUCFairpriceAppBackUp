@@ -77,6 +77,8 @@ class MapViewViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         // These values can be played around with, depending on how much you want the view to show up when it starts.
         vc.view.frame = CGRect(x: 0, y: self.view.frame.height - 85, width: self.view.frame.width, height: 85)
         
+        //  Attach the vc to self
+        vc.mapViewController = self
         
         self.addChildViewController(vc)
         self.view.addSubview(vc.view)
@@ -160,9 +162,9 @@ class MapViewViewController: UIViewController, MKMapViewDelegate, CLLocationMana
             
             if error == nil && (placemarks?.count)! > 0 {
                 let placeMark = placemarks?.last
-                let adressStr = "\(placeMark!.subThoroughfare != nil ? placeMark!.subThoroughfare! : "") \(placeMark!.thoroughfare!), \(placeMark!.country!) \(placeMark!.postalCode!) "
+                let addressStr = "\(placeMark!.subThoroughfare != nil ? placeMark!.subThoroughfare! : "") \(placeMark!.thoroughfare!), \(placeMark!.country!) \(placeMark!.postalCode!) "
                 DispatchQueue.main.async {
-                    self.vc.addressLabel.text = adressStr
+                    self.vc.addressLabel.text = addressStr
                 }
             }
         })
@@ -174,8 +176,24 @@ class MapViewViewController: UIViewController, MKMapViewDelegate, CLLocationMana
             let coordArr = key.components(separatedBy: ",")
             
             let locCoord = CLLocationCoordinate2D(latitude: Double(coordArr[0])!, longitude: Double(coordArr[1])!)
-            let dropPin = MapAnnotation(coordinate: locCoord, title: "My Point", subtitle: "Lat: \(locCoord.latitude), Lng: \(locCoord.longitude)")
-            self.mapView.addAnnotation(dropPin)
+            
+            let coordPostList: [Posting] = postingDict![key]!
+            
+            CLGeocoder().reverseGeocodeLocation(CLLocation(latitude: locCoord.latitude, longitude: locCoord.longitude), completionHandler: {
+                placemarks, error in
+                
+                if error == nil && (placemarks?.count)! > 0 {
+                    let placeMark = placemarks?.last
+                    let addressStr = "\(placeMark!.subThoroughfare != nil ? placeMark!.subThoroughfare! : "") \(placeMark!.thoroughfare!), \(placeMark!.country!) \(placeMark!.postalCode!) "
+                    DispatchQueue.main.async {
+                        self.vc.addressLabel.text = addressStr
+                        let dropPin = MapAnnotation(coordinate: locCoord, title: addressStr, subtitle: String(coordPostList.count) + " Post")
+                        self.mapView.addAnnotation(dropPin)
+                    }
+                }
+            })
+            
+            
         }
     }
 

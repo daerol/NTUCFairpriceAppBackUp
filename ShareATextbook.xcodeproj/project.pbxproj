@@ -37,6 +37,7 @@
 		8FFD6D491F31EA13000FCE64 /* PointsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD6D481F31EA13000FCE64 /* PointsDataManager.swift */; };
 		C917BDF41EF1563E00CBF4F1 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917BDF31EF1563E00CBF4F1 /* HTTP.swift */; };
 		C917BDF61EF1566D00CBF4F1 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */; };
+		C91D26131F342994006DC4CC /* ChatDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91D26121F342994006DC4CC /* ChatDataManager.swift */; };
 		C92078C51F33267700262CFC /* PinResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92078C41F33267700262CFC /* PinResultViewController.swift */; };
 		C92078C71F3360EA00262CFC /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92078C61F3360EA00262CFC /* MapAnnotation.swift */; };
 		C920D6691EB624E700D095FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C920D6681EB624E700D095FC /* AppDelegate.swift */; };
@@ -223,6 +224,7 @@
 		8FFD6D481F31EA13000FCE64 /* PointsDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsDataManager.swift; sourceTree = "<group>"; };
 		C917BDF31EF1563E00CBF4F1 /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 		C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		C91D26121F342994006DC4CC /* ChatDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDataManager.swift; sourceTree = "<group>"; };
 		C92078C41F33267700262CFC /* PinResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResultViewController.swift; sourceTree = "<group>"; };
 		C92078C61F3360EA00262CFC /* MapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		C920D6651EB624E700D095FC /* ShareATextbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareATextbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -543,6 +545,7 @@
 				2B81304F1F0BB03800FBA165 /* LoginDataManager.swift */,
 				8F49A7A71F1DCEF800725A8D /* HomepageDataManager.swift */,
 				8FFD6D481F31EA13000FCE64 /* PointsDataManager.swift */,
+				C91D26121F342994006DC4CC /* ChatDataManager.swift */,
 			);
 			name = DataManagers;
 			sourceTree = "<group>";
@@ -1065,6 +1068,7 @@
 				C9D52B8B1F2ED2BF00F36F50 /* ImageDownload.swift in Sources */,
 				8F32DB031F0BBE730021D095 /* RegistrationDataManager.swift in Sources */,
 				C9F3A4971F2DE79B0089DA2F /* SubjectViewController.swift in Sources */,
+				C91D26131F342994006DC4CC /* ChatDataManager.swift in Sources */,
 				C9F3A4901F2DE79B0089DA2F /* BarcodeReaderCaptureViewController.swift in Sources */,
 				8F32DB051F0BBEB40021D095 /* HomeViewController.swift in Sources */,
 				C958BC941F308F0C004A83A4 /* Geocoding.swift in Sources */,

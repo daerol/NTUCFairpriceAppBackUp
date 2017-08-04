@@ -18,6 +18,8 @@ class PinResultViewController: UIViewController, UITableViewDelegate, UITableVie
     var swipeUp = UISwipeGestureRecognizer()
     var swipeDown = UISwipeGestureRecognizer()
     
+    var mapViewController: MapViewViewController?
+    
     var postList: [Posting] = [] {
         didSet {
             print("settla")
@@ -100,8 +102,15 @@ class PinResultViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Profile", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "ProtectionPointsViewController") as! ProtectionPointsViewController
-        self.present(newViewController, animated: true, completion: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "PostDetailViewController") as! PostDetailViewController
+        
+        //  Set the variables
+        newViewController.post = self.postList[indexPath.row]
+        newViewController.isOwner = false
+        
+        //  Push the view controller
+        mapViewController?.navigationController?.pushViewController(newViewController, animated: true)
+        
     }
     
 }

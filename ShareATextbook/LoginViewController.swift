@@ -216,6 +216,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         //  TO BE REMOVED
         emailTextField.text = "Davidkwong@email.com"
         passwordTextfield.text = "davidPassword"
+//        
+//        emailTextField.text = "naomineo@email.com"
+//        passwordTextfield.text = "naomiPassword"
+
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {

@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBOutlet weak var pointLabel: UILabel!
     @IBOutlet weak var locationStackView: UIStackView!
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var userImage: CustomUIImageView!
     
     @IBOutlet weak var editProfileButton: CustomUIButton!
     @IBOutlet weak var preferredLocation: UILabel!
@@ -46,17 +47,6 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         let locationStackViewTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapLocationStackView))
         locationStackView.addGestureRecognizer(locationStackViewTapGesture)
         
-        //  TO BE REMOVED
-//        if user == nil {
-//            user = SharedVariables.user
-//            name.text = SharedVariables.user.username
-//            preferredLocation.text = "Serangoon North Avenue 4"
-//        } else {
-//            //  If is owner
-//            name.text = user!.username
-//            preferredLocation.text = user!.preferredloc
-//            
-//        }
         //  If is profile
         if user == nil {
             let decodeUser = UserDefaults.standard.object(forKey: "User") as! Data
@@ -78,44 +68,51 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
                 preferredLocation.text = preferredLocArr?[2]
             }
         }
-//        preferredLocation.text = user?.preferredloc
         
+        //  Download user dp
+        DispatchQueue.global(qos: .userInitiated).async {
+            let url = URL(string: DatabaseAPI.userImageDownloadURL + (self.user?.photo)! + DatabaseAPI.userImageSizeC150)
+            ImageDownload.downloadImage(url: url!, onComplete: {
+                data in
+                
+                DispatchQueue.main.async() { () -> Void in
+                    self.userImage.image = UIImage(data: data)
+                }
+            })
+        }
         
-        //  If owner, remove the edit profile view
-//        self.profileInfoStackView.removeArrangedSubview(editProfileView)
-        
-//        DispatchQueue.global(qos: .userInitiated).async {
-            PostingDataManager.getPostingList(userId: (user?.id)!, isAvailable: "N", onComplete: {
-                postingList in
-                
-                print("enter 1")
-                
-                self.postList = postingList
-                
-                var itemAvailable = 0
-                var itemDonated = 0
-                for post in postingList {
-                    let postItem: Posting = post
-                    if postItem.status == "" || postItem.status == "R" {
-                        itemAvailable += 1
-                    } else {
-                        itemDonated += 1
-                    }
-                    
-                    let total = itemAvailable + itemDonated
-                    
-                    if total == postingList.count {
-                        DispatchQueue.main.async(execute: {
-                            self.numberOfPost.text = String(itemAvailable)
-                            self.numberOfDonatedPost.text = String(itemDonated)
-                        })
-                    }
+        //        DispatchQueue.global(qos: .userInitiated).async {
+        PostingDataManager.getPostingList(userId: (user?.id)!, isAvailable: "N", onComplete: {
+            postingList in
+            
+            print("enter 1")
+            
+            self.postList = postingList
+            
+            var itemAvailable = 0
+            var itemDonated = 0
+            for post in postingList {
+                let postItem: Posting = post
+                if postItem.status == "" || postItem.status == "R" {
+                    itemAvailable += 1
+                } else {
+                    itemDonated += 1
                 }
                 
-                DispatchQueue.main.async(execute: {
-                    self.itemCollectionView.reloadData()
-                })
+                let total = itemAvailable + itemDonated
+                
+                if total == postingList.count {
+                    DispatchQueue.main.async(execute: {
+                        self.numberOfPost.text = String(itemAvailable)
+                        self.numberOfDonatedPost.text = String(itemDonated)
+                    })
+                }
+            }
+            
+            DispatchQueue.main.async(execute: {
+                self.itemCollectionView.reloadData()
             })
+        })
         
     }
     
@@ -127,8 +124,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowItemDetails" {
             
-//            let barViewControllers = segue.destination as! UITabBarController
-//            let itemDetailViewController = barViewControllers.viewControllers![0] as! PostDetailViewController
+            //            let barViewControllers = segue.destination as! UITabBarController
+            //            let itemDetailViewController = barViewControllers.viewControllers![0] as! PostDetailViewController
             
             let itemDetailViewController = segue.destination as! PostDetailViewController
             let indexPath = self.itemCollectionView.indexPathsForSelectedItems
@@ -154,7 +151,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func didTapPointStackView() {
-//        pointLabel.text = "1000"
+        //        pointLabel.text = "1000"
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "pointsystem", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "ProtectionPointsViewController") as! ProtectionPointsViewController
@@ -176,7 +173,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
             present(alert, animated: true, completion: nil)
         }
     }
-
+    
     
     func settingsButtonClicked() {
         print("clicked!")
@@ -184,7 +181,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         let vc = settingsStoryboard.instantiateViewController(withIdentifier: "SettingsStoryboard") as! SettingsViewController
         self.present(vc, animated: true, completion: nil)
     }
-
+    
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -192,7 +189,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("enter 2")
-//        return postList!.count
+        //        return postList!.count
         
         if postList != nil {
             return postList!.count
@@ -205,13 +202,13 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         let cell = itemCollectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ItemCollectionViewCell
         
         let postStatus = postList![indexPath.row].status
-
+        
         cell.itemImage.image = #imageLiteral(resourceName: "textbook")
         cell.itemTitle.text = postList![indexPath.row].name
         cell.itemDetail.text = postList![indexPath.row].publisher! + " " + postList![indexPath.row].edition!
         
         if postList![indexPath.row].status == "" {
-             cell.itemTag.isHidden = true
+            cell.itemTag.isHidden = true
         } else {
             if postStatus == "D" {
                 cell.itemTag.text = "Donated"
@@ -237,7 +234,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
                 data in
                 
                 DispatchQueue.main.async() { () -> Void in
-//                    cell.itemImage.contentMode = .scaleAspectFit
+                    //                    cell.itemImage.contentMode = .scaleAspectFit
                     cell.itemImage.image = UIImage(data: data)
                 }
             })
@@ -245,13 +242,13 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = (itemCollectionView.bounds.width - leftAndRightPadding) / numberOfItemsPerRow
-
+        
         return CGSize(width: width, height: width + heightAdjustment)
     }
-
+    
     
 }
