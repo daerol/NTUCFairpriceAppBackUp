@@ -35,6 +35,8 @@
 		8FF513F41F01EB13000211DB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF513F31F01EB13000211DB /* Security.framework */; };
 		8FFD6D451F31B5D0000FCE64 /* PointsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD6D441F31B5D0000FCE64 /* PointsTableViewCell.swift */; };
 		8FFD6D491F31EA13000FCE64 /* PointsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD6D481F31EA13000FCE64 /* PointsDataManager.swift */; };
+		C1F885E31F336DA5006ECA20 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F885E21F336DA5006ECA20 /* SearchTableViewController.swift */; };
+		C1F885E51F336DC7006ECA20 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F885E41F336DC7006ECA20 /* SearchTableViewCell.swift */; };
 		C917BDF41EF1563E00CBF4F1 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917BDF31EF1563E00CBF4F1 /* HTTP.swift */; };
 		C917BDF61EF1566D00CBF4F1 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */; };
 		C920D6691EB624E700D095FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C920D6681EB624E700D095FC /* AppDelegate.swift */; };
@@ -217,6 +219,8 @@
 		8FF513F31F01EB13000211DB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8FFD6D441F31B5D0000FCE64 /* PointsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsTableViewCell.swift; sourceTree = "<group>"; };
 		8FFD6D481F31EA13000FCE64 /* PointsDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsDataManager.swift; sourceTree = "<group>"; };
+		C1F885E21F336DA5006ECA20 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		C1F885E41F336DC7006ECA20 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		C917BDF31EF1563E00CBF4F1 /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 		C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		C920D6651EB624E700D095FC /* ShareATextbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareATextbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -413,6 +417,15 @@
 			name = "Protection Points";
 			sourceTree = "<group>";
 		};
+		C1F885DF1F336D7A006ECA20 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				C1F885E21F336DA5006ECA20 /* SearchTableViewController.swift */,
+				C1F885E41F336DC7006ECA20 /* SearchTableViewCell.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
 		C920D65C1EB624E700D095FC = {
 			isa = PBXGroup;
 			children = (
@@ -505,6 +518,7 @@
 		C920D69A1EB6254400D095FC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C1F885DF1F336D7A006ECA20 /* Search */,
 				8FFD6D4C1F31FFBE000FCE64 /* Protection Points */,
 				C9F3A49F1F2DE8AD0089DA2F /* SettingsTableViewCell.swift */,
 				C9F3A4A01F2DE8AD0089DA2F /* SettingsViewController.swift */,
@@ -1040,6 +1054,7 @@
 				C9F3A3CF1F2DCE1F0089DA2F /* ISBN.swift in Sources */,
 				C9D52B8B1F2ED2BF00F36F50 /* ImageDownload.swift in Sources */,
 				8F32DB031F0BBE730021D095 /* RegistrationDataManager.swift in Sources */,
+				C1F885E51F336DC7006ECA20 /* SearchTableViewCell.swift in Sources */,
 				C9F3A4971F2DE79B0089DA2F /* SubjectViewController.swift in Sources */,
 				C9F3A4901F2DE79B0089DA2F /* BarcodeReaderCaptureViewController.swift in Sources */,
 				8F32DB051F0BBEB40021D095 /* HomeViewController.swift in Sources */,
@@ -1051,6 +1066,7 @@
 				C92BA27C1F31A8F8005934E8 /* DKAssetGroupDetailVC.swift in Sources */,
 				C92BA28A1F31A90A005934E8 /* DKAssetGroupDetailVideoCell.swift in Sources */,
 				8F034BC51F2F1DF000C16F1A /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
+				C1F885E31F336DA5006ECA20 /* SearchTableViewController.swift in Sources */,
 				C9F3A4961F2DE79B0089DA2F /* PostingImageCollectionViewCell.swift in Sources */,
 				C92BA2601F3194A1005934E8 /* CameraViewController.swift in Sources */,
 				C92BA2731F31A8E8005934E8 /* DKImagePickerControllerDefaultUIDelegate.swift in Sources */,
