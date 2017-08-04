@@ -12,14 +12,14 @@ class User: NSObject, NSCoding {
     
     var username : String
     var password : String
+    var token : String
     var preferredloc: String?
     var id: String
     var email: String
     var phoneNumber: String
     var photo: String
     
-    init(username: String, password: String, preferredloc: String, id: String, email: String, phoneNumber: String, photo:String) {
-//        self.userId = userId
+    init(username: String, password: String, token: String, preferredloc: String, id: String, email: String, phoneNumber: String, photo:String) {
         self.username = username
         self.password = password
         self.preferredloc = preferredloc
@@ -27,6 +27,7 @@ class User: NSObject, NSCoding {
         self.email = email
         self.phoneNumber = phoneNumber
         self.photo = photo
+        self.token = token
         
         super.init()
     }
@@ -35,6 +36,7 @@ class User: NSObject, NSCoding {
 //        self.userId = aDecoder.decodeObject(forKey: "userid") as? String ?? ""
         self.username = aDecoder.decodeObject(forKey: "username") as? String ?? ""
         self.password = aDecoder.decodeObject(forKey: "password") as? String ?? ""
+        self.token = aDecoder.decodeObject(forKey: "token") as? String ?? ""
         self.preferredloc = aDecoder.decodeObject(forKey: "preferredloc") as? String ?? ""
         self.id = aDecoder.decodeObject(forKey: "id") as? String ?? ""
         self.email = aDecoder.decodeObject(forKey: "email") as? String ?? ""

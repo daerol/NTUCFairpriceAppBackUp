@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0Jd-1D-2iW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0Jd-1D-2iW">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -29,10 +29,18 @@
             </objects>
             <point key="canvasLocation" x="-1310" y="-487"/>
         </scene>
+        <!--Logout-->
+        <scene sceneID="LcM-v0-55u">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="LogoutStoryboard" storyboardName="Logout" id="b04-JM-ysD" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VZs-qo-bcL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-687" y="-497"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="mwi-mY-rae">
             <objects>
-                <viewController id="0Jd-1D-2iW" customClass="LoginViewController" customModule="ShareATextbook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginHome" id="0Jd-1D-2iW" customClass="LoginViewController" customModule="ShareATextbook" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PHW-CH-fA2"/>
                         <viewControllerLayoutGuide type="bottom" id="to9-GU-UgU"/>
@@ -224,6 +232,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1886" y="-29"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="ogc-Q9-uOs">
+            <objects>
+                <viewControllerPlaceholder id="EQ6-8r-gNX" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TO7-9j-06s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2606" y="-197"/>
         </scene>
         <!--Custom Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">

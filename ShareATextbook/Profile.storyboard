@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jiQ-aZ-a4g">
+
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -54,7 +56,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User" translatesAutoresizingMaskIntoConstraints="NO" id="eYq-xB-YGC" customClass="CustomUIImageView" customModule="ShareATextbook" customModuleProvider="target">
-                                <rect key="frame" x="137" y="99" width="100" height="100"/>
+                                <rect key="frame" x="137.5" y="99" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="JzI-ds-Ypp"/>
                                     <constraint firstAttribute="height" constant="100" id="dEQ-lA-59L"/>
@@ -117,7 +119,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaF-4g-bvL" customClass="CustomUIButton" customModule="ShareATextbook" customModuleProvider="target">
-                                <rect key="frame" x="212" y="174" width="25" height="25"/>
+                                <rect key="frame" x="212.5" y="174" width="25" height="25"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="mLF-SU-843"/>
@@ -839,13 +841,7 @@
                             <constraint firstItem="HCn-9G-cda" firstAttribute="top" secondItem="nPv-3j-Dub" secondAttribute="bottom" id="i4J-26-AnS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="96M-9e-8VE">
-                        <barButtonItem key="rightBarButtonItem" image="Settings" id="Ruu-tf-iLv">
-                            <connections>
-                                <segue destination="5ms-Qb-FCQ" kind="show" id="z5Y-rr-Etn"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Profile" id="96M-9e-8VE"/>
                     <connections>
                         <outlet property="editProfileButton" destination="B1L-gU-YUs" id="Ptf-hd-fiC"/>
                         <outlet property="editProfileView" destination="Syt-Ws-k3v" id="uCp-EU-MBy"/>
@@ -1422,20 +1418,11 @@
             </objects>
             <point key="canvasLocation" x="313" y="1218"/>
         </scene>
-        <!--Settings-->
-        <scene sceneID="lFX-xi-LfX">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Settings" id="5ms-Qb-FCQ" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mjk-O2-1vI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1678" y="462"/>
-        </scene>
     </scenes>
     <resources>
         <image name="Add" width="50" height="50"/>
         <image name="Location" width="25" height="25"/>
         <image name="Profile-1" width="30" height="30"/>
-        <image name="Settings" width="25" height="25"/>
         <image name="User" width="266" height="267"/>
         <image name="bookShelf" width="100" height="100"/>
         <image name="bookmark" width="100" height="100"/>

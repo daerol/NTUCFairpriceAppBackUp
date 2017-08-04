@@ -1,18 +1,19 @@
 ////
-////  SettingsTableViewCell.swift
-////  ntucTest
+////  SearchTableViewCell.swift
+////  ShareATextbook
 ////
-////  Created by Chia Li Yun on 12/5/17.
+////  Created by Cheryl Heng on 3/8/17.
 ////  Copyright © 2017 Chia Li Yun. All rights reserved.
 ////
 //
 //import UIKit
 //
-//class SettingsTableViewCell: UITableViewCell {
-//
-//    @IBOutlet weak var label: UILabel!
-//    @IBOutlet weak var textField: UITextField!
+//class SearchTableViewCell: UITableViewCell {
 //    
+//    @IBOutlet weak var imageView: UIImageView
+//    
+//    
+//
 //    override func awakeFromNib() {
 //        super.awakeFromNib()
 //        // Initialization code
