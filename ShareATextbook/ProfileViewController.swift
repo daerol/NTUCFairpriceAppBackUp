@@ -131,8 +131,9 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     // SHAH ADDED
     func logOut() {
         print("Log out")
-        let isUserLoggedIn = UserDefaults.standard.bool(forKey: "User")
-        if (isUserLoggedIn) {
+        let isUserLoggedIn = UserDefaults.standard.value(forKey: "User")
+        
+        if (isUserLoggedIn != nil) {
             
             loginDA.logOut()
                 
@@ -140,10 +141,16 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
             UserDefaults.standard.removeObject(forKey: "isLoggedIn")
             
             DispatchQueue.main.async {
-                let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginHome") as! LoginViewController
-                self.navigationController?.pushViewController(loginViewController, animated: true)
+//                let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginHome") as! LoginViewController
+//                self.navigationController?.pushViewController(loginViewController, animated: true)
+                
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let newViewController = storyBoard.instantiateViewController(withIdentifier: "loginHome") as! LoginViewController
+//                self.navigationController?.show(newViewController, sender: self)
+                self.present(newViewController, animated: true, completion: nil)
+
             }
-         print("Ayylmao")
+         print("Logged out")
         }
     }
     
