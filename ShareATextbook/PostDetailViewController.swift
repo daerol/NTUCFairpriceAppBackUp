@@ -29,7 +29,7 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
     
     var postImageSourceList: [ImageSource]? = []
     
-    @IBAction func requestPostAction(_ sender: Any) {
+   /* @IBAction func requestPostAction(_ sender: Any) {
         ChatDataManager.postRequest(token: UserDefaults.standard.object(forKey: "Token") as! String, postId: (post?.id)!, onComplete: {
             success, messageId, error in
             
@@ -37,7 +37,7 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         })
-    }
+    }*/
     
     override func viewDidLoad() {
         super.viewDidLoad()

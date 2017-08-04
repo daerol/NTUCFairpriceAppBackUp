@@ -131,6 +131,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         NSLog("You selected cell number: \(indexPath.row)!")
+        let storyboard = UIStoryboard(name: "Search", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "SearchViewController")
+        self.navigationController!.pushViewController(vc, animated: true)
         //self.performSegue(withIdentifier: "pptSys", sender: self)
     }
     
