@@ -37,11 +37,9 @@
 		8FF513F41F01EB13000211DB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF513F31F01EB13000211DB /* Security.framework */; };
 		8FFD6D451F31B5D0000FCE64 /* PointsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD6D441F31B5D0000FCE64 /* PointsTableViewCell.swift */; };
 		8FFD6D491F31EA13000FCE64 /* PointsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD6D481F31EA13000FCE64 /* PointsDataManager.swift */; };
-		C1F885E31F336DA5006ECA20 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F885E21F336DA5006ECA20 /* SearchTableViewController.swift */; };
-		C1F885E51F336DC7006ECA20 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F885E41F336DC7006ECA20 /* SearchTableViewCell.swift */; };
+		C153AFD71F34B1BE00DD464F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C153AFD61F34B1BE00DD464F /* SearchViewController.swift */; };
 		C917BDF41EF1563E00CBF4F1 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917BDF31EF1563E00CBF4F1 /* HTTP.swift */; };
 		C917BDF61EF1566D00CBF4F1 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */; };
-		C92078C51F33267700262CFC /* PinResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92078C41F33267700262CFC /* PinResultViewController.swift */; };
 		C92078C71F3360EA00262CFC /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92078C61F3360EA00262CFC /* MapAnnotation.swift */; };
 		C920D6691EB624E700D095FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C920D6681EB624E700D095FC /* AppDelegate.swift */; };
 		C920D66B1EB624E700D095FC /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C920D66A1EB624E700D095FC /* FirstViewController.swift */; };
@@ -127,7 +125,6 @@
 		C9F3A4A21F2DE8AD0089DA2F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F3A4A01F2DE8AD0089DA2F /* SettingsViewController.swift */; };
 		C9F3A4BC1F2DE9C90089DA2F /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F3A4BB1F2DE9C90089DA2F /* ItemCollectionViewCell.swift */; };
 		C9F3A4BE1F2DE9EE0089DA2F /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F3A4BD1F2DE9EE0089DA2F /* TestViewController.swift */; };
-		C9F948C31F31ECD90003EB55 /* MapViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F948C21F31ECD90003EB55 /* MapViewViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,11 +223,9 @@
 		8FF513F31F01EB13000211DB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8FFD6D441F31B5D0000FCE64 /* PointsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsTableViewCell.swift; sourceTree = "<group>"; };
 		8FFD6D481F31EA13000FCE64 /* PointsDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsDataManager.swift; sourceTree = "<group>"; };
-		C1F885E21F336DA5006ECA20 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
-		C1F885E41F336DC7006ECA20 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		C153AFD61F34B1BE00DD464F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C917BDF31EF1563E00CBF4F1 /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 		C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		C92078C41F33267700262CFC /* PinResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinResultViewController.swift; sourceTree = "<group>"; };
 		C92078C61F3360EA00262CFC /* MapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		C920D6651EB624E700D095FC /* ShareATextbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareATextbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C920D6681EB624E700D095FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -324,7 +319,6 @@
 		C9F3A4A01F2DE8AD0089DA2F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C9F3A4BB1F2DE9C90089DA2F /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		C9F3A4BD1F2DE9EE0089DA2F /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		C9F948C21F31ECD90003EB55 /* MapViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewViewController.swift; sourceTree = "<group>"; };
 		CB52F9B7334471142FFCD4C4 /* Pods-ShareATextbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareATextbook.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShareATextbook/Pods-ShareATextbook.release.xcconfig"; sourceTree = "<group>"; };
 		D83E37E6285D9CED1BB5FA45 /* Pods_ShareATextbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShareATextbook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -431,8 +425,7 @@
 		C1F885DF1F336D7A006ECA20 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				C1F885E21F336DA5006ECA20 /* SearchTableViewController.swift */,
-				C1F885E41F336DC7006ECA20 /* SearchTableViewCell.swift */,
+				C153AFD61F34B1BE00DD464F /* SearchViewController.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -772,15 +765,6 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
-		C9F948BB1F31DB2F0003EB55 /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				C9F948C21F31ECD90003EB55 /* MapViewViewController.swift */,
-				C92078C41F33267700262CFC /* PinResultViewController.swift */,
-			);
-			name = Map;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -854,7 +838,7 @@
 				TargetAttributes = {
 					C920D6641EB624E700D095FC = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 89782M2XS3;
+						DevelopmentTeam = 2MY9W9SN9C;
 						ProvisioningStyle = Automatic;
 					};
 					C920D67A1EB624E700D095FC = {
@@ -1063,7 +1047,6 @@
 				C92BA25C1F318216005934E8 /* CustomUIImageView.swift in Sources */,
 				C92BA2751F31A8E8005934E8 /* DKPopoverViewController.swift in Sources */,
 				C9F3A4911F2DE79B0089DA2F /* BarcodeReaderViewController.swift in Sources */,
-				C92078C51F33267700262CFC /* PinResultViewController.swift in Sources */,
 				C958BC911F308D04004A83A4 /* CustomCells.swift in Sources */,
 				C92BA2741F31A8E8005934E8 /* DKImageResource.swift in Sources */,
 				8FFD6D491F31EA13000FCE64 /* PointsDataManager.swift in Sources */,
@@ -1075,13 +1058,11 @@
 				8F04F2F31F332B1800AA48EC /* PointsRecordsTableViewCell.swift in Sources */,
 				C9D52B9A1F2ED33E00F36F50 /* UIImage+AspectFit.swift in Sources */,
 				C92078C71F3360EA00262CFC /* MapAnnotation.swift in Sources */,
-				C9F948C31F31ECD90003EB55 /* MapViewViewController.swift in Sources */,
 				C9D52B971F2ED33E00F36F50 /* ImageSlideshow.swift in Sources */,
 				8F1F324D1F0194A100DE910C /* HomeContentTableViewCell.swift in Sources */,
 				C9F3A3CF1F2DCE1F0089DA2F /* ISBN.swift in Sources */,
 				C9D52B8B1F2ED2BF00F36F50 /* ImageDownload.swift in Sources */,
 				8F32DB031F0BBE730021D095 /* RegistrationDataManager.swift in Sources */,
-				C1F885E51F336DC7006ECA20 /* SearchTableViewCell.swift in Sources */,
 				C9F3A4971F2DE79B0089DA2F /* SubjectViewController.swift in Sources */,
 				C9F3A4901F2DE79B0089DA2F /* BarcodeReaderCaptureViewController.swift in Sources */,
 				8F32DB051F0BBEB40021D095 /* HomeViewController.swift in Sources */,
@@ -1093,13 +1074,13 @@
 				C92BA27C1F31A8F8005934E8 /* DKAssetGroupDetailVC.swift in Sources */,
 				C92BA28A1F31A90A005934E8 /* DKAssetGroupDetailVideoCell.swift in Sources */,
 				8F034BC51F2F1DF000C16F1A /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
-				C1F885E31F336DA5006ECA20 /* SearchTableViewController.swift in Sources */,
 				C9F3A4961F2DE79B0089DA2F /* PostingImageCollectionViewCell.swift in Sources */,
 				C92BA2601F3194A1005934E8 /* CameraViewController.swift in Sources */,
 				C92BA2731F31A8E8005934E8 /* DKImagePickerControllerDefaultUIDelegate.swift in Sources */,
 				C92BA29C1F31A9A8005934E8 /* PostDetailViewController.swift in Sources */,
 				C920D69E1EB6265400D095FC /* LoginViewController.swift in Sources */,
 				C9F3A4BE1F2DE9EE0089DA2F /* TestViewController.swift in Sources */,
+				C153AFD71F34B1BE00DD464F /* SearchViewController.swift in Sources */,
 				8F1F32421F0170C100DE910C /* BEMAnimationManager.m in Sources */,
 				8FF04A3C1F136677008FD87F /* ProtectionPointsViewController.swift in Sources */,
 				8F49A7A81F1DCEF800725A8D /* HomepageDataManager.swift in Sources */,
@@ -1273,7 +1254,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 89782M2XS3;
+				DEVELOPMENT_TEAM = 2MY9W9SN9C;
 				INFOPLIST_FILE = "$(SRCROOT)/ShareATextbook/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1292,7 +1273,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 89782M2XS3;
+				DEVELOPMENT_TEAM = 2MY9W9SN9C;
 				INFOPLIST_FILE = "$(SRCROOT)/ShareATextbook/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

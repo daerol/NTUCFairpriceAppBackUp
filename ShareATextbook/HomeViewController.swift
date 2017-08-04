@@ -55,6 +55,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         loadFeatures()
         loadCategories()
         loadRefresh()
+        
+
        
         
     }
@@ -153,6 +155,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         return cell
     }
+    
+    
     
     
 }
