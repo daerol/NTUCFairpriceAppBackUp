@@ -52,6 +52,13 @@ class ProtectionPointsViewController: UIViewController, UITableViewDelegate, UIT
         
         if indexPath.row == 0 {
             didTapPointsRecord()
+            
+//            for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
+//                print("\(key) = \(value) \n")
+//            }
+            
+            
+            
         } else {
             didTapPointsRecord()
         }
