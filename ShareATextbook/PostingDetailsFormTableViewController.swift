@@ -57,7 +57,8 @@ class PostingDetailsFormTableViewController: UITableViewController {
         let decodeUser = UserDefaults.standard.object(forKey: "User") as! Data
         let user =  NSKeyedUnarchiver.unarchiveObject(with: decodeUser) as! User
         DispatchQueue.main.async(execute: {
-            
+            print("testlocal:\(user.preferredloc)")
+            print("testlocal:\(user.email)")
             let preferredLocationVal: LocationValue = LocationValue.convertToLocationValue(locationDescription: user.preferredloc!)
             
             if preferredLocationVal.descriptionName != "-" {
