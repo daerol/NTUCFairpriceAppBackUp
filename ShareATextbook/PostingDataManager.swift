@@ -59,7 +59,7 @@ class PostingDataManager: NSObject {
         })
     }
     
-    static func addPost(post: Posting, postImageList: [UIImage] , onComplete:((_: Bool, _:Posting) -> Void)?) {
+    static func addPost(post: Posting, postImageList: [UIImage] , token: String, onComplete:((_: Bool, _:Posting) -> Void)?) {
         let addPostingURL = DatabaseAPI.url + "posting/add"
         let url = DatabaseAPI.url + "photos/addp"
         
@@ -68,7 +68,7 @@ class PostingDataManager: NSObject {
             photoList in
             
             let addPostingJSON: JSON = [
-                "token": SharedVariables.token,
+                "token": token,
                 "cateid": post.cateId,
                 "name": post.name,
                 "desc": post.desc,

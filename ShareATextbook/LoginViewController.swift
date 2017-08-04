@@ -65,7 +65,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFie
         //        self.performSegue(withIdentifier: LOGIN_SEGUE, sender: nil)
     }
     
-    // Create a function to log in via Email
+    // START emailLogin func
     func emailLogin()
     {
         emailField = emailTextField.text!
@@ -177,7 +177,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFie
         } // end of if checkallfields
         return
     }
-    // End Email Login
+    // END Email Login
     
     // FB Login and Logout functions
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {

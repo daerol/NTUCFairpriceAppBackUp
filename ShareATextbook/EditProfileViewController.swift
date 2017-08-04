@@ -74,6 +74,7 @@ class EditProfileViewController: FormViewController, UIImagePickerControllerDele
                 if self.didChangePhoto {
                     //  Upload photo
                     photo = self.userProfileImg.image
+                    photo = #imageLiteral(resourceName: "user2")
                 } else {
                     self.photoPath = (self.user?.photo)!
                 }

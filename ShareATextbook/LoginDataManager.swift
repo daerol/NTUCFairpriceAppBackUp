@@ -53,17 +53,20 @@ class loginDA: NSObject {
             "userid" : userId
             ])
         
+        print(json["token"].string!)
+        
         DispatchQueue.global(qos: .background).async {
             HTTP.postJSON(url: "http://13.228.39.122/FP05_883458374658792/1.0/user/logout", json: json, onComplete: {
                 json, response, error in
                 
                 if json != nil {
                     print(json!)
+                    print(token)
+                    print(userId)
                     isLoggedOut = true
-                    token = (json!["token"].string)!
-                    userId = (json!["userid"].string)!
 //                    onComplete(token, userId, isLoggedOut)
                 }
+                
             })
             
             return
