@@ -147,6 +147,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let bookCat = self.categoriesList[indexPath.row]
             cell.backgroundImage?.image = #imageLiteral(resourceName: "cells")
             cell.nameLabel?.text = bookCat.name
+            
+            self.refreshControl?.endRefreshing()
         }
         
         

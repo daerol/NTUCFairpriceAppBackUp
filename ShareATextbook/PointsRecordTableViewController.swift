@@ -9,23 +9,40 @@
 import UIKit
 
 class PointsRecordTableViewController: UITableViewController {
+    
+    var pointsList : [Points] = []
+    let usersList = UserDefaults.standard.object(forKey: "User") as! Data?
+    
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        //loadPoints()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
     }
 
-    // MARK: - Table view data source
+//    func loadPoints() {
+//        
+//        let userId = usersList.
+//    
+//        PointsDataManager.getUserPoints(userId!, onComplete: {
+//            pointsListFromServer in
+//            
+//            
+//            self.pointsList = pointsListFromServer
+//            
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        })
+//    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections

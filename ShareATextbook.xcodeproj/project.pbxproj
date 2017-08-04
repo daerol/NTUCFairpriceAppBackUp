@@ -544,9 +544,9 @@
 				C920D66A1EB624E700D095FC /* FirstViewController.swift */,
 				C920D66C1EB624E700D095FC /* SecondViewController.swift */,
 				C920D69D1EB6265400D095FC /* LoginViewController.swift */,
-				8FDCAB011EFAFC14001D903F /* RegistrationViewController.swift */,
 				8F1F324C1F0194A100DE910C /* HomeContentTableViewCell.swift */,
 				8F32DB041F0BBEB40021D095 /* HomeViewController.swift */,
+				8FDCAB011EFAFC14001D903F /* RegistrationViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1282,7 +1282,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/ShareATextbook/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ShareATextbook;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ShareATextbookLol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = CheckboxHeader.h;
@@ -1301,7 +1301,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/ShareATextbook/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ShareATextbook;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ShareATextbookLol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = CheckboxHeader.h;
