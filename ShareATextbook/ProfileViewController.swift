@@ -39,6 +39,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(ProfileViewController.logOut))
+
         //  Tap Gestures
         let pointStackViewTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapPointStackView))
         pointStackView.addGestureRecognizer(pointStackViewTapGesture)
@@ -57,7 +59,10 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
 //            preferredLocation.text = user!.preferredloc
 //            
 //        }
+        
         //  If is profile
+        let token = user?.token
+        print(token)
         if user == nil {
             let decodeUser = UserDefaults.standard.object(forKey: "User") as! Data
             user =  NSKeyedUnarchiver.unarchiveObject(with: decodeUser) as! User
@@ -119,6 +124,30 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         
     }
     
+    @IBAction func logOutBtn(_ sender: Any) {
+
+
+    }
+    // SHAH ADDED
+    func logOut() {
+        print("Log out")
+        let isUserLoggedIn = UserDefaults.standard.bool(forKey: "User")
+        if (isUserLoggedIn) {
+            
+            loginDA.logOut()
+                
+            UserDefaults.standard.removeObject(forKey: "User")
+            UserDefaults.standard.removeObject(forKey: "isLoggedIn")
+            
+            DispatchQueue.main.async {
+                let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginHome") as! LoginViewController
+                self.navigationController?.pushViewController(loginViewController, animated: true)
+            }
+         print("Ayylmao")
+        }
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -178,12 +207,12 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     }
 
     
-    func settingsButtonClicked() {
-        print("clicked!")
-        let settingsStoryboard = UIStoryboard(name: "Profile", bundle: nil)
-        let vc = settingsStoryboard.instantiateViewController(withIdentifier: "SettingsStoryboard") as! SettingsViewController
-        self.present(vc, animated: true, completion: nil)
-    }
+//    func settingsButtonClicked() {
+//        print("clicked!")
+//        let settingsStoryboard = UIStoryboard(name: "Profile", bundle: nil)
+//        let vc = settingsStoryboard.instantiateViewController(withIdentifier: "SettingsStoryboard") as! SettingsViewController
+//        self.present(vc, animated: true, completion: nil)
+//    }
 
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
