@@ -23,7 +23,14 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
     //  MARK:   Variables
     var barcode: String = ""
     var img: UIImage?
-    var assets: [DKAsset]?
+    var assets: [DKAsset]? {
+        didSet {
+            if self.imageListCollectionView != nil {
+                self.imageList = [UIImage](repeatElement(UIImage(), count: (assets?.count)!))
+                self.imageListCollectionView.reloadData()
+            }
+        }
+    }
     var categoryList: [Category] = []
     var posting: Posting = Posting()
     var imageList: [UIImage] = []
@@ -34,11 +41,13 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
     //  MARK:   Table View
     var tableViewController: PostingDetailsFormTableViewController!
     
+    //  MARK:   Tab bar controller
+    var customTabBarController: CustomTabBarController?
+    
     //  MARK:   IBAction
-   
     @IBAction func doneButtonAction(_ sender: UIBarButtonItem) {
         errorMessage = "Some of the details are required\n"
-
+        
         print("done")
         
         if tableViewController.bookTitleTextField.text != "" {
@@ -63,11 +72,11 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
             let user =  NSKeyedUnarchiver.unarchiveObject(with: decodeUser) as! User
             posting.preferredLocation = user.preferredloc!
             //  CHANGE BACK TO THIS
-//            posting.preferredLocation = tableViewController.preferredLocationTextField.text!
+            //            posting.preferredLocation = tableViewController.preferredLocationTextField.text!
         }
         if tableViewController.educationLevel.text != Strings.choosePrompt {
             let selectedEducationLevel = tableViewController.selectedEducationLevel
-//            posting.cateId.append((selectedEducationLevel?.id)!)
+            //            posting.cateId.append((selectedEducationLevel?.id)!)
             posting.cateId[0] = (selectedEducationLevel?.id)!
         } else {
             errorMessage += "Education Level\n"
@@ -75,7 +84,7 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
         }
         if tableViewController.subject.text != Strings.choosePrompt {
             let selectedSubject = tableViewController.selectedSubject
-//            posting.cateId.append((selectedSubject?.id)!)
+            //            posting.cateId.append((selectedSubject?.id)!)
             posting.cateId[1] = (selectedSubject?.id)!
         } else {
             errorMessage += "Subject\n"
@@ -88,8 +97,8 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
         print(posting.desc)
         print(posting.preferredLocation)
         print(posting.cateId)
-    
-//        dismiss(animated: true, completion: nil)
+        
+        //        dismiss(animated: true, completion: nil)
         if errorMessage != "Some of the details are required\n" {
             let alert = UIAlertController(title: "Whoops", message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.cancel, handler: nil))
@@ -108,6 +117,9 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
                     
                     self.dismiss(animated: true, completion: nil)
                     
+                    
+                    //  MARK:   Clear postviewcontroller at tabbar
+                    self.customTabBarController?.postViewController = nil
                 })
             } else {
                 print("enter edit")
@@ -128,15 +140,21 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
     
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+        
+        self.customTabBarController?.assets = []
+        self.customTabBarController?.pickerController.deselectAllAssets()
+        
+        self.customTabBarController?.postViewController = nil
     }
     
     @IBAction func barcodeReaderAction(_ sender: UIButton) {
         
     }
     @IBAction func morePhotosAction(_ sender: UIButton) {
-        print("enter la")
-        //        dismiss(animated: true, completion: nil)
-        self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async(execute: {
+            self.customTabBarController?.showImagePicker()
+            self.customTabBarController?.postViewController = self
+        })
     }
     
     //  MARK:   Override Methods
@@ -175,7 +193,6 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
                     for cat in self.categoryList {
                         if cat.id == self.posting.cateId[0] {
                             self.tableViewController.selectedEducationLevel = cat
-//                            self.tableViewController.educationLevel.text = cat.name
                             break
                         }
                     }
@@ -183,12 +200,11 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
                     for cat in self.categoryList {
                         if cat.id == self.posting.cateId[1] {
                             self.tableViewController.selectedSubject = cat
-//                            self.tableViewController.subject.text = cat.name
                             break
                         }
                     }
                 })
-
+                
             }
             
             print("inn")
@@ -205,7 +221,7 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
             tableViewController.preferredLocationTextField.text = posting.preferredLocation
         }
     }
-  
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "test" {
@@ -221,7 +237,7 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
             vc.i1 = imageList[0]
             vc.i2 = imageList[1]
             vc.i3 = imageList[2]
-
+            
         } else if segue.identifier == "barcodeReaderSegue" {
             let vc = segue.destination as! BarcodeReaderViewController
             vc.postViewController = self
