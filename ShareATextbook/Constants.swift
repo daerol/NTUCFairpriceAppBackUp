@@ -66,7 +66,7 @@ struct Strings {
 struct SharedVariables {
     static var id: String = ""
     static var token: String = ""
-    static var user: User = User(userId: "", username: "", password: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
+    static var user: User = User(username: "", password: "", token: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
     
 }
 
@@ -77,5 +77,15 @@ struct OpenPhoneApplication {
         } else {
             return false
         }
+    }
+}
+
+struct Formatter {
+    static func formatDoubleToString(num: Double, noOfDecimal: Int) -> String {
+        let fmt = NumberFormatter()
+        fmt.minimumFractionDigits = noOfDecimal
+        let formattedStr = fmt.string(from: NSNumber(value: num))!
+        
+        return formattedStr
     }
 }

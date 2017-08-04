@@ -22,7 +22,7 @@ class UserDataManager: NSObject {
         HTTP.postJSON(url: getUserURL, json: getUserJSON, onComplete: {
             json, response, error in
     
-            let user = User(userId: "", username: "", password: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
+            let user = User(username: "", password: "", token: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
             
             if json != nil {
                 print(json!)
@@ -30,7 +30,7 @@ class UserDataManager: NSObject {
                     print("no error \(json!.count)")
                     
                     print("user \(json)")
-                    user.userId = json!["userid"].string!
+//                    user.userId = json!["userid"].string!
                     user.id = json!["id"].string!
                     user.username = json!["name"].string!
                     user.preferredloc = json!["preferredloc"] != JSON.null ? json!["preferredloc"].string! : ""
@@ -46,7 +46,7 @@ class UserDataManager: NSObject {
         })
     }
 
-    static func editUser (token: String, name: String, email: String, phone: String, showemail: String, showphone: String, notifyviaemail: String, notifyviasms: String, photoPath: String, photo: UIImage ,onComplete:((_:Bool, _:String) -> Void)?) {
+    static func editUser (token: String, name: String, email: String, phone: String, showemail: String, showphone: String, notifyviaemail: String, notifyviasms: String, photoPath: String, photo: UIImage, didChangePhoto: Bool, preferredloc: String ,onComplete:((_:Bool, _:String) -> Void)?) {
         
         let editUserURL = DatabaseAPI.url + "user/edit"
         var editUserJSON: JSON = [
@@ -56,12 +56,13 @@ class UserDataManager: NSObject {
             "phone": phone,
             "showphone": showphone,
             "showemail": showemail,
+            "preferredloc": preferredloc,
             "notifyviaemail": notifyviaemail,
             "notifyviasms": notifyviasms,
             "photo": photoPath
         ]
         
-        if photo != nil {
+        if didChangePhoto {
             uploadProfile(photo: photo, token: token, onComplete: {
                 filePath in
                 

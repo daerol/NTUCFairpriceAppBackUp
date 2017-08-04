@@ -39,6 +39,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(ProfileViewController.logOut))
+
         //  Tap Gestures
         let pointStackViewTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapPointStackView))
         pointStackView.addGestureRecognizer(pointStackViewTapGesture)
@@ -57,7 +59,10 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
 //            preferredLocation.text = user!.preferredloc
 //            
 //        }
+        
         //  If is profile
+        let token = user?.token
+        print(token)
         if user == nil {
             let decodeUser = UserDefaults.standard.object(forKey: "User") as! Data
             user =  NSKeyedUnarchiver.unarchiveObject(with: decodeUser) as! User
@@ -85,7 +90,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
 //        self.profileInfoStackView.removeArrangedSubview(editProfileView)
         
 //        DispatchQueue.global(qos: .userInitiated).async {
-            PostingDataManager.getPostingList(onComplete: {
+            PostingDataManager.getPostingList(userId: (user?.id)!, isAvailable: "N", onComplete: {
                 postingList in
                 
                 print("enter 1")
@@ -118,6 +123,37 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
             })
         
     }
+    
+    @IBAction func logOutBtn(_ sender: Any) {
+
+
+    }
+    // SHAH ADDED
+    func logOut() {
+        print("Log out")
+        let isUserLoggedIn = UserDefaults.standard.value(forKey: "User")
+        
+        if (isUserLoggedIn != nil) {
+            
+            loginDA.logOut()
+                
+            UserDefaults.standard.removeObject(forKey: "User")
+            UserDefaults.standard.removeObject(forKey: "isLoggedIn")
+            
+            DispatchQueue.main.async {
+//                let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginHome") as! LoginViewController
+//                self.navigationController?.pushViewController(loginViewController, animated: true)
+                
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let newViewController = storyBoard.instantiateViewController(withIdentifier: "loginHome") as! LoginViewController
+//                self.navigationController?.show(newViewController, sender: self)
+                self.present(newViewController, animated: true, completion: nil)
+
+            }
+         print("Logged out")
+        }
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -178,12 +214,12 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     }
 
     
-    func settingsButtonClicked() {
-        print("clicked!")
-        let settingsStoryboard = UIStoryboard(name: "Profile", bundle: nil)
-        let vc = settingsStoryboard.instantiateViewController(withIdentifier: "SettingsStoryboard") as! SettingsViewController
-        self.present(vc, animated: true, completion: nil)
-    }
+//    func settingsButtonClicked() {
+//        print("clicked!")
+//        let settingsStoryboard = UIStoryboard(name: "Profile", bundle: nil)
+//        let vc = settingsStoryboard.instantiateViewController(withIdentifier: "SettingsStoryboard") as! SettingsViewController
+//        self.present(vc, animated: true, completion: nil)
+//    }
 
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -237,9 +273,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
                 data in
                 
                 DispatchQueue.main.async() { () -> Void in
-                    cell.itemImage.contentMode = .scaleAspectFit
+//                    cell.itemImage.contentMode = .scaleAspectFit
                     cell.itemImage.image = UIImage(data: data)
-                    print("donee")
                 }
             })
         }
