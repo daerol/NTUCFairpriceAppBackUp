@@ -89,7 +89,7 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
         print(posting.preferredLocation)
         print(posting.cateId)
     
-        dismiss(animated: true, completion: nil)
+//        dismiss(animated: true, completion: nil)
         if errorMessage != "Some of the details are required\n" {
             let alert = UIAlertController(title: "Whoops", message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.cancel, handler: nil))
