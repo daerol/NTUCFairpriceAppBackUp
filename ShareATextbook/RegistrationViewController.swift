@@ -105,7 +105,7 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
              // yet to fix
                         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                         
-                        let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
+                        let homeViewController = storyBoard.instantiateViewController(withIdentifier: "loginHome") as! LoginViewController
                         self.present(homeViewController, animated: true, completion: nil)
                     
                     
