@@ -20,6 +20,8 @@ class PinResultViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var mapViewController: MapViewViewController?
     
+    var isNearbyPost: Bool = false
+    
     var postList: [Posting] = [] {
         didSet {
             print("settla")
@@ -59,6 +61,10 @@ class PinResultViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //  Set image tint color
+        swipeImageView.image?.withRenderingMode(.alwaysTemplate)
+        swipeImageView.tintColor = Colors.shadowGrey
+        
         //  Gestures
         swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeUpAction))
         swipeUp.direction = .up
@@ -76,17 +82,19 @@ class PinResultViewController: UIViewController, UITableViewDelegate, UITableVie
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillLayoutSubviews() {
+        addressLabel.sizeToFit()
+    }
+    
     func swipeUpAction() {
         UIView.animate(withDuration: 0.4, animations: {
             self.view.frame =  CGRect(x: 0, y: 100, width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.height) - (100))
-            self.swipeImageView.image = UIImage(named: "Down")
         })
     }
     
     func swipeDownAction() {
         UIView.animate(withDuration: 0.4, animations: {
-            self.view.frame =  CGRect(x: 0, y: UIScreen.main.bounds.height - 85, width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.height) - (85))
-            self.swipeImageView.image = UIImage(named: "Up")
+            self.view.frame =  CGRect(x: 0, y: UIScreen.main.bounds.height - 110, width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.height) - (110))
         })
     }
     
@@ -97,9 +105,21 @@ class PinResultViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pinResultCell", for: indexPath) as! MapResultTableViewCell
         
-//        cell.textLabel?.text = postList[indexPath.row].name
         cell.title.text = postList[indexPath.row].name
-        cell.distance.text = distance + " KM"
+        print("nearbylaaaa\(isNearbyPost))")
+        if isNearbyPost {
+            let preferredLocValue: LocationValue = LocationValue.convertToLocationValue(locationDescription: postList[indexPath.row].preferredLocation)
+            
+            let dist = mapViewController?.currentLocation?.distance(from: preferredLocValue.location)
+            let distKM = Formatter.formatDoubleToString(num: (dist!/1000), noOfDecimal: 1)
+            
+            cell.distance.text =  distKM + " KM"
+            if (postList.count-1) == indexPath.row {
+                isNearbyPost = false
+            }
+        } else {
+            cell.distance.text = distance + " KM"
+        }
         
         var categoryStr: String = ""
         DispatchQueue.global(qos: .userInitiated).async {
@@ -110,7 +130,6 @@ class PinResultViewController: UIViewController, UITableViewDelegate, UITableVie
                     cat2 in
                     categoryStr += ", " + cat2.name
                     DispatchQueue.main.async {
-//                        cell.detailTextLabel?.text = categoryStrs
                         cell.subtitle.text = " " + categoryStr
                     }
                 })
@@ -121,7 +140,6 @@ class PinResultViewController: UIViewController, UITableViewDelegate, UITableVie
                 data in
                 
                 DispatchQueue.main.async() { () -> Void in
-//                    cell.imageView?.image = UIImage(data: data)
                     cell.thumbnail.image = UIImage(data: data)
                 }
             })
