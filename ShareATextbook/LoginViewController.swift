@@ -40,6 +40,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFie
         
         loginButton.delegate = self
         
+        emailTextField.text = "nraqsh@gmail.com"
+        passwordTextfield.text = "asdqwe"
+        
     }
     // End viewDidLoad function
     
@@ -52,7 +55,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFie
         }
         else {
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-
+            
             let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
             self.present(homeViewController, animated: true, completion: nil)
         }
@@ -92,9 +95,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFie
                     if response != nil
                     {
                         print(json!)
-          
+                        
                         let nonce = (json!["nonce"].string)
                         password = self.sha512Hex(string: (self.sha512Hex(string: self.passwordTextfield.text!).uppercased() + nonce!)).uppercased()
+                        
                         
                         let loginJson = JSON.init([
                             "type" : "E",
@@ -104,68 +108,69 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFie
                         
                         HTTP.postJSON(url: "http://13.228.39.122/FP05_883458374658792/1.0/user/login", json: loginJson, onComplete: {
                             json, response, error in
-                          
+                            
                             //  LI YUN ADDED
                             let user = User(username: "", password: "", token: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
-                          
+                            
                             if json != nil {
                                 print(json!)
                                 token = (json!["token"].string)
                                 userId = (json!["userid"].string)
-                                        print(token)
-                                        print(userId)
-                                self.loggedUserId = userId
-                                self.loggedToken = token
-                                print("LoggedUserId = \(userId)")
-                                print("LoggedToken = \(token)")
-                                //                            let saveToken: Bool = KeychainWrapper.standard.set(token, forKey: "sessionToken")
-                                //                            let saveUserId: Bool = KeychainWrapper.standard.set(userId, value(forKey: "userid"))
-                                
-                                //  LI YUN ADDED
-                            user.id = json!["userid"].string!
-                            user.username = json!["name"].string!
-                            user.preferredloc = json!["preferredloc"] != JSON.null ? json!["preferredloc"].string! : ""
-                            user.email = json!["email"] != JSON.null ? json!["email"].string! : ""
-                            user.phoneNumber = json!["phone"] != JSON.null ? json!["phone"].string! : ""
-                            user.photo = json!["photo"] != JSON.null ? json!["photo"].string! : ""
-                                
-                                print(user.id)
-                                print(user.username)
-                                print(user.email)
-                                print(user.token)
-                                print(user.phoneNumber)
-                            
-                            //  UserDefaults
-                            UserDefaults.standard.set(token, forKey: "Token")
-                            UserDefaults.standard.set(password, forKey: "HashedPassword")
-                            //  Encode user object
-                            let encodedUserData = NSKeyedArchiver.archivedData(withRootObject: user)
-                            UserDefaults.standard.set(encodedUserData, forKey: "User")
-
-                              
-                                if token == nil
-                                {
-                                    print(error!)
-                                }
-                                else
-                                {
-                                    DispatchQueue.main.async {
-                                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                                        
-                                        let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
-                                        self.present(homeViewController, animated: true, completion: nil)
-                                        
-                                        UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                                        UserDefaults.standard.synchronize()
-                                    }
+                                print(token)
+                                print(userId)
+                                if token != nil {
+                                    self.loggedUserId = userId
+                                    self.loggedToken = token
+                                    print("LoggedUserId = \(userId)")
+                                    print("LoggedToken = \(token)")
+                                    //                            let saveToken: Bool = KeychainWrapper.standard.set(token, forKey: "sessionToken")
+                                    //                            let saveUserId: Bool = KeychainWrapper.standard.set(userId, value(forKey: "userid"))
                                     
+                                    //  LI YUN ADDED
+                                    user.id = json!["userid"].string!
+                                    user.username = json!["name"].string!
+                                    user.preferredloc = json!["preferredloc"] != JSON.null ? json!["preferredloc"].string! : ""
+                                    user.email = json!["email"] != JSON.null ? json!["email"].string! : ""
+                                    user.phoneNumber = json!["phone"] != JSON.null ? json!["phone"].string! : ""
+                                    user.photo = json!["photo"] != JSON.null ? json!["photo"].string! : ""
+                                    
+                                    print(user.id)
+                                    print(user.username)
+                                    print(user.email)
+                                    print(user.token)
+                                    print(user.phoneNumber)
+                                    
+                                    //  UserDefaults
+                                    UserDefaults.standard.set(token, forKey: "Token")
+                                    UserDefaults.standard.set(password, forKey: "HashedPassword")
+                                    //  Encode user object
+                                    let encodedUserData = NSKeyedArchiver.archivedData(withRootObject: user)
+                                    UserDefaults.standard.set(encodedUserData, forKey: "User")
+                                    
+                                    if token == nil
+                                    {
+                                        print(error!)
+                                    }
+                                    else
+                                    {
+                                        DispatchQueue.main.async {
+                                            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                                            let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
+                                            self.present(homeViewController, animated: true, completion: nil)
+                                            UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                                            UserDefaults.standard.synchronize()
+                                        }
+                                        return
+                                    }
                                 }
-                                return
-                            }
-                            
-                            if error != nil {
-                                print(error!)
-                                return
+                                else {
+                                    self.displayMyAlertMessage(userMessage: "Invalid Email/Password!")
+                                }
+                                
+                                if error != nil {
+                                    print(error!)
+                                    return
+                                }
                             }
                             
                         })
@@ -209,17 +214,17 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFie
                 
                 if (isLogin) {
                     DispatchQueue.main.async() {
-                            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                            
-                            let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
-                            self.present(homeViewController, animated: true, completion: nil)
-                            
-                            UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                            UserDefaults.standard.synchronize()
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        
+                        let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
+                        self.present(homeViewController, animated: true, completion: nil)
+                        
+                        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                        UserDefaults.standard.synchronize()
                     }
                 }
                 
-        print("Successfully logged in with facebook...")
+                print("Successfully logged in with facebook...")
                 
             })
             
@@ -290,8 +295,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFie
         }
         return validFormat
     }
-
-
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
