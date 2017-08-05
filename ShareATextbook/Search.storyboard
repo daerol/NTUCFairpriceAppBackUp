@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ibr-l4-oyM">
-                                <rect key="frame" x="0.0" y="24" width="375" height="643"/>
+                                <rect key="frame" x="-16" y="28" width="375" height="643"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="UDm-3b-biU">
@@ -34,7 +34,7 @@
                                     <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="itemCell" id="WBZ-Ve-qtw" customClass="ItemCollectionViewCell" customModule="ShareATextbook" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="itemCell" id="WBZ-Ve-qtw" customClass="SearchCollectionViewCell" customModule="ShareATextbook" customModuleProvider="target">
                                         <rect key="frame" x="87.5" y="5" width="200" height="270"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -142,12 +142,12 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outlet property="bookmarkButton" destination="lBO-RQ-91u" id="TVd-0C-T0h"/>
-                                            <outlet property="chatButton" destination="p6e-a0-9WJ" id="gqA-Xj-eTT"/>
-                                            <outlet property="itemDetail" destination="kNu-cy-TDW" id="rfz-eq-6Zw"/>
-                                            <outlet property="itemImage" destination="Wv7-yE-6YR" id="lNo-a4-xd4"/>
-                                            <outlet property="itemTag" destination="ykR-mk-rKY" id="Nhw-Bc-7b7"/>
-                                            <outlet property="itemTitle" destination="gmx-Q9-2Yd" id="XMu-qC-tkc"/>
+                                            <outlet property="bookmarkButton" destination="lBO-RQ-91u" id="4pZ-gA-Oms"/>
+                                            <outlet property="chatButton" destination="p6e-a0-9WJ" id="RYc-t8-rif"/>
+                                            <outlet property="itemDetail" destination="kNu-cy-TDW" id="4mL-NC-4ud"/>
+                                            <outlet property="itemImage" destination="Wv7-yE-6YR" id="G7J-l2-HRo"/>
+                                            <outlet property="itemTag" destination="ykR-mk-rKY" id="QJd-An-raL"/>
+                                            <outlet property="itemTitle" destination="gmx-Q9-2Yd" id="n0z-MG-8Ek"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -156,7 +156,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="itemCollectionView" destination="Ibr-l4-oyM" id="sH3-na-YyS"/>
+                        <outlet property="searchCollectionView" destination="Ibr-l4-oyM" id="3yf-s2-4eg"/>
                     </connections>
                 </viewController>
             </objects>

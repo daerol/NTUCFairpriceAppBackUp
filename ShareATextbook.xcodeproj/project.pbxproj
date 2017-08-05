@@ -38,6 +38,7 @@
 		8FFD6D451F31B5D0000FCE64 /* PointsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD6D441F31B5D0000FCE64 /* PointsTableViewCell.swift */; };
 		8FFD6D491F31EA13000FCE64 /* PointsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFD6D481F31EA13000FCE64 /* PointsDataManager.swift */; };
 		C153AFD71F34B1BE00DD464F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C153AFD61F34B1BE00DD464F /* SearchViewController.swift */; };
+		C179C43E1F364D2C00DACD6D /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C179C43D1F364D2C00DACD6D /* SearchCollectionViewCell.swift */; };
 		C917BDF41EF1563E00CBF4F1 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917BDF31EF1563E00CBF4F1 /* HTTP.swift */; };
 		C917BDF61EF1566D00CBF4F1 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */; };
 		C92078C71F3360EA00262CFC /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92078C61F3360EA00262CFC /* MapAnnotation.swift */; };
@@ -227,6 +228,7 @@
 		8FFD6D441F31B5D0000FCE64 /* PointsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsTableViewCell.swift; sourceTree = "<group>"; };
 		8FFD6D481F31EA13000FCE64 /* PointsDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsDataManager.swift; sourceTree = "<group>"; };
 		C153AFD61F34B1BE00DD464F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		C179C43D1F364D2C00DACD6D /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		C917BDF31EF1563E00CBF4F1 /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 		C917BDF51EF1566D00CBF4F1 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		C92078C61F3360EA00262CFC /* MapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 			isa = PBXGroup;
 			children = (
 				C153AFD61F34B1BE00DD464F /* SearchViewController.swift */,
+				C179C43D1F364D2C00DACD6D /* SearchCollectionViewCell.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -1100,6 +1103,7 @@
 				C9F3A4BE1F2DE9EE0089DA2F /* TestViewController.swift in Sources */,
 				C153AFD71F34B1BE00DD464F /* SearchViewController.swift in Sources */,
 				8F1F32421F0170C100DE910C /* BEMAnimationManager.m in Sources */,
+				C179C43E1F364D2C00DACD6D /* SearchCollectionViewCell.swift in Sources */,
 				8FF04A3C1F136677008FD87F /* ProtectionPointsViewController.swift in Sources */,
 				8F49A7A81F1DCEF800725A8D /* HomepageDataManager.swift in Sources */,
 				C920D66B1EB624E700D095FC /* FirstViewController.swift in Sources */,

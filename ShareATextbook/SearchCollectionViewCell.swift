@@ -2,7 +2,7 @@
 //  SearchCollectionViewCell.swift
 //  ShareATextbook
 //
-//  Created by Cheryl Heng on 5/8/17.
+//  Created by Cheryl Heng on 6/8/17.
 //  Copyright © 2017 Chia Li Yun. All rights reserved.
 //
 

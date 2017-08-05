@@ -16,7 +16,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     private let numberOfItemsPerRow: CGFloat = 2.0
     private let heightAdjustment: CGFloat = 80.0
     
-    @IBOutlet weak var itemCollectionView: UICollectionView!
+    @IBOutlet weak var searchCollectionView: UICollectionView!
 
     var category: Category!
     var catList: [Category]!
@@ -47,7 +47,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             
             
             DispatchQueue.main.async(execute: {
-                self.itemCollectionView.reloadData()
+                self.searchCollectionView.reloadData()
                 print(self.postList![1].name)
             })
         })
@@ -78,7 +78,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = itemCollectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ItemCollectionViewCell
+        let cell = searchCollectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! SearchCollectionViewCell
         
         print("Hello")
         
@@ -129,7 +129,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let width = (itemCollectionView.bounds.width - leftAndRightPadding) / numberOfItemsPerRow
+        let width = (searchCollectionView.bounds.width - leftAndRightPadding) / numberOfItemsPerRow
         
         return CGSize(width: width, height: width + heightAdjustment)
     }
