@@ -69,7 +69,7 @@ class MapViewViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         locationManager.startUpdatingLocation()
         
         //  Get all posting
-        PostingDataManager.getPostingList(userId: "", isAvailable: "N", onComplete: {
+        PostingDataManager.getPostingList(userId: "", isAvailable: "N", catId: "", onComplete: {
             postList in
             
             self.postingList = postList

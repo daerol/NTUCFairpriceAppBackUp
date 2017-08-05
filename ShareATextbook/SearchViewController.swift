@@ -27,11 +27,14 @@ class SearchViewController: UIViewController  {
     
     @IBOutlet weak var numberOfPost: UILabel!
     @IBOutlet weak var numberOfDonatedPost: UILabel!
+    
+    var category: Categories!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        PostingDataManager.getPostingList(userId: (user?.id)!, isAvailable: "N", onComplete: {
+        
+        PostingDataManager.getPostingList(userId: "", isAvailable: "N", catId: "", onComplete: {
             postingList in
             
             print("enter 1")
@@ -52,14 +55,14 @@ class SearchViewController: UIViewController  {
                 
                 if total == postingList.count {
                     DispatchQueue.main.async(execute: {
-                        self.numberOfPost.text = String(itemAvailable)
-                        self.numberOfDonatedPost.text = String(itemDonated)
+//                        self.numberOfPost.text = String(itemAvailable)
+//                        self.numberOfDonatedPost.text = String(itemDonated)
                     })
                 }
             }
             
             DispatchQueue.main.async(execute: {
-                self.itemCollectionView.reloadData()
+//                self.itemCollectionView.reloadData()
             })
         })
         
