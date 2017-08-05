@@ -23,6 +23,8 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var postPreferredLocationStackView: UIStackView!
     
+//    var refreshControl: UIRefreshControl!
+    
     var post: Posting?
     
     var isOwner: Bool?
@@ -133,6 +135,17 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
         }
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(didTap))
         postImageSlideshow.addGestureRecognizer(recognizer)
+    }
+    
+//    func refreshAction() {
+//        refreshControl = UIRefreshControl()
+//        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+//        refreshControl.addTarget(self, action: #selector(loadUserProfile), for: UIControlEvents.valueChanged)
+//        self.view.addSubview(refreshControl)
+//    }
+    
+    func loadUserProfile() {
+        print("loadprofile")
     }
     
     func editButtonAction() {
