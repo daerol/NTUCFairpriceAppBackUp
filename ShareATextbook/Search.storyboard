@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hgu-SC-rFT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hgu-SC-rFT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,6 @@
         <!--Navigation Controller-->
         <scene sceneID="sS3-Dc-C7t">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pUM-5B-mRN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="AlB-YO-UMS" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LzY-MZ-P5M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -23,6 +22,7 @@
                         <segue destination="YYJ-mh-V4k" kind="relationship" relationship="rootViewController" id="eFT-EZ-ODU"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pUM-5B-mRN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-206" y="471"/>
         </scene>
@@ -47,7 +47,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="132"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AD1-sM-A9c" id="poF-vT-vHI">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="132"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="131.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vZn-xi-UZc">
@@ -82,10 +82,10 @@
             </objects>
             <point key="canvasLocation" x="1745" y="-92"/>
         </scene>
-        <!--View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="VhA-h1-c9o">
             <objects>
-                <viewController storyboardIdentifier="SearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hgu-SC-rFT" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hgu-SC-rFT" customClass="SearchViewController" customModule="ShareATextbook" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7zd-cU-E27"/>
                         <viewControllerLayoutGuide type="bottom" id="DqS-IK-1P0"/>
@@ -103,7 +103,6 @@
         <!--Listing-->
         <scene sceneID="0cD-Ej-ADM">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LbA-vk-BU1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="YYJ-mh-V4k" customClass="SearchViewController" customModule="ShareATextbook" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aCr-av-ISK"/>
@@ -259,6 +258,7 @@
                         <outlet property="itemCollectionView" destination="Ibr-l4-oyM" id="gux-kN-C8n"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LbA-vk-BU1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="708" y="471"/>
         </scene>

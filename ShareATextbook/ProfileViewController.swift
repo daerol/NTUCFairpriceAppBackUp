@@ -99,7 +99,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         }
         
         //        DispatchQueue.global(qos: .userInitiated).async {
-        PostingDataManager.getPostingList(userId: (user?.id)!, isAvailable: "N", onComplete: {
+        PostingDataManager.getPostingList(userId: (user?.id)!, isAvailable: "N", catId: "", onComplete: {
             postingList in
             
             print("enter 1")
