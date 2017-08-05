@@ -103,20 +103,11 @@
                         <outlet property="featureViewControl" destination="ULJ-AW-voY" id="xaW-gW-Krt"/>
                         <outlet property="sliderScrollView" destination="hHm-iF-Zam" id="uaJ-fS-NuK"/>
                         <outlet property="tableView" destination="nvH-9x-2Ml" id="blq-Ue-936"/>
-                        <segue destination="QnL-Qf-ZV1" kind="show" id="QQT-tF-hbF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DNo-2V-SxS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="269.60000000000002" y="144.3778110944528"/>
-        </scene>
-        <!--Search-->
-        <scene sceneID="aHN-O5-z7M">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Search" id="QnL-Qf-ZV1" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AZE-xS-xPA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1126" y="144"/>
         </scene>
     </scenes>
     <resources>
