@@ -151,6 +151,10 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="pCM-qH-EYC" id="6ph-wl-FSK"/>
+                                    <outlet property="delegate" destination="pCM-qH-EYC" id="Isr-jJ-lP6"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

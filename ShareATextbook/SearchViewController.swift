@@ -18,8 +18,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     @IBOutlet weak var searchCollectionView: UICollectionView!
 
-    var category: Category!
-    var catList: [Category]!
+    var category: Categories!
+//    var catList: [Category]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +48,10 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             
             DispatchQueue.main.async(execute: {
                 self.searchCollectionView.reloadData()
-                print(self.postList![1].name)
-            })
+                for var i in (0..<self.postList!.count){
+                print(self.postList![i].cateId)
+                }}
+            )
         })
         
     }
