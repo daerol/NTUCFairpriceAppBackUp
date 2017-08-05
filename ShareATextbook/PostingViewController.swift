@@ -25,7 +25,9 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
     var img: UIImage?
     var assets: [DKAsset]? {
         didSet {
+            print("assetla\(assets?.count)")
             if self.imageListCollectionView != nil {
+                print("assetlanil")
                 self.imageList = [UIImage](repeatElement(UIImage(), count: (assets?.count)!))
                 self.imageListCollectionView.reloadData()
             }
@@ -35,7 +37,15 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
     var posting: Posting = Posting()
     var imageList: [UIImage] = []
     
-    var isEdit: Bool? = false
+    var isEdit: Bool? = false {
+        didSet {
+            if isEdit == true {
+                self.imageList = [UIImage](repeatElement(UIImage(), count: posting.photos.count))
+//                self.imageListCollectionView.reloadData()
+            }
+        }
+    }
+    var imageListCount = 0
     var errorMessage = ""
     
     //  MARK:   Table View
@@ -139,7 +149,12 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        
+        if isEdit! {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
         
         self.customTabBarController?.assets = []
         self.customTabBarController?.pickerController.deselectAllAssets()

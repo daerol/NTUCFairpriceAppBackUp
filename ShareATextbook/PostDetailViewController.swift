@@ -153,6 +153,8 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
         postViewController.posting = post!
         postViewController.isEdit = true
         
+        postViewController.customTabBarController = self.tabBarController as! CustomTabBarController
+        
         self.navigationController?.pushViewController(postViewController, animated: true)
     }
     
