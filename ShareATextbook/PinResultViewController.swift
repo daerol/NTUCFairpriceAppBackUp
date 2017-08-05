@@ -30,6 +30,32 @@ class PinResultViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    var distance: String = "" {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableResult.reloadData()
+            }
+        }
+    }
+    
+    @IBAction func moreInfoAction(_ sender: UIButton) {
+        if let cell = sender.superview?.superview as? MapResultTableViewCell {
+            let indexPath = tableResult.indexPath(for: cell)
+            print("clicked:\(indexPath?.row)")
+            
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Profile", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "PostDetailViewController") as! PostDetailViewController
+            
+            //  Set the variables
+            newViewController.post = self.postList[(indexPath?.row)!]
+            newViewController.isOwner = false
+            
+            //  Push the view controller
+            mapViewController?.navigationController?.pushViewController(newViewController, animated: true)
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,9 +95,11 @@ class PinResultViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "pinResultCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "pinResultCell", for: indexPath) as! MapResultTableViewCell
         
-        cell.textLabel?.text = postList[indexPath.row].name
+//        cell.textLabel?.text = postList[indexPath.row].name
+        cell.title.text = postList[indexPath.row].name
+        cell.distance.text = distance + " KM"
         
         var categoryStr: String = ""
         DispatchQueue.global(qos: .userInitiated).async {
@@ -82,7 +110,8 @@ class PinResultViewController: UIViewController, UITableViewDelegate, UITableVie
                     cat2 in
                     categoryStr += ", " + cat2.name
                     DispatchQueue.main.async {
-                        cell.detailTextLabel?.text = categoryStr
+//                        cell.detailTextLabel?.text = categoryStrs
+                        cell.subtitle.text = " " + categoryStr
                     }
                 })
             })
@@ -92,7 +121,8 @@ class PinResultViewController: UIViewController, UITableViewDelegate, UITableVie
                 data in
                 
                 DispatchQueue.main.async() { () -> Void in
-                    cell.imageView?.image = UIImage(data: data)
+//                    cell.imageView?.image = UIImage(data: data)
+                    cell.thumbnail.image = UIImage(data: data)
                 }
             })
         }
@@ -101,15 +131,7 @@ class PinResultViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Profile", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "PostDetailViewController") as! PostDetailViewController
         
-        //  Set the variables
-        newViewController.post = self.postList[indexPath.row]
-        newViewController.isOwner = false
-        
-        //  Push the view controller
-        mapViewController?.navigationController?.pushViewController(newViewController, animated: true)
         
     }
     
