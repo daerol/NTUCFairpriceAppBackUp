@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController  {
+class SearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     var user:User?
     var postList: [Posting]?
@@ -17,22 +17,26 @@ class SearchViewController: UIViewController  {
     private let heightAdjustment: CGFloat = 80.0
     
     @IBOutlet weak var itemCollectionView: UICollectionView!
-    @IBOutlet weak var name: UILabel!
-    
-    @IBOutlet weak var editProfileButton: CustomUIButton!
-    @IBOutlet weak var preferredLocation: UILabel!
-    
-    @IBOutlet weak var profileInfoView: UIView!
-    @IBOutlet weak var editProfileView: UIView!
-    
-    @IBOutlet weak var numberOfPost: UILabel!
-    @IBOutlet weak var numberOfDonatedPost: UILabel!
-    
-    var category: Categories!
+
+    var category: Category!
+    var catList: [Category]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        CategoryDataManager.getCategoryList(limit: "") {
+//            categories in
+//            self.catList = categories
+//            DispatchQueue.main.async {
+//                print(self.category.id)
+//            }
+//        }
+//        
+//        for var i in (0..<catList.count) {
+//            var name = catList[i].name
+//            if name == "Humanities"
+//            
+//        }
         
         PostingDataManager.getPostingList(userId: "", isAvailable: "N", catId: "", onComplete: {
             postingList in
@@ -41,28 +45,10 @@ class SearchViewController: UIViewController  {
             
             self.postList = postingList
             
-            var itemAvailable = 0
-            var itemDonated = 0
-            for post in postingList {
-                let postItem: Posting = post
-                if postItem.status == "" || postItem.status == "R" {
-                    itemAvailable += 1
-                } else {
-                    itemDonated += 1
-                }
-                
-                let total = itemAvailable + itemDonated
-                
-                if total == postingList.count {
-                    DispatchQueue.main.async(execute: {
-//                        self.numberOfPost.text = String(itemAvailable)
-//                        self.numberOfDonatedPost.text = String(itemDonated)
-                    })
-                }
-            }
             
             DispatchQueue.main.async(execute: {
                 self.itemCollectionView.reloadData()
+                print(self.postList![1].name)
             })
         })
         
@@ -93,6 +79,8 @@ class SearchViewController: UIViewController  {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = itemCollectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ItemCollectionViewCell
+        
+        print("Hello")
         
         let postStatus = postList![indexPath.row].status
         
@@ -133,9 +121,12 @@ class SearchViewController: UIViewController  {
             })
         }
         
+        
         return cell
+
     }
     
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = (itemCollectionView.bounds.width - leftAndRightPadding) / numberOfItemsPerRow
