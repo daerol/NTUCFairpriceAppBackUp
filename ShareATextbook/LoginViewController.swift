@@ -9,7 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     //    private let LOGIN_SEGUE = "loginSegue"
     @IBOutlet weak var emailTextField: UITextField!
@@ -19,20 +19,18 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFie
     var passwordField : String = ""
     var loggedUserId : String = ""
     var loggedToken : String = ""
+    var nonce: String?
     
     let loginButton = FBSDKLoginButton()
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        return true
+//    }
     
     // ViewDidLoad function
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.emailTextField.delegate = self
-        self.passwordTextfield.delegate = self
         // Do any additional setup after loading the view.
         view.addSubview(loginButton)
         
@@ -97,83 +95,98 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFie
                         print(json!)
                         
                         let nonce = (json!["nonce"].string)
-                        password = self.sha512Hex(string: (self.sha512Hex(string: self.passwordTextfield.text!).uppercased() + nonce!)).uppercased()
                         
-                        
-                        let loginJson = JSON.init([
-                            "type" : "E",
-                            "email" : self.emailField,
-                            "password" : password
-                            ])
-                        
-                        HTTP.postJSON(url: "http://13.228.39.122/FP05_883458374658792/1.0/user/login", json: loginJson, onComplete: {
-                            json, response, error in
+                        if nonce != nil {
                             
-                            //  LI YUN ADDED
-                            let user = User(username: "", password: "", token: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
                             
-                            if json != nil {
-                                print(json!)
-                                token = (json!["token"].string)
-                                userId = (json!["userid"].string)
-                                print(token)
-                                print(userId)
-                                if token != nil {
-                                    self.loggedUserId = userId
-                                    self.loggedToken = token
-                                    print("LoggedUserId = \(userId)")
-                                    print("LoggedToken = \(token)")
-                                    //                            let saveToken: Bool = KeychainWrapper.standard.set(token, forKey: "sessionToken")
-                                    //                            let saveUserId: Bool = KeychainWrapper.standard.set(userId, value(forKey: "userid"))
-                                    
-                                    //  LI YUN ADDED
-                                    user.id = json!["userid"].string!
-                                    user.username = json!["name"].string!
-                                    user.preferredloc = json!["preferredloc"] != JSON.null ? json!["preferredloc"].string! : ""
-                                    user.email = json!["email"] != JSON.null ? json!["email"].string! : ""
-                                    user.phoneNumber = json!["phone"] != JSON.null ? json!["phone"].string! : ""
-                                    user.photo = json!["photo"] != JSON.null ? json!["photo"].string! : ""
-                                    
-                                    print(user.id)
-                                    print(user.username)
-                                    print(user.email)
-                                    print(user.token)
-                                    print(user.phoneNumber)
-                                    
-                                    //  UserDefaults
-                                    UserDefaults.standard.set(token, forKey: "Token")
-                                    UserDefaults.standard.set(password, forKey: "HashedPassword")
-                                    //  Encode user object
-                                    let encodedUserData = NSKeyedArchiver.archivedData(withRootObject: user)
-                                    UserDefaults.standard.set(encodedUserData, forKey: "User")
-                                    
-                                    if token == nil
-                                    {
-                                        print(error!)
-                                    }
-                                    else
-                                    {
-                                        DispatchQueue.main.async {
-                                            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                                            let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
-                                            self.present(homeViewController, animated: true, completion: nil)
-                                            UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                                            UserDefaults.standard.synchronize()
+                            password = self.sha512Hex(string: (self.sha512Hex(string: self.passwordTextfield.text!).uppercased() + nonce!)).uppercased()
+                            
+                            let loginJson = JSON.init([
+                                "type" : "E",
+                                "email" : self.emailField,
+                                "password" : password
+                                ])
+                            print(password)
+                            HTTP.postJSON(url: "http://13.228.39.122/FP05_883458374658792/1.0/user/login", json: loginJson, onComplete: {
+                                json, response, error in
+                                
+                                //  LI YUN ADDED
+                                let user = User(username: "", password: "", token: "", preferredloc: "", id: "", email: "", phoneNumber: "", photo: "")
+                                
+                                if json != nil {
+                                    print(json!)
+                                    token = (json!["token"].string)
+                                    userId = (json!["userid"].string)
+                                    print(token)
+                                    print(userId)
+                                    if token != nil {
+                                        self.loggedUserId = userId
+                                        self.loggedToken = token
+                                        print("LoggedUserId = \(userId)")
+                                        print("LoggedToken = \(token)")
+                                        //                            let saveToken: Bool = KeychainWrapper.standard.set(token, forKey: "sessionToken")
+                                        //                            let saveUserId: Bool = KeychainWrapper.standard.set(userId, value(forKey: "userid"))
+                                        
+                                        //  LI YUN ADDED
+                                        user.id = json!["userid"].string!
+                                        user.username = json!["name"].string!
+                                        user.preferredloc = json!["preferredloc"] != JSON.null ? json!["preferredloc"].string! : ""
+                                        user.email = json!["email"] != JSON.null ? json!["email"].string! : ""
+                                        user.phoneNumber = json!["phone"] != JSON.null ? json!["phone"].string! : ""
+                                        user.photo = json!["photo"] != JSON.null ? json!["photo"].string! : ""
+                                        
+                                        print(user.id)
+                                        print(user.username)
+                                        print(user.email)
+                                        print(user.token)
+                                        print(user.phoneNumber)
+                                        
+                                        //  UserDefaults
+                                        UserDefaults.standard.set(token, forKey: "Token")
+                                        UserDefaults.standard.set(password, forKey: "HashedPassword")
+                                        //  Encode user object
+                                        let encodedUserData = NSKeyedArchiver.archivedData(withRootObject: user)
+                                        UserDefaults.standard.set(encodedUserData, forKey: "User")
+                                        
+                                        if token == nil
+                                        {
+                                            print(error!)
                                         }
+                                        else
+                                        {
+                                            DispatchQueue.main.async {
+                                                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                                                let homeViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! CustomTabBarController
+                                                self.present(homeViewController, animated: true, completion: nil)
+                                                UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                                                UserDefaults.standard.synchronize()
+                                            }
+                                            return
+                                        }
+                                    }
+                                    else {
+                                        self.displayMyAlertMessage(userMessage: "Invalid Email/Password!")
+                                    }
+                                    
+                                    if error != nil {
+                                        print(error!)
                                         return
                                     }
                                 }
-                                else {
-                                    self.displayMyAlertMessage(userMessage: "Invalid Email/Password!")
-                                }
                                 
-                                if error != nil {
-                                    print(error!)
-                                    return
-                                }
-                            }
-                            
-                        })
+                            })
+                        }
+                        else {
+                            print("Email wrong!")
+                            DispatchQueue.main.async(execute: {
+                                print("Email wrong!2")
+                                let alert = UIAlertController(title: "Video", message: "You have played all videos", preferredStyle: UIAlertControllerStyle.alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                                print("Email wrong!3")
+                            })
+                            print("Email wrong!4")
+                        }
                         return
                     }
                     
