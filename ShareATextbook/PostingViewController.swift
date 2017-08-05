@@ -25,17 +25,38 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
     var img: UIImage?
     var assets: [DKAsset]? {
         didSet {
+            print("assetla\(assets?.count)")
+            
+            //            if self.imageListCollectionView != nil {
+            //                print("assetlanil")
+            if isEdit! {
+                print("indexpathla\(assets?.count)--\(imageListCount)")
+                imageListCount += (assets?.count)!
+            } else {
+                imageListCount = (assets?.count)!
+            }
+            self.imageList = [UIImage](repeatElement(UIImage(), count: imageListCount))
             if self.imageListCollectionView != nil {
-                self.imageList = [UIImage](repeatElement(UIImage(), count: (assets?.count)!))
                 self.imageListCollectionView.reloadData()
             }
+            //            }
         }
     }
     var categoryList: [Category] = []
     var posting: Posting = Posting()
     var imageList: [UIImage] = []
     
-    var isEdit: Bool? = false
+    var isEdit: Bool? = false {
+        didSet {
+            if isEdit == true {
+                imageListCount = posting.photos.count
+                print("indexpathla--\(imageListCount)")
+                self.imageList = [UIImage](repeatElement(UIImage(), count: imageListCount))
+                //                self.imageListCollectionView.reloadData()
+            }
+        }
+    }
+    var imageListCount = 0
     var errorMessage = ""
     
     //  MARK:   Table View
@@ -123,13 +144,18 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
                 })
             } else {
                 print("enter edit")
-                PostingDataManager.editPost(post: posting, postImageList: [], onComplete: {
+                PostingDataManager.editPost(post: posting, postImageList: imageList, token: UserDefaults.standard.object(forKey: "Token") as! String, onComplete: {
                     success, post in
                     
                     print("success \(success)")
                     print("id \(post.id)")
                     
+                    //  Reset the variables
+                    self.isEdit = false
                     
+                    DispatchQueue.main.async(execute: {
+                        self.navigationController?.popViewController(animated: true)
+                    })
                 })
             }
             
@@ -139,7 +165,12 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        
+        if isEdit! {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
         
         self.customTabBarController?.assets = []
         self.customTabBarController?.pickerController.deselectAllAssets()
@@ -151,6 +182,12 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
         
     }
     @IBAction func morePhotosAction(_ sender: UIButton) {
+        //  Remove the additional photos
+        if isEdit! {
+            imageListCount -= (assets != nil ? assets?.count : 0)!
+            print("finalindexpathla\(imageListCount)")
+        }
+        
         DispatchQueue.main.async(execute: {
             self.customTabBarController?.showImagePicker()
             self.customTabBarController?.postViewController = self
@@ -164,11 +201,11 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
         //  MARK:   Set navigation title
         self.navigationItem.title = barcode
         
-        if assets != nil {
-            imageList = [UIImage](repeatElement(UIImage(), count: (assets?.count)!))
-        } else {
-            imageList = [UIImage](repeatElement(UIImage(), count: 0))
-        }
+        //        if assets != nil {
+        //            imageList = [UIImage](repeatElement(UIImage(), count: (assets?.count)!))
+        //        } else {
+        //            imageList = [UIImage](repeatElement(UIImage(), count: 0))
+        //        }
         
         //  MARK:   Set the education level and subject base on barcode available
         if barcode == "" {
@@ -250,7 +287,7 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
     
     //  MARK: UICollectionViewDataSource, UICollectionViewDelegate methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.assets?.count ?? 0
+        return imageListCount
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -259,20 +296,57 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let asset = self.assets![indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PostingImageCollectionViewCell
         
         print("indexpath \(indexPath.row)")
+        
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        asset.fetchImageWithSize(layout.itemSize.toPixel(), completeBlock: {
-            image, info in
-            //  MARK:   Set cell image
-            cell.image.image = image
+        
+        //  If is edit, get all posting images
+        if isEdit! {
+            //  Get all posting images
+            if indexPath.row < posting.photos.count {
+                let filePath = posting.photos[indexPath.row]
+                
+                DispatchQueue.global(qos: .userInitiated).async {
+                    let url = URL(string: DatabaseAPI.imageDownloadURL + filePath + DatabaseAPI.imageSizeR1000)
+                    ImageDownload.downloadImage(url: url!, onComplete: {
+                        data in
+                        
+                        DispatchQueue.main.async() { () -> Void in
+                            //                    cell.itemImage.contentMode = .scaleAspectFit
+                            self.imageList[indexPath.row] = UIImage(data: data)!
+                            cell.image.image = UIImage(data: data)
+                        }
+                    })
+                }
+            } else {
+                print("indexpathla\(indexPath.row):\(imageListCount)")
+                let asset = self.assets![(indexPath.row - posting.photos.count)]
+                //  Get the assets from each photo
+                asset.fetchImageWithSize(layout.itemSize.toPixel(), completeBlock: {
+                    image, info in
+                    //  MARK:   Set cell image
+                    cell.image.image = image
+                    
+                    print("set")
+                    //  MARK:   Add image to imageList
+                    self.imageList[indexPath.row] = image!
+                })
+            }
+        } else {
             
-            print("set")
-            //  MARK:   Add image to imageList
-            self.imageList[indexPath.row] = image!
-        })
+            let asset = self.assets![indexPath.row]
+            asset.fetchImageWithSize(layout.itemSize.toPixel(), completeBlock: {
+                image, info in
+                //  MARK:   Set cell image
+                cell.image.image = image
+                
+                print("set")
+                //  MARK:   Add image to imageList
+                self.imageList[indexPath.row] = image!
+            })
+        }
         
         return cell
     }

@@ -24,6 +24,7 @@ class MapViewViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     var tap = UITapGestureRecognizer()
     
     var postingList: [Posting]?
+    var nearbyPosting: [Posting] = []
     
     var postingDict: [String: [Posting]]? = [:]
     var distDict: [String: String]? = [:]
@@ -32,6 +33,8 @@ class MapViewViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     
     @IBAction func locateMeAction(_ sender: Any) {
         locationManager.startUpdatingLocation()
+        
+        setNearbyPost()
     }
     
     @IBAction func directionAction(_ sender: Any) {
@@ -69,6 +72,70 @@ class MapViewViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         locationManager.startUpdatingLocation()
         
         //  Get all posting
+//        PostingDataManager.getPostingList(userId: "", isAvailable: "N", catId: "", onComplete: {
+//            postList in
+//            
+//            self.postingList = postList
+//            print("posting:\(self.postingList?.count)")
+//            
+//            for p in postList {
+//                let post: Posting = p
+//                let loc = LocationValue.convertToLocationValue(locationDescription: post.preferredLocation)
+//                let dist = self.currentLocation?.distance(from: CLLocation(latitude: loc.location.coordinate.latitude, longitude: loc.location.coordinate.longitude))
+//                
+//                print(post.preferredLocation)
+//                let coordStr = String(loc.location.coordinate.latitude) + "," + String(loc.location.coordinate.longitude)
+//                if self.postingDict?[coordStr] != nil {
+//                    self.postingDict?[coordStr]!.append(post)
+//                } else {
+//                    self.postingDict?[coordStr] = [post]
+//                    self.distDict?[coordStr] = Formatter.formatDoubleToString(num: dist!/1000, noOfDecimal: 1)
+//                }
+//                
+//                if (dist!/1000) < 3 {
+//                    self.nearbyPosting.append(post)
+//                }
+//            }
+//            
+//            self.setNearbyPost()
+//            
+//            print(self.postingDict!)
+//            print("Distid:\(self.distDict)")
+//            print("neab:\(self.nearbyPosting.count)")
+//            
+//            DispatchQueue.main.async {
+//                self.showMapPin()
+//            }
+//        })
+        
+        // I'm using a storyboard.
+        let sb = UIStoryboard(name: "Map", bundle: nil)
+        
+        // I have identified the view inside my storyboard.
+        vc = sb.instantiateViewController(withIdentifier: "PinResultViewController") as! PinResultViewController
+        
+        // These values can be played around with, depending on how much you want the view to show up when it starts.
+        vc.view.frame = CGRect(x: 0, y: self.view.frame.height - 110, width: self.view.frame.width, height: 110)
+        
+        //  Attach the vc to self
+        vc.mapViewController = self
+        
+        self.addChildViewController(vc)
+        self.view.addSubview(vc.view)
+        vc.didMove(toParentViewController: self)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //  Clear all variables
+        postingList?.removeAll()
+        nearbyPosting.removeAll()
+        postingDict?.removeAll()
+        distDict?.removeAll()
+        
+        //  Re get the post again
+        locationManager.startUpdatingLocation()
+        
         PostingDataManager.getPostingList(userId: "", isAvailable: "N", catId: "", onComplete: {
             postList in
             
@@ -88,32 +155,24 @@ class MapViewViewController: UIViewController, MKMapViewDelegate, CLLocationMana
                     self.postingDict?[coordStr] = [post]
                     self.distDict?[coordStr] = Formatter.formatDoubleToString(num: dist!/1000, noOfDecimal: 1)
                 }
+                
+                if (dist!/1000) < 3 {
+                    self.nearbyPosting.append(post)
+                }
             }
+            
+            self.setNearbyPost()
             
             print(self.postingDict!)
             print("Distid:\(self.distDict)")
+            print("neab:\(self.nearbyPosting.count)")
             
             DispatchQueue.main.async {
                 self.showMapPin()
             }
         })
-        
-        // I'm using a storyboard.
-        let sb = UIStoryboard(name: "Map", bundle: nil)
-        
-        // I have identified the view inside my storyboard.
-        vc = sb.instantiateViewController(withIdentifier: "PinResultViewController") as! PinResultViewController
-        
-        // These values can be played around with, depending on how much you want the view to show up when it starts.
-        vc.view.frame = CGRect(x: 0, y: self.view.frame.height - 85, width: self.view.frame.width, height: 85)
-        
-        //  Attach the vc to self
-        vc.mapViewController = self
-        
-        self.addChildViewController(vc)
-        self.view.addSubview(vc.view)
-        vc.didMove(toParentViewController: self)
-        
+
+        super.viewDidDisappear(animated)
     }
     
     override func didReceiveMemoryWarning() {
@@ -123,14 +182,50 @@ class MapViewViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     
     func tapAction() {
         UIView.animate(withDuration: 0.4, animations: {
-            self.vc.view.frame = CGRect(x: 0, y: self.view.frame.height - 85, width: self.view.frame.width, height: 85)
+            self.vc.view.frame = CGRect(x: 0, y: self.view.frame.height - 120, width: self.view.frame.width, height: 120)
         })
+    }
+    
+    func setNearbyPost() {
+        
+        //  Sort the nearby post by shortest distance first
+        self.nearbyPosting.sort(by: {
+            p1, p2 in
+            
+            let p1LocVal = LocationValue.convertToLocationValue(locationDescription: p1.preferredLocation)
+            let p2LocVal = LocationValue.convertToLocationValue(locationDescription: p2.preferredLocation)
+            let p1Dist = self.currentLocation?.distance(from: p1LocVal.location)
+            let p2Dist = self.currentLocation?.distance(from: p2LocVal.location)
+            
+            if Double(p1Dist!) < Double(p2Dist!) {
+                return true
+            } else {
+                return false
+            }
+        })
+        
+        self.vc.postList = self.nearbyPosting
+        self.vc.isNearbyPost = true
+        DispatchQueue.main.async {
+            self.vc.addressLabel.text = "Nearby Post (Within 1 KM)"
+            if self.vc.postList.count < 4 {
+                UIView.animate(withDuration: 0.4, animations: {
+                    self.vc.view.frame = CGRect(x: 0, y: self.view.frame.height - 250, width: self.view.frame.width, height: 250)
+                    
+                })
+            } else {
+                UIView.animate(withDuration: 0.4, animations: {
+                    self.vc.view.frame = CGRect(x: 0, y: 100, width: self.view.frame.width, height: (self.view.frame.height) - (100))
+                    
+                })
+            }
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations.last
         
-        let viewRegion = MKCoordinateRegionMakeWithDistance((currentLocation?.coordinate)!, 800, 800)
+        let viewRegion = MKCoordinateRegionMakeWithDistance((currentLocation?.coordinate)!, 1500, 1500)
         
         UIView.animate(withDuration: 0.4, animations: {
             self.mapView.setRegion(viewRegion, animated: false)
@@ -139,7 +234,6 @@ class MapViewViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         locationManager.stopUpdatingLocation()
         
         //  For loop through the posting to look for items within 800m
-        
     }
     
     //    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -189,12 +283,11 @@ class MapViewViewController: UIViewController, MKMapViewDelegate, CLLocationMana
             if vc.postList.count < 4 {
                 UIView.animate(withDuration: 0.4, animations: {
                     self.vc.view.frame = CGRect(x: 0, y: self.view.frame.height - 250, width: self.view.frame.width, height: 250)
-                    self.vc.swipeImageView.image = UIImage(named: "Down")
+                    
                 })
             } else {
                 UIView.animate(withDuration: 0.4, animations: {
                     self.vc.view.frame = CGRect(x: 0, y: 100, width: self.view.frame.width, height: (self.view.frame.height) - (100))
-                    self.vc.swipeImageView.image = UIImage(named: "Down")
                 })
             }
             
@@ -218,6 +311,11 @@ class MapViewViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     }
     
     func showMapPin() {
+        //  Always delete all first
+        let allAnnotation = mapView.annotations
+        mapView.removeAnnotations(allAnnotation)
+        
+        //  Create all again
         for (key, value) in postingDict! {
             print("\(key):\(value)")
             let coordArr = key.components(separatedBy: ",")
@@ -249,10 +347,6 @@ class MapViewViewController: UIViewController, MKMapViewDelegate, CLLocationMana
                     }
                 })
             }
-            
-            
-            
-            
             
         }
     }

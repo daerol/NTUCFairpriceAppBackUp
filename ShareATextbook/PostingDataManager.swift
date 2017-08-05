@@ -9,7 +9,7 @@
 import UIKit
 
 class PostingDataManager: NSObject {
-
+    
     static func getPostingList(userId: String, isAvailable: String, catId: String, onComplete: ((_: [Posting]) -> Void)?) {
         let postListURL = DatabaseAPI.url + "posting/list"
         let postListReqJSON: JSON = [
@@ -17,7 +17,7 @@ class PostingDataManager: NSObject {
             "isavailabile": isAvailable,
             "catid": catId
         ]
-
+        
         var post: Posting = Posting()
         
         HTTP.postJSON(url: postListURL, json: postListReqJSON, onComplete: {
@@ -98,7 +98,7 @@ class PostingDataManager: NSObject {
                     print("nil")
                 }
             })
-
+            
         })
     }
     
@@ -117,8 +117,8 @@ class PostingDataManager: NSObject {
                 print("json \(json)")
                 count += 1
                 print(tag)
-//                photos.append(json!["filepath"].string!)
-//                photos.insert(json!["filepath"].string!, at: i)
+                //                photos.append(json!["filepath"].string!)
+                //                photos.insert(json!["filepath"].string!, at: i)
                 photos[tag!] = json!["filepath"].string!
                 
                 if count == postImageList.count {
@@ -129,22 +129,58 @@ class PostingDataManager: NSObject {
         
     }
     
-    static func editPost(post: Posting, postImageList: [UIImage] , onComplete:((_: Bool, _:Posting) -> Void)?) {
+    static func editPost(post: Posting, postImageList: [UIImage], token: String ,onComplete:((_: Bool, _:Posting) -> Void)?) {
         let editPostingURL = DatabaseAPI.url + "posting/edit"
+        let url = DatabaseAPI.url + "photos/addp"
         
+        let editPostingJSON: JSON = [
+            "id": post.id,
+            "token": token,
+            "cateid": post.cateId,
+            "name": post.name,
+            "desc": post.desc,
+            "photos": ["0109722A4B13ABAB228900A68E3AA2BDF3F67535D1B92D98441281EDF5BAEE21_0eb9b4b26f8845cab32fb3f3a61f7340"],
+            "publisher": post.publisher ?? "",
+            "author": post.author ?? "",
+            "edition": post.edition ?? "",
+            "preferredloc": post.preferredLocation
+        ]
+        
+//        HTTP.postJSON(url: editPostingURL, json: editPostingJSON, onComplete: {
+//            json, response, error in
+//            
+//            if json != nil {
+//                print(json!)
+//                if !DatabaseAPI.responseIsError(json: json!) {
+//                    let success = Bool(json!["success"].string!)!
+//                    let id = json!["id"].string!
+//                    
+//                    post.id = id
+//                    onComplete?(success, post)
+//                }
+//            }else {
+//                print("nil")
+//            }
+//        })
+        
+        uploadPhotos(url: url, postImageList: postImageList, onComplete: {
+            photoList in
+            
             let editPostingJSON: JSON = [
                 "id": post.id,
-                "token": SharedVariables.token,
+                "token": token,
                 "cateid": post.cateId,
                 "name": post.name,
                 "desc": post.desc,
-                "photos": ["0109722A4B13ABAB228900A68E3AA2BDF3F67535D1B92D98441281EDF5BAEE21_0eb9b4b26f8845cab32fb3f3a61f7340"],
+                "photos": photoList,
                 "publisher": post.publisher ?? "",
                 "author": post.author ?? "",
                 "edition": post.edition ?? "",
                 "preferredloc": post.preferredLocation
             ]
-        
+            
+            print("photholist \(photoList)")
+            
             HTTP.postJSON(url: editPostingURL, json: editPostingJSON, onComplete: {
                 json, response, error in
                 
@@ -161,5 +197,10 @@ class PostingDataManager: NSObject {
                     print("nil")
                 }
             })
+            
+        })
+
+        
     }
+    
 }
