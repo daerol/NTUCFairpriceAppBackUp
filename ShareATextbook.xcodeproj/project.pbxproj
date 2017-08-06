@@ -17,6 +17,8 @@
 		8F034BCF1F2F212500C16F1A /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F034BCE1F2F212500C16F1A /* Map.storyboard */; };
 		8F04F2EF1F33198B00AA48EC /* PointsRecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F04F2EE1F33198B00AA48EC /* PointsRecordTableViewController.swift */; };
 		8F04F2F31F332B1800AA48EC /* PointsRecordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F04F2F21F332B1800AA48EC /* PointsRecordsTableViewCell.swift */; };
+		8F04F3061F35E5CF00AA48EC /* NegativePointsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F04F3051F35E5CF00AA48EC /* NegativePointsTableViewCell.swift */; };
+		8F04F3081F35E5E300AA48EC /* NegativePointsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F04F3071F35E5E300AA48EC /* NegativePointsTableViewController.swift */; };
 		8F17E05D1F310893007EF6D7 /* Points.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F17E05C1F310893007EF6D7 /* Points.swift */; };
 		8F1F32361EFF00D700DE910C /* CustomUIViewButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F32351EFF00D700DE910C /* CustomUIViewButtons.swift */; };
 		8F1F32421F0170C100DE910C /* BEMAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F323B1F0170C100DE910C /* BEMAnimationManager.m */; };
@@ -202,6 +204,8 @@
 		8F034BCE1F2F212500C16F1A /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		8F04F2EE1F33198B00AA48EC /* PointsRecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsRecordTableViewController.swift; sourceTree = "<group>"; };
 		8F04F2F21F332B1800AA48EC /* PointsRecordsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsRecordsTableViewCell.swift; sourceTree = "<group>"; };
+		8F04F3051F35E5CF00AA48EC /* NegativePointsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NegativePointsTableViewCell.swift; sourceTree = "<group>"; };
+		8F04F3071F35E5E300AA48EC /* NegativePointsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NegativePointsTableViewController.swift; sourceTree = "<group>"; };
 		8F17E05C1F310893007EF6D7 /* Points.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Points.swift; sourceTree = "<group>"; };
 		8F1F32351EFF00D700DE910C /* CustomUIViewButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIViewButtons.swift; sourceTree = "<group>"; };
 		8F1F323A1F0170C100DE910C /* BEMAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMAnimationManager.h; sourceTree = "<group>"; };
@@ -426,6 +430,8 @@
 				8FFD6D441F31B5D0000FCE64 /* PointsTableViewCell.swift */,
 				8F04F2EE1F33198B00AA48EC /* PointsRecordTableViewController.swift */,
 				8F04F2F21F332B1800AA48EC /* PointsRecordsTableViewCell.swift */,
+				8F04F3051F35E5CF00AA48EC /* NegativePointsTableViewCell.swift */,
+				8F04F3071F35E5E300AA48EC /* NegativePointsTableViewController.swift */,
 			);
 			name = "Protection Points";
 			sourceTree = "<group>";
@@ -1076,6 +1082,7 @@
 				C92BA2881F31A90A005934E8 /* DKAssetGroupDetailCameraCell.swift in Sources */,
 				C9F3A3D01F2DCE1F0089DA2F /* Posting.swift in Sources */,
 				8F04F2F31F332B1800AA48EC /* PointsRecordsTableViewCell.swift in Sources */,
+				8F04F3061F35E5CF00AA48EC /* NegativePointsTableViewCell.swift in Sources */,
 				C9D52B9A1F2ED33E00F36F50 /* UIImage+AspectFit.swift in Sources */,
 				C92078C71F3360EA00262CFC /* MapAnnotation.swift in Sources */,
 				C9D52B971F2ED33E00F36F50 /* ImageSlideshow.swift in Sources */,
@@ -1097,6 +1104,7 @@
 				C92BA27C1F31A8F8005934E8 /* DKAssetGroupDetailVC.swift in Sources */,
 				C92BA28A1F31A90A005934E8 /* DKAssetGroupDetailVideoCell.swift in Sources */,
 				8F034BC51F2F1DF000C16F1A /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
+				8F04F3081F35E5E300AA48EC /* NegativePointsTableViewController.swift in Sources */,
 				C1F885E31F336DA5006ECA20 /* SearchTableViewController.swift in Sources */,
 				C9F3A4961F2DE79B0089DA2F /* PostingImageCollectionViewCell.swift in Sources */,
 				C92BA2601F3194A1005934E8 /* CameraViewController.swift in Sources */,

@@ -82,8 +82,13 @@ class registrationDA: NSObject {
                             UserDefaults.standard.set(token, forKey: "Token")
                             UserDefaults.standard.set(hashedPassword, forKey: "HashedPassword")
                             
+                            PointsDataManager.addNewUserPoints(userId, onComplete: {
+                                isPosted in
+                                isCreated = isPosted
+                            })
                             
                             
+                           
                             onComplete(token, userId, isCreated, msg, title)
                             
                         }
@@ -98,7 +103,7 @@ class registrationDA: NSObject {
                         print(json!)
                         
                     }
-                    isCreated = true
+                    //
                 })
                 
                 

@@ -9,7 +9,7 @@
 import UIKit
 
 
-class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     
     @IBOutlet weak var nameTextField : UITextField!
@@ -34,9 +34,28 @@ class RegistrationViewController: UIViewController, BEMCheckBoxDelegate, UIImage
     var logDA = loginDA()
     var profileImage : UIImage! = #imageLiteral(resourceName: "dp")
     
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        
+        
+        
+        //Delegates
         TOSBox.delegate = self
+        nameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        phoneTextField.delegate = self
+        confirmPasswordField.delegate = self
+        
+        
         view.backgroundColor = UIColor(r: 240, g: 240, b: 240)
         definesPresentationContext = true
         

@@ -11,18 +11,22 @@ import UIKit
 class ProtectionPointsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
+    var pointsList : [Points] = []
+    var totalPoints = 0
+    
     let categories = [["title" : "Positive Records", "img" : "smiley"], ["title" : "Negative Records", "img" : "sad"]]
     
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var totalPointsMessage: UILabel!
   
     override func viewDidLoad() {
         super.viewDidLoad()
          view.backgroundColor = UIColor(r: 240, g: 240, b: 240)
         setupNavigationBar()
         
-        
+        loadPoints()
         
         
     }
@@ -51,7 +55,7 @@ class ProtectionPointsViewController: UIViewController, UITableViewDelegate, UIT
         NSLog("You points cell number: \(indexPath.row)!")
         
         if indexPath.row == 0 {
-            didTapPointsRecord()
+            didTapPositivePointsRecord()
             
 //            for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
 //                print("\(key) = \(value) \n")
@@ -60,12 +64,26 @@ class ProtectionPointsViewController: UIViewController, UITableViewDelegate, UIT
             
             
         } else {
-            didTapPointsRecord()
+            didTapNegativePointsRecord()
         }
         
+    }
+    
+    
+    func loadPoints() {
+        let usersList = UserDefaults.standard.object(forKey: "User") as! Data?
+        let user =  NSKeyedUnarchiver.unarchiveObject(with: usersList!) as! User
         
         
-        //self.performSegue(withIdentifier: "pptSys", sender: self)
+        // Problem lies here!
+        
+        
+        
+        
+        PointsDataManager.getUserPoints(user.id, onComplete: {
+            pointsListFromServer in
+            self.pointsList = pointsListFromServer
+        })
     }
     
     
@@ -73,54 +91,47 @@ class ProtectionPointsViewController: UIViewController, UITableViewDelegate, UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PointsTableViewCell
         
         
+        for pointsGiven in pointsList {
+        totalPoints += pointsGiven.points
+        }
+        
+        
+        
+        
+        
         let pp = categories[indexPath.row]
         let s = pp["img"]!
+        
+        print(totalPoints)
+        if totalPoints == 0 {
+            totalPoints = 100
+        }
+      
+        totalPointsMessage?.text = String(describing: totalPoints)
         cell.imageCell.image = UIImage(named: s)
         cell.titleCell.text = pp["title"]
-        
-//        cell.titleCell?.text = "Reward Points"
-//        cell.imageCell?.image = #imageLiteral(resourceName: "smiley")
-        
         
         return cell
     }
     
 
-    func didTapPointsRecord() {
-        //        pointLabel.text = "1000"
+    func didTapPositivePointsRecord() {
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "pointsystem", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "PointsRecordTableViewController") as! UITableViewController
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
     
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showRecords" {
-            
-    
-            let showRecordsViewController = segue.destination as! PointsRecordTableViewController
-            let indexPath = self.tableView.indexPathForSelectedRow
-            
-//            if indexPath != nil {
-//                let post = postList?[(indexPath?[0].row)!]
-//                
-//                //  MARK:   Set post variable
-//                itemDetailViewController.post = post
-//                
-//                //  MARK:   Set post ownership to allow editing of post
-//                if true {
-//                    itemDetailViewController.isOwner = true
-//                } else {
-//                    itemDetailViewController.isOwner = false
-//                }
-            }
-//        } else if segue.identifier == "EditProfileSegue" {
-//            let editProfileViewController = segue.destination as! EditProfileViewController
-//            
-//            editProfileViewController.user = user
-//        }
+    func didTapNegativePointsRecord() {
+     
+        let storyBoard: UIStoryboard = UIStoryboard(name: "pointsystem", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "NegativePointsTableViewController") as! UITableViewController
+        self.navigationController?.pushViewController(newViewController, animated: true)
     }
+    
+    
+    
+   
     
     
     
