@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ibr-l4-oyM">
-                                <rect key="frame" x="-16" y="28" width="375" height="643"/>
+                                <rect key="frame" x="16" y="20" width="375" height="643"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="UDm-3b-biU">
@@ -152,8 +152,8 @@
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="pCM-qH-EYC" id="6ph-wl-FSK"/>
-                                    <outlet property="delegate" destination="pCM-qH-EYC" id="Isr-jJ-lP6"/>
+                                    <outlet property="dataSource" destination="hgu-SC-rFT" id="Yva-qi-1GC"/>
+                                    <outlet property="delegate" destination="hgu-SC-rFT" id="uzD-Oh-eeZ"/>
                                 </connections>
                             </collectionView>
                         </subviews>

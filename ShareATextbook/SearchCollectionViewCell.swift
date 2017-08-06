@@ -17,4 +17,6 @@ class SearchCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var bookmarkButton: UIButton!
     @IBOutlet weak var chatButton: UIButton!
     
+//    chatButton.buttonPr
+    
 }

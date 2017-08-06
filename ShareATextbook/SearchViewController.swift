@@ -19,10 +19,12 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var searchCollectionView: UICollectionView!
 
     var category: Categories!
+    var mathList: [Posting]?
 //    var catList: [Category]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         
 //        CategoryDataManager.getCategoryList(limit: "") {
 //            categories in
@@ -38,6 +40,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
 //            
 //        }
         
+        
+        
         PostingDataManager.getPostingList(userId: "", isAvailable: "N", catId: "", onComplete: {
             postingList in
             
@@ -50,11 +54,34 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                 self.searchCollectionView.reloadData()
                 for var i in (0..<self.postList!.count){
                 print(self.postList![i].cateId)
-                }}
+                }
+            }
             )
         })
         
-    }
+//        DispatchQueue.global(qos: .userInitiated).async {
+//            for var i in (0..<self.postList!.count){
+//            CategoryDataManager.getCategoryById(id: (self.postList![i].cateId[0]), onComplete: {
+//                cat1 in
+//                DispatchQueue.main.async {
+//                    var subject = cat1.name
+//                    
+//                    if(cat1.name == "Mathematics"){
+//                         self.mathList!.append(self.postList![i])
+//                    }
+//                }
+//            })
+//            }
+//            for var i in (0..<self.mathList!.count){
+//            print(self.mathList![i])
+//            }
+// 
+//        
+//        
+//        }
+        
+   }// end of view did load
+    
 
         // Do any additional setup after loading the view.
     
@@ -82,13 +109,15 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = searchCollectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! SearchCollectionViewCell
         
-        print("Hello")
+        print(postList![indexPath.row].status)
         
         let postStatus = postList![indexPath.row].status
+        
         
         cell.itemImage.image = #imageLiteral(resourceName: "textbook")
         cell.itemTitle.text = postList![indexPath.row].name
         cell.itemDetail.text = postList![indexPath.row].publisher! + " " + postList![indexPath.row].edition!
+        
         
         if postList![indexPath.row].status == "" {
             cell.itemTag.isHidden = true
