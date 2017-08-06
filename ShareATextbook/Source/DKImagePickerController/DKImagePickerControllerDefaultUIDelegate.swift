@@ -46,9 +46,10 @@ open class DKImagePickerControllerDefaultUIDelegate: NSObject, DKImagePickerCont
 	}
         
     open func imagePickerControllerCreateCamera(_ imagePickerController: DKImagePickerController) -> UIViewController {
-        let camera = DKImagePickerControllerCamera()
-        
-        self.checkCameraPermission(camera)
+//        let camera = DKImagePickerControllerCamera()
+
+        let camera = BarcodeReaderCaptureViewController()
+//        self.checkCameraPermission(camera)
         
         
         return camera

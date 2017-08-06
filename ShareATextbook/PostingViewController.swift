@@ -23,22 +23,52 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
     //  MARK:   Variables
     var barcode: String = ""
     var img: UIImage?
-    var assets: [DKAsset]?
+    var assets: [DKAsset]? {
+        didSet {
+            print("assetla\(assets?.count)")
+            
+            //            if self.imageListCollectionView != nil {
+            //                print("assetlanil")
+            if isEdit! {
+                print("indexpathla\(assets?.count)--\(imageListCount)")
+                imageListCount += (assets?.count)!
+            } else {
+                imageListCount = (assets?.count)!
+            }
+            self.imageList = [UIImage](repeatElement(UIImage(), count: imageListCount))
+            if self.imageListCollectionView != nil {
+                self.imageListCollectionView.reloadData()
+            }
+            //            }
+        }
+    }
     var categoryList: [Category] = []
     var posting: Posting = Posting()
     var imageList: [UIImage] = []
     
-    var isEdit: Bool? = false
+    var isEdit: Bool? = false {
+        didSet {
+            if isEdit == true {
+                imageListCount = posting.photos.count
+                print("indexpathla--\(imageListCount)")
+                self.imageList = [UIImage](repeatElement(UIImage(), count: imageListCount))
+                //                self.imageListCollectionView.reloadData()
+            }
+        }
+    }
+    var imageListCount = 0
     var errorMessage = ""
     
     //  MARK:   Table View
     var tableViewController: PostingDetailsFormTableViewController!
     
+    //  MARK:   Tab bar controller
+    var customTabBarController: CustomTabBarController?
+    
     //  MARK:   IBAction
-   
     @IBAction func doneButtonAction(_ sender: UIBarButtonItem) {
         errorMessage = "Some of the details are required\n"
-
+        
         print("done")
         
         if tableViewController.bookTitleTextField.text != "" {
@@ -63,11 +93,11 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
             let user =  NSKeyedUnarchiver.unarchiveObject(with: decodeUser) as! User
             posting.preferredLocation = user.preferredloc!
             //  CHANGE BACK TO THIS
-//            posting.preferredLocation = tableViewController.preferredLocationTextField.text!
+            //            posting.preferredLocation = tableViewController.preferredLocationTextField.text!
         }
         if tableViewController.educationLevel.text != Strings.choosePrompt {
             let selectedEducationLevel = tableViewController.selectedEducationLevel
-//            posting.cateId.append((selectedEducationLevel?.id)!)
+            //            posting.cateId.append((selectedEducationLevel?.id)!)
             posting.cateId[0] = (selectedEducationLevel?.id)!
         } else {
             errorMessage += "Education Level\n"
@@ -75,7 +105,7 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
         }
         if tableViewController.subject.text != Strings.choosePrompt {
             let selectedSubject = tableViewController.selectedSubject
-//            posting.cateId.append((selectedSubject?.id)!)
+            //            posting.cateId.append((selectedSubject?.id)!)
             posting.cateId[1] = (selectedSubject?.id)!
         } else {
             errorMessage += "Subject\n"
@@ -88,8 +118,8 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
         print(posting.desc)
         print(posting.preferredLocation)
         print(posting.cateId)
-    
-        dismiss(animated: true, completion: nil)
+        
+        //        dismiss(animated: true, completion: nil)
         if errorMessage != "Some of the details are required\n" {
             let alert = UIAlertController(title: "Whoops", message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.cancel, handler: nil))
@@ -108,16 +138,24 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
                     
                     self.dismiss(animated: true, completion: nil)
                     
+                    
+                    //  MARK:   Clear postviewcontroller at tabbar
+                    self.customTabBarController?.postViewController = nil
                 })
             } else {
                 print("enter edit")
-                PostingDataManager.editPost(post: posting, postImageList: [], onComplete: {
+                PostingDataManager.editPost(post: posting, postImageList: imageList, token: UserDefaults.standard.object(forKey: "Token") as! String, onComplete: {
                     success, post in
                     
                     print("success \(success)")
                     print("id \(post.id)")
                     
+                    //  Reset the variables
+                    self.isEdit = false
                     
+                    DispatchQueue.main.async(execute: {
+                        self.navigationController?.popViewController(animated: true)
+                    })
                 })
             }
             
@@ -127,16 +165,33 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        
+        if isEdit! {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+        
+        self.customTabBarController?.assets = []
+        self.customTabBarController?.pickerController.deselectAllAssets()
+        
+        self.customTabBarController?.postViewController = nil
     }
     
     @IBAction func barcodeReaderAction(_ sender: UIButton) {
         
     }
     @IBAction func morePhotosAction(_ sender: UIButton) {
-        print("enter la")
-        //        dismiss(animated: true, completion: nil)
-        self.navigationController?.popViewController(animated: true)
+        //  Remove the additional photos
+        if isEdit! {
+            imageListCount -= (assets != nil ? assets?.count : 0)!
+            print("finalindexpathla\(imageListCount)")
+        }
+        
+        DispatchQueue.main.async(execute: {
+            self.customTabBarController?.showImagePicker()
+            self.customTabBarController?.postViewController = self
+        })
     }
     
     //  MARK:   Override Methods
@@ -146,11 +201,11 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
         //  MARK:   Set navigation title
         self.navigationItem.title = barcode
         
-        if assets != nil {
-            imageList = [UIImage](repeatElement(UIImage(), count: (assets?.count)!))
-        } else {
-            imageList = [UIImage](repeatElement(UIImage(), count: 0))
-        }
+        //        if assets != nil {
+        //            imageList = [UIImage](repeatElement(UIImage(), count: (assets?.count)!))
+        //        } else {
+        //            imageList = [UIImage](repeatElement(UIImage(), count: 0))
+        //        }
         
         //  MARK:   Set the education level and subject base on barcode available
         if barcode == "" {
@@ -175,7 +230,6 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
                     for cat in self.categoryList {
                         if cat.id == self.posting.cateId[0] {
                             self.tableViewController.selectedEducationLevel = cat
-//                            self.tableViewController.educationLevel.text = cat.name
                             break
                         }
                     }
@@ -183,12 +237,11 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
                     for cat in self.categoryList {
                         if cat.id == self.posting.cateId[1] {
                             self.tableViewController.selectedSubject = cat
-//                            self.tableViewController.subject.text = cat.name
                             break
                         }
                     }
                 })
-
+                
             }
             
             print("inn")
@@ -205,7 +258,7 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
             tableViewController.preferredLocationTextField.text = posting.preferredLocation
         }
     }
-  
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "test" {
@@ -221,7 +274,7 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
             vc.i1 = imageList[0]
             vc.i2 = imageList[1]
             vc.i3 = imageList[2]
-
+            
         } else if segue.identifier == "barcodeReaderSegue" {
             let vc = segue.destination as! BarcodeReaderViewController
             vc.postViewController = self
@@ -234,7 +287,7 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
     
     //  MARK: UICollectionViewDataSource, UICollectionViewDelegate methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.assets?.count ?? 0
+        return imageListCount
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -243,20 +296,57 @@ class PostingViewController: UIViewController, UICollectionViewDataSource, UICol
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let asset = self.assets![indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PostingImageCollectionViewCell
         
         print("indexpath \(indexPath.row)")
+        
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        asset.fetchImageWithSize(layout.itemSize.toPixel(), completeBlock: {
-            image, info in
-            //  MARK:   Set cell image
-            cell.image.image = image
+        
+        //  If is edit, get all posting images
+        if isEdit! {
+            //  Get all posting images
+            if indexPath.row < posting.photos.count {
+                let filePath = posting.photos[indexPath.row]
+                
+                DispatchQueue.global(qos: .userInitiated).async {
+                    let url = URL(string: DatabaseAPI.imageDownloadURL + filePath + DatabaseAPI.imageSizeR1000)
+                    ImageDownload.downloadImage(url: url!, onComplete: {
+                        data in
+                        
+                        DispatchQueue.main.async() { () -> Void in
+                            //                    cell.itemImage.contentMode = .scaleAspectFit
+                            self.imageList[indexPath.row] = UIImage(data: data)!
+                            cell.image.image = UIImage(data: data)
+                        }
+                    })
+                }
+            } else {
+                print("indexpathla\(indexPath.row):\(imageListCount)")
+                let asset = self.assets![(indexPath.row - posting.photos.count)]
+                //  Get the assets from each photo
+                asset.fetchImageWithSize(layout.itemSize.toPixel(), completeBlock: {
+                    image, info in
+                    //  MARK:   Set cell image
+                    cell.image.image = image
+                    
+                    print("set")
+                    //  MARK:   Add image to imageList
+                    self.imageList[indexPath.row] = image!
+                })
+            }
+        } else {
             
-            print("set")
-            //  MARK:   Add image to imageList
-            self.imageList[indexPath.row] = image!
-        })
+            let asset = self.assets![indexPath.row]
+            asset.fetchImageWithSize(layout.itemSize.toPixel(), completeBlock: {
+                image, info in
+                //  MARK:   Set cell image
+                cell.image.image = image
+                
+                print("set")
+                //  MARK:   Add image to imageList
+                self.imageList[indexPath.row] = image!
+            })
+        }
         
         return cell
     }

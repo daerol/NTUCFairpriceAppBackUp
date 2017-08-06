@@ -37,10 +37,33 @@ class EditProfileViewController: FormViewController, UIImagePickerControllerDele
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func changeProfileImageAction(_ sender: Any) {
-        let cameraVC = CameraViewController()
-        self.present(cameraVC, animated: true, completion: {
-            cameraVC.editProfileVC = self
-        })
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        
+        
+        let actionSheet = UIAlertController(title: "Choose a photo source", message: "Pick one", preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler:  { (action: UIAlertAction) in
+            
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                imagePickerController.sourceType = .camera
+                self.present(imagePickerController, animated: true, completion: nil)
+            }
+            
+            
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler:  { (action: UIAlertAction) in
+            
+            imagePickerController.sourceType = .photoLibrary
+            self.present(imagePickerController, animated: true, completion: nil)
+            
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:  nil ))
+        
+        self.present(actionSheet, animated: true, completion: nil)
+
     }
     
     @IBAction func doneButton(_ sender: Any) {
@@ -74,7 +97,6 @@ class EditProfileViewController: FormViewController, UIImagePickerControllerDele
                 if self.didChangePhoto {
                     //  Upload photo
                     photo = self.userProfileImg.image
-                    photo = #imageLiteral(resourceName: "user2")
                 } else {
                     self.photoPath = (self.user?.photo)!
                 }
@@ -162,8 +184,6 @@ class EditProfileViewController: FormViewController, UIImagePickerControllerDele
                 DispatchQueue.main.async() { () -> Void in
                     self.userProfileImg.contentMode = .scaleAspectFill
                     self.userProfileImg.image = UIImage(data: data)
-                    
-//                    self.userProfileImg.transform = CGAffineTransform(rotationAngle: 90)
                 }
             })
         }
@@ -274,15 +294,74 @@ class EditProfileViewController: FormViewController, UIImagePickerControllerDele
     
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        DispatchQueue.main.async() { () -> Void in
+            if image.imageOrientation.rawValue != 0 {
+                let imageFixedOrientation = image.fixedOrientation()
+                self.userProfileImg.image = imageFixedOrientation
+            } else {
+                
+                self.userProfileImg.image = image
+            }
+        }
+        didChangePhoto = true
+        
+        picker.dismiss(animated: true, completion: nil)
     }
-    */
     
+}
 
+extension UIImage {
+    func fixedOrientation() -> UIImage
+    {
+        if imageOrientation == .up {
+            return self
+        }
+        
+        var transform: CGAffineTransform = CGAffineTransform.identity
+        
+        switch imageOrientation {
+        case .down, .downMirrored:
+            transform = transform.translatedBy(x: size.width, y: size.height)
+            transform = transform.rotated(by: CGFloat.pi)
+            break
+        case .left, .leftMirrored:
+            transform = transform.translatedBy(x: size.width, y: 0)
+            transform = transform.rotated(by: CGFloat.pi / 2.0)
+            break
+        case .right, .rightMirrored:
+            transform = transform.translatedBy(x: 0, y: size.height)
+            transform = transform.rotated(by: CGFloat.pi / -2.0)
+            break
+        case .up, .upMirrored:
+            break
+        }
+        switch imageOrientation {
+        case .upMirrored, .downMirrored:
+            transform.translatedBy(x: size.width, y: 0)
+            transform.scaledBy(x: -1, y: 1)
+            break
+        case .leftMirrored, .rightMirrored:
+            transform.translatedBy(x: size.height, y: 0)
+            transform.scaledBy(x: -1, y: 1)
+        case .up, .down, .left, .right:
+            break
+        }
+        
+        let ctx: CGContext = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: self.cgImage!.bitsPerComponent, bytesPerRow: 0, space: self.cgImage!.colorSpace!, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
+        
+        ctx.concatenate(transform)
+        
+        switch imageOrientation {
+        case .left, .leftMirrored, .right, .rightMirrored:
+            ctx.draw(self.cgImage!, in: CGRect(x: 0, y: 0, width: size.height, height: size.width))
+        default:
+            ctx.draw(self.cgImage!, in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+            break
+        }
+        
+        return UIImage(cgImage: ctx.makeImage()!)
+    }
 }

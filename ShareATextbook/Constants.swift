@@ -89,3 +89,7 @@ struct Formatter {
         return formattedStr
     }
 }
+
+struct Calculation {
+    
+}

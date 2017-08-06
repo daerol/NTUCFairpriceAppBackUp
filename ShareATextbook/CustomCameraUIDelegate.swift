@@ -27,16 +27,16 @@ class CustomCameraUIDelegate: DKImagePickerControllerDefaultUIDelegate {
         self.updateDoneButtonTitle(self.createDoneButtonIfNeeded())
     }
 
-    override open func updateDoneButtonTitle(_ button: UIButton) {
-        if self.imagePickerController.selectedAssets.count > 0 {
-            button.setTitle(String(format: "Send(%d)", self.imagePickerController.selectedAssets.count), for: .normal)
-            button.isEnabled = true
-        } else {
-            button.setTitle("Send", for: .normal)
-            button.isEnabled = false
-        }
-        
-        button.sizeToFit()
-    }
+//    override open func updateDoneButtonTitle(_ button: UIButton) {
+//        if self.imagePickerController.selectedAssets.count > 0 {
+//            button.setTitle(String(format: "Send(%d)", self.imagePickerController.selectedAssets.count), for: .normal)
+//            button.isEnabled = true
+//        } else {
+//            button.setTitle("Send", for: .normal)
+//            button.isEnabled = false
+//        }
+//        
+//        button.sizeToFit()
+//    }
     
 }

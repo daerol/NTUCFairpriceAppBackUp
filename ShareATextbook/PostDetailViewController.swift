@@ -23,13 +23,15 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var postPreferredLocationStackView: UIStackView!
     
+//    var refreshControl: UIRefreshControl!
+    
     var post: Posting?
     
     var isOwner: Bool?
     
     var postImageSourceList: [ImageSource]? = []
     
-    @IBAction func requestPostAction(_ sender: Any) {
+   /* @IBAction func requestPostAction(_ sender: Any) {
         ChatDataManager.postRequest(token: UserDefaults.standard.object(forKey: "Token") as! String, postId: (post?.id)!, onComplete: {
             success, messageId, error in
             
@@ -37,7 +39,7 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         })
-    }
+    }*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,10 +137,23 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
         postImageSlideshow.addGestureRecognizer(recognizer)
     }
     
+//    func refreshAction() {
+//        refreshControl = UIRefreshControl()
+//        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+//        refreshControl.addTarget(self, action: #selector(loadUserProfile), for: UIControlEvents.valueChanged)
+//        self.view.addSubview(refreshControl)
+//    }
+    
+    func loadUserProfile() {
+        print("loadprofile")
+    }
+    
     func editButtonAction() {
         let postViewController = UIStoryboard(name: "NewItem", bundle: nil).instantiateViewController(withIdentifier: "postingViewController") as! PostingViewController
         postViewController.posting = post!
         postViewController.isEdit = true
+        
+        postViewController.customTabBarController = self.tabBarController as! CustomTabBarController
         
         self.navigationController?.pushViewController(postViewController, animated: true)
     }

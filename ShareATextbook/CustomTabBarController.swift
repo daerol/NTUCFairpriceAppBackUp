@@ -9,14 +9,18 @@
 import UIKit
 
 class CustomTabBarController: UITabBarController {
-
+    
     var menuButton : UIButton!
+    
+    var pickerController: DKImagePickerController!
+    var assets: [DKAsset]?
+    var postViewController: PostingViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
-
+        
         self.setupMiddleButton()
         
         self.tabBar.barTintColor = Colors.blue
@@ -31,6 +35,7 @@ class CustomTabBarController: UITabBarController {
             menuButton.isHidden = true
         }
         
+        pickerController = DKImagePickerController()
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,10 +46,10 @@ class CustomTabBarController: UITabBarController {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         menuButton.tintColor = Colors.lightGrey
     }
-
+    
     // MARK: - Setups
     func setupMiddleButton() {
-//        menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: self.tabBar.frame.height, height: self.tabBar.frame.height))
+        //        menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: self.tabBar.frame.height, height: self.tabBar.frame.height))
         menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 64))
         
         var menuButtonFrame = menuButton.frame
@@ -65,31 +70,29 @@ class CustomTabBarController: UITabBarController {
         self.tabBar.layoutIfNeeded()
     }
     
-    var pickerController: DKImagePickerController = DKImagePickerController()
-    var assets: [DKAsset]?
     
     // MARK: - Actions
     func menuButtonAction(_ sender: UIButton) {
-        //self.selectedIndex = 1
         
         sender.tintColor = Colors.white
         
-        pickerController.UIDelegate = CustomCameraUIDelegate()
-        pickerController.modalPresentationStyle = .overCurrentContext
+        //        pickerController.UIDelegate = CustomCameraUIDelegate()
+        //        pickerController.modalPresentationStyle = .overCurrentContext
         pickerController.showsCancelButton = true
         pickerController.assetType = .allPhotos
         
         showImagePicker()
     }
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
     func showImagePicker() {
         pickerController.defaultSelectedAssets = self.assets
         
@@ -98,6 +101,13 @@ class CustomTabBarController: UITabBarController {
             
             //  MARK:   Chnage menubutton to not active color
             self.menuButton.tintColor = Colors.lightGrey
+            
+            //  MARK:   Remove the assets
+            self.pickerController.deselectAllAssets()
+            self.assets = []
+            
+            //  MARK:   Clear the variable
+            self.postViewController = nil
         }
         
         pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
@@ -105,35 +115,20 @@ class CustomTabBarController: UITabBarController {
             
             self.assets = assets
             
-//            let viewController = BarcodeDisplayViewController()
-//            
-//            viewController.assets = assets
-//            
-//            self.navigationController?.popToViewController(viewController, animated: true)
-            
-            //            let storyboard = UIStoryboard(name: "NewItem", bundle: nil)
-            //            let newItemDetailNavigationController = storyboard.instantiateViewController(withIdentifier: "newItemDetailNavigationController") as! CustomNavigationViewController
-            //
-            //            let newItemDetailViewController = newItemDetailNavigationController.topViewController as! BarcodeDisplayViewController
-            //
-            //            newItemDetailViewController.assets = assets
-            //
-            //            self.present(newItemDetailViewController, animated: true, completion: nil)
-//            let storyboard = UIStoryboard(name: "NewItem", bundle: nil)
-//            let controller = storyboard.instantiateViewController(withIdentifier: "newItemDetailViewController") as! BarcodeDisplayViewController
-//
-            let navigationController = UIStoryboard(name: "NewItem", bundle: nil).instantiateViewController(withIdentifier: "newItemDetailNavigationController") as! CustomNavigationViewController
-            let controller = navigationController.topViewController as! PostingViewController
-            
-            controller.assets = assets
-            
-            self.present(navigationController, animated: false, completion: nil)
-            
-//            performSegue(withIdentifier: "showSegue", sender: nil)
-//            self.navigationController?.pushViewController(controller, animated: true)
-//            self.present(controller, animated: true, completion: nil)
-            
-            print("lala")
+            print("postviewnil:\(self.postViewController == nil)")
+            if self.postViewController == nil {
+                let navigationController = UIStoryboard(name: "NewItem", bundle: nil).instantiateViewController(withIdentifier: "newItemDetailNavigationController") as! CustomNavigationViewController
+                let controller = navigationController.topViewController as! PostingViewController
+                
+                controller.assets = assets
+                controller.customTabBarController = self
+                
+                self.present(navigationController, animated: false, completion: nil)
+            } else {
+                
+                //  MARK:  This is if the user reselect more assets
+                self.postViewController.assets = assets
+            }
             
             
             //  MARK:   Chnage menubutton to not active color
@@ -143,9 +138,24 @@ class CustomTabBarController: UITabBarController {
         if UI_USER_INTERFACE_IDIOM() == .pad {
             pickerController.modalPresentationStyle = .formSheet
         }
-//        DispatchQueue.main.async(execute: { () -> Void in
-            self.present(self.pickerController, animated: true) {}
-//        })
+        UIApplication.topViewController()?.present(self.pickerController, animated: true, completion: nil)
     }
+    
+}
 
+extension UIApplication {
+    class func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return topViewController(base: nav.visibleViewController)
+        }
+        if let tab = base as? UITabBarController {
+            if let selected = tab.selectedViewController {
+                return topViewController(base: selected)
+            }
+        }
+        if let presented = base?.presentedViewController {
+            return topViewController(base: presented)
+        }
+        return base
+    }
 }
