@@ -103,9 +103,9 @@ class ProtectionPointsViewController: UIViewController, UITableViewDelegate, UIT
         let s = pp["img"]!
         
         print(totalPoints)
-        if totalPoints == 0 {
-            totalPoints = 100
-        }
+//        if totalPoints == 0 {
+//            totalPoints = 100
+//        }
       
         totalPointsMessage?.text = String(describing: totalPoints)
         cell.imageCell.image = UIImage(named: s)
