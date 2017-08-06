@@ -864,7 +864,7 @@
 				TargetAttributes = {
 					C920D6641EB624E700D095FC = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 477DQDKY7M;
+						DevelopmentTeam = 89782M2XS3;
 						ProvisioningStyle = Automatic;
 					};
 					C920D67A1EB624E700D095FC = {
@@ -1103,7 +1103,6 @@
 				C92BA28A1F31A90A005934E8 /* DKAssetGroupDetailVideoCell.swift in Sources */,
 				8F034BC51F2F1DF000C16F1A /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
 				8F04F3081F35E5E300AA48EC /* NegativePointsTableViewController.swift in Sources */,
-				C1F885E31F336DA5006ECA20 /* SearchTableViewController.swift in Sources */,
 				C9F3A4961F2DE79B0089DA2F /* PostingImageCollectionViewCell.swift in Sources */,
 				C92BA2601F3194A1005934E8 /* CameraViewController.swift in Sources */,
 				C92BA2731F31A8E8005934E8 /* DKImagePickerControllerDefaultUIDelegate.swift in Sources */,
@@ -1287,11 +1286,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 477DQDKY7M;
+				DEVELOPMENT_TEAM = 89782M2XS3;
 				INFOPLIST_FILE = "$(SRCROOT)/ShareATextbook/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ShareATextbook;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ShareATextbookLol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = CheckboxHeader.h;
@@ -1306,11 +1305,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 477DQDKY7M;
+				DEVELOPMENT_TEAM = 89782M2XS3;
 				INFOPLIST_FILE = "$(SRCROOT)/ShareATextbook/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ShareATextbook;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ShareATextbookLol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = CheckboxHeader.h;
